@@ -1,0 +1,38 @@
+<ion-header align="center" class="bar-dark" >
+    <ion-navbar color="primary">
+        <ion-title>Login</ion-title>
+      </ion-navbar>
+</ion-header>
+   
+  <ion-content padding align="center">
+  <form [formGroup]="myForm" (ngSubmit)="login()">
+      <ion-list>
+      <ion-item  no-lines text-center >
+          <ion-img width="152" height="162" src="assets/imgs/login.jpg" ></ion-img>
+        </ion-item>
+  <ion-item >
+    <ion-icon name="person" item-left></ion-icon>
+        <ion-label stacked>User:</ion-label>
+        <ion-input formControlName="email" type="text" placeholder="Email" clearInput></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="key" item-left></ion-icon>
+    <ion-label stacked>Password:</ion-label>
+    <ion-input formControlName="password" type="password" placeholder="Password" clearInput></ion-input>
+  </ion-item>
+  <ion-item [hidden]="!errorMessage"><label>{{errorMessage}}</label></ion-item>
+</ion-list>
+  <div padding>
+    <button ion-button round block type="submit" [disabled]="!myForm.valid" > Sign In</button>
+  </div>
+</form>
+  <div text-center>
+    <a ion-button block clear (click)="goToSignup()">
+      Nueva cuenta
+    </a>
+    <a ion-button block clear (click)="goToResetPassword()">
+      Olvide password
+    </a>
+  </div>
+  </ion-content >
+  

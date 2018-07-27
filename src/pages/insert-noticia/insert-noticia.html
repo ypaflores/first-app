@@ -1,0 +1,68 @@
+<!--
+  Generated template for the InsertNoticiaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      </ion-buttons>
+      <ion-title>Nueva Noticia</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding align="center">
+    <form [formGroup]="myForm" (ngSubmit)="newNews()">
+      <ion-list>
+          <ion-item no-lines>
+              <ion-icon  ios="logo-instagram" md="logo-instagram" class="button cmr" (click)="takePhoto()" >     
+              </ion-icon>
+            </ion-item>
+          <ion-item>
+              <ion-label color="primary" floating   >Titulo</ion-label>
+              <ion-input type="text" formControlName="title" clearInput maxLength="11" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" floating  clearInput >Descripciòn</ion-label>
+                <ion-textarea formControlName="description" clearTextarea  ></ion-textarea>
+              </ion-item>  
+              <br>
+          <ion-item>
+              <ion-label color="primary" >Categoria</ion-label>
+              <ion-select formControlName="category">
+                <ion-option  *ngFor="let key of modeKeys">{{key}}</ion-option>
+              </ion-select>
+            </ion-item><br>
+            <ion-item no-lines>
+                <ion-label color="primary">Estado de Animo :  {{this.emozione}} </ion-label>
+            </ion-item>
+            <ion-item no-lines>
+                <ion-segment  [(ngModel)] = emozione   [ngModelOptions]="{standalone: true}" 
+                color="primary">                
+                    <ion-segment-button value="happy">
+                      <ion-icon ios="ios-happy" md="md-happy"></ion-icon>
+                    </ion-segment-button>
+                    <ion-segment-button value="sad">
+                        <ion-icon ios="ios-sad" md="md-sad"></ion-icon>
+                      </ion-segment-button>
+                  </ion-segment>
+            </ion-item>
+                  
+            <img [src]="image" *ngIf="image" />
+            
+            <div padding>
+                <button ion-button round block type="submit" [disabled]="!myForm.valid" > Sign In</button>
+              </div>
+
+      </ion-list>
+    </form>
+    
+      
+      
+
+</ion-content>
