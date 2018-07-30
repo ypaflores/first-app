@@ -83,5 +83,10 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="2.0.5" />
     <plugin name="cordova-plugin-firebase-config" spec="^1.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <plugin name="cordova-plugin-facebook4" spec="^2.2.0">
+        <variable name="APP_ID" value="413550719048916" />
+        <variable name="APP_NAME" value="FirstApp" />
+        <variable name="ANDROID_SDK_VERSION" value="4.+" />
+    </plugin>
     <engine name="android" spec="^7.0.0" />
 </widget>

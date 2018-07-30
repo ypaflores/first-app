@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/camera": "^4.10.0",
     "@ionic-native/core": "~4.9.2",
+    "@ionic-native/facebook": "^4.11.0",
     "@ionic-native/firebase-config": "^4.10.0",
     "@ionic-native/splash-screen": "~4.9.2",
     "@ionic-native/status-bar": "~4.9.2",
@@ -31,6 +32,7 @@
     "cordova-android": "^7.0.0",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-facebook4": "^2.2.0",
     "cordova-plugin-firebase-config": "^1.0.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
@@ -59,7 +61,12 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-facebook4": {
+        "APP_ID": "413550719048916",
+        "APP_NAME": "FirstApp",
+        "ANDROID_SDK_VERSION": "4.+"
+      }
     },
     "platforms": [
       "android"

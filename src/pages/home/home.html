@@ -9,4 +9,16 @@
       </ion-navbar>
 </ion-header>
 <ion-content padding >
+
+    <div *ngIf="isLoggedIn == true && user">
+
+        <h2>Hi, {{user.name}} ({{user.email}})</h2>
+              Gender: {{user.gender}}
+              <img src="{{user.picture.data.url}}" width="100" alt="{{user.name}}" />
+
+              <button ion-button icon-right (click)="logoutFromFacebook()">
+                Logout from
+                <ion-icon name="logo-facebook"></ion-icon>
+              </button>
+  </div>
   </ion-content>

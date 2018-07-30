@@ -9,7 +9,6 @@ import { HomePage } from '../pages/home/home';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
-import { NoticiasPage } from '../pages/noticias/noticias';
 import { ServiceCenterProvider } from '../providers/service-center/service-center';
 import { FirstRequestPage } from '../pages/first-request/first-request';
 
@@ -20,6 +19,8 @@ import { Camera } from '@ionic-native/camera';
 import { FormsModule } from '../../node_modules/@angular/forms';
 import { SearchPage } from '../pages/search/search';
 import { TabNewPage } from '../pages/tab-new/tab-new';
+import { Facebook } from "@ionic-native/facebook";
+import { AccessFbProvider } from '../providers/access-fb/access-fb'; 
 
 
 export const firebaseConfig = {
@@ -46,13 +47,13 @@ export const firebaseConfig = {
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-  
     LoginPage,
     FirstRequestPage,
     SearchPage,
@@ -63,7 +64,9 @@ export const firebaseConfig = {
     SplashScreen,
     ServiceCenterProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Camera
+    Camera,
+    AccessFbProvider,
+    Facebook
   ]
 })
 

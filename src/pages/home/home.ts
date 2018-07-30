@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Platform, Tabs } from 'ionic-angular';
-import { NoticiasPage } from '../noticias/noticias';
-import { InsertNoticiaPage } from '../insert-noticia/insert-noticia';
+import { NavParams } from 'ionic-angular';
+
+
 
 @Component({
   selector: 'page-home',
@@ -10,8 +10,11 @@ import { InsertNoticiaPage } from '../insert-noticia/insert-noticia';
 })
 export class HomePage {
 
-  constructor(platform: Platform) {
- 
+  isLoggedIn: boolean ;
+  user: any;
+  constructor(public navParams: NavParams) {
+    this.isLoggedIn=true;
+    this.user = navParams.get("usuario");
   }
   
 }
