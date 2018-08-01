@@ -2,5 +2,28 @@ page-insert-noticia {
 
     .cmr{
         font-size: 90px;
+        margin-right: 60px;
     }
+    .bar-button-default-ios,
+.bar-button-default.bar-button-ios-default,
+.bar-button-clear-ios-default {
+  color: #488aff;
+  background-color: transparent;
+}
+.bar-button-default-md,
+.bar-button-clear-md-default,
+.bar-button-md-default {
+    color: #488aff;
+  background-color: transparent;
+}
+.item-md {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+form, input, optgroup, select {
+    margin: 3px;
+    font: inherit;
+    color: inherit;
+}
+
 }

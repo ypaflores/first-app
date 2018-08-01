@@ -50,6 +50,7 @@ export class InsertNoticiaPage {
       }, (err) => {
        console.log(err);
      });
+     alert("carga foto");
     }
 
     takePhoto(){
@@ -64,6 +65,7 @@ export class InsertNoticiaPage {
        }, (err) => {
         
        });
+       alert("abrir camara");
     }
     
 

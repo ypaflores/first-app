@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ServiceCenterProvider } from '../../providers/service-center/service-center';
 import 'rxjs/add/operator/toPromise';
 import { NewResponse } from '../../providers/FirstResponse';
+import { NotesProvider } from '../../providers/notes/notes';
 /**
  * Generated class for the NoticiasPage page.
  *
@@ -19,37 +20,12 @@ export class NoticiasPage {
   info:string;
   dati:NewResponse=new NewResponse();
 
-  lista : Array<any> = [
-    {
-      img:"https://img.bekia.es/cocina/0000/179/2.jpg",
-      title:"Arroz con pollo",
-      date:"November 20, 2016",
-      comm:"Me cayo muy mal la comida!",
-      ctg:"comida",
-      state:"happy"
-    },
-    {
-      img:"http://www.lacocinademona.com/wp-content/uploads/2015/09/aeropuerto-chifa-721x541.jpg",
-      title:"Arroz Chaufa",
-      date:"November 5, 2018",
-      comm:"Me senti como un nino al almorzar en mi abuela!",
-      ctg:"comida",
-      state:"sad"
-    },
-  {
-      img:"https://i3.wp.com/tiempodenegocios.com/wp-content/uploads/2017/10/lista-de-tareas-700x406.jpg",
-      title:"Matematicas",
-      date:"November 3, 2018",
-      comm:"No pude resolver esta maldita equacion!",
-      ctg:"escuela",
-      state:"sad"
-  }
-  ]
+  lista : Array<any> ;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceCenterProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceCenterProvider,private serviceN:NotesProvider) {
 
     this.info ="aeropuerto";
-    
+    this.lista = this.serviceN.getNotes();
   }
 
   ionViewDidLoad() {

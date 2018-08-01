@@ -20,7 +20,7 @@ import { FormsModule } from '../../node_modules/@angular/forms';
 import { SearchPage } from '../pages/search/search';
 import { TabNewPage } from '../pages/tab-new/tab-new';
 import { Facebook } from "@ionic-native/facebook";
-import { AccessFbProvider } from '../providers/access-fb/access-fb'; 
+import { NotesProvider } from '../providers/notes/notes'; 
 
 
 export const firebaseConfig = {
@@ -65,8 +65,8 @@ export const firebaseConfig = {
     ServiceCenterProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-    AccessFbProvider,
-    Facebook
+    Facebook,
+    NotesProvider
   ]
 })
 
