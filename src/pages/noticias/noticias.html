@@ -13,6 +13,11 @@
         </button>
         </ion-buttons>
         <ion-title>News</ion-title>
+        <ion-buttons end>
+            <button ion-button >
+            <ion-icon name="search"></ion-icon>
+          </button>
+          </ion-buttons>
       </ion-navbar>
   </ion-header>
 
@@ -21,70 +26,38 @@
 <ion-content padding align="center">
 
   <h2 class="center">Cosas Realizadas</h2> 
-  <ion-item-group>
-      <ion-item-divider>Comidas</ion-item-divider>
-    <ion-item>
-        <ion-thumbnail item-left>
-          <img src="http://www.lacocinademona.com/wp-content/uploads/2015/09/aeropuerto-chifa-721x541.jpg">
-      </ion-thumbnail>
-      <button clear item-right (click)="firstRequest()">leer+</button>
-      <ion-icon class="button" ios="ios-trash" md="md-trash"  item-right (click)="deleteElement()"></ion-icon>
-        <h3>{{info}}</h3>
-        <p>20/10/2016</p>
-        
-    </ion-item>
-    <ion-item>
-        <ion-thumbnail item-left>
-          <img src="https://img.bekia.es/cocina/0000/179/2.jpg">
-      </ion-thumbnail>
-      <button clear item-right>leer+</button>
-      <ion-icon class="button" ios="ios-trash" md="md-trash"  item-right (click)="deleteElement()"></ion-icon>
-        <h3>Arroz con pollo</h3>
-        <p>20/10/2016</p>
-    </ion-item>
-  </ion-item-group>
-
-  <ion-item-group>
-      <ion-item-divider>Tareas</ion-item-divider>
-    <ion-item>
-        <ion-thumbnail item-left>
-          <img src="https://i3.wp.com/tiempodenegocios.com/wp-content/uploads/2017/10/lista-de-tareas-700x406.jpg">
-      </ion-thumbnail>
-         
-      <button clear item-right>leer+</button>
-      <ion-icon class="button" ios="ios-trash" md="md-trash"  item-right (click)="deleteElement()"></ion-icon>
-        <h3>{{dati.id}}</h3>
-        <p>22/10/2016</p>
-    </ion-item>
-    <ion-item>
-        <ion-thumbnail item-left>
-          <img src="https://i3.wp.com/tiempodenegocios.com/wp-content/uploads/2017/10/lista-de-tareas-700x406.jpg">
-      </ion-thumbnail>
-         
-      <button clear item-right>leer+</button>
-      <ion-icon class="button" ios="ios-trash" md="md-trash"  item-right (click)="deleteElement()"></ion-icon>
-        <h3>{{dati.id}}</h3>
-        <p>22/10/2016</p>
-    </ion-item>
-    <ion-item>
-        <ion-thumbnail item-left>
-          <img src="https://i3.wp.com/tiempodenegocios.com/wp-content/uploads/2017/10/lista-de-tareas-700x406.jpg">
-      </ion-thumbnail>
-         
-      <button clear item-right>leer+</button>
-      <ion-icon class="button" ios="ios-trash" md="md-trash"  item-right (click)="deleteElement()"></ion-icon>
-        <h3>{{dati.id}}</h3>
-        <p>22/10/2016</p>
-    </ion-item>
-    <ion-item>
-        <ion-thumbnail item-left>
-          <img src="https://i3.wp.com/tiempodenegocios.com/wp-content/uploads/2017/10/lista-de-tareas-700x406.jpg">
-      </ion-thumbnail>
-         
-      <button clear item-right>leer+</button>
-      <ion-icon class="button" ios="ios-trash" md="md-trash"  item-right (click)="deleteElement()"></ion-icon>
-        <h3>{{dati.id}}</h3>
-        <p>22/10/2016</p>
-    </ion-item>
-  </ion-item-group>
+  <ion-list>
+      <ion-card *ngFor="let item of lista"> 
+          <ion-item>
+            <ion-avatar item-start>
+              <img src= {{item.img}}>
+            </ion-avatar>
+            <h2>{{item.title}}</h2>
+            <p>{{item.date}}</p>
+            <p>
+               satisfaccion 
+               <ion-icon [name]="item.state"></ion-icon>
+                , {{item.ctg}}
+            </p>
+          </ion-item>
+          <img src= {{item.img}}>
+          <ion-card-content>
+            <p>{{item.comm}}</p>
+          </ion-card-content>
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-start clear small (click)="deleteElement()">
+                <ion-icon name="trash"></ion-icon>
+                <div>Elimina</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-start clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>4 Comments</div>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+</ion-list> 
 </ion-content>

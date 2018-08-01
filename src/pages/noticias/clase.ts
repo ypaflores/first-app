@@ -4,7 +4,7 @@ export class News {
     imagePreviewUrl: string 
     imageUrl: string; 
     text: string; 
- 
+    
     constructor(title: string, date: Date, imagePreviewUrl: string, imageUrl: string, text: string) { 
         this.title = title; 
         this.date = date; 
@@ -12,4 +12,5 @@ export class News {
         this.imageUrl = imageUrl; 
         this.text = text; 
     } 
+
 } 

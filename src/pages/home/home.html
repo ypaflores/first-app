@@ -1,16 +1,21 @@
 <ion-header>
     <ion-navbar>
         <ion-buttons start>
-          <button ion-button menuToggle>
+          <button ion-button menuToggle icon-only>
           <ion-icon name="menu"></ion-icon>
         </button>
         </ion-buttons>
-        <ion-title>Home</ion-title>
+        <ion-title text-center>Home</ion-title>
+        <ion-buttons end>
+            <button ion-button  icon-only>
+            <ion-icon name="contact"></ion-icon>
+          </button>
+          </ion-buttons>
       </ion-navbar>
 </ion-header>
-<ion-content padding >
+<ion-content padding class="tutorial-page" >
 
-    <div *ngIf="isLoggedIn == true && user">
+    <!-- <div *ngIf="isLoggedIn == true && usua">
 
         <h2>Hi, {{user.name}} ({{user.email}})</h2>
               Gender: {{user.gender}}
@@ -20,5 +25,27 @@
                 Logout from
                 <ion-icon name="logo-facebook"></ion-icon>
               </button>
-  </div>
+  </div>-->
+  <ion-slides pager>
+      <ion-slide *ngFor="let slide of slides">
+        <ion-toolbar>
+          <ion-buttons end>
+            <button ion-button color="primary">Skip</button>
+          </ion-buttons>
+        </ion-toolbar>
+        <img [src]="slide.image" class="slide-image"/>
+        <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+        <p [innerHTML]="slide.description"></p>
+      </ion-slide>
+      <ion-slide>
+        <ion-toolbar>
+        </ion-toolbar>
+        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/ica-slidebox-img-4.png" class="slide-image"/>
+        <h2 class="slide-title">Ready to Play?</h2>
+        <button ion-button large clear icon-end color="primary">
+          Continue
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ion-slide>
+    </ion-slides>
   </ion-content>

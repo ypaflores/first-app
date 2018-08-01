@@ -19,13 +19,11 @@ import { Notizia } from './classe';
 export class InsertNoticiaPage {
   myForm: FormGroup;
   base64Image: string;
-  image: string = null;
-  
+  image: string = null; 
   modeKeys:any;
-
   dati:Notizia;
   emozione:string="happy";
-
+  
   constructor(private camera: Camera,private formBuilder:FormBuilder,) {
     
     this.modeKeys = [
@@ -53,29 +51,19 @@ export class InsertNoticiaPage {
        console.log(err);
      });
     }
-/*
+
     takePhoto(){
-      this.camera.getPicture().then((imageData) => {
-         this.imageURL = imageData
-      }, (err) => {
-         console.log(err);
-      });
-     
-    }*/
-    takePhoto(){
-      let options: CameraOptions = {
-        destinationType: this.camera.DestinationType.DATA_URL,
-        targetWidth: 1000,
-        targetHeight: 1000,
-        quality: 100
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
       }
-      this.camera.getPicture( options )
-      .then(imageData => {
-        this.image = `data:image/jpeg;base64,${imageData}`;
-      })
-      .catch(error =>{
-        console.error( error );
-      });
+      this.camera.getPicture(options).then((imageData) => {
+        this.base64Image = 'data:image/jpeg;base64,' + imageData;
+       }, (err) => {
+        
+       });
     }
     
 

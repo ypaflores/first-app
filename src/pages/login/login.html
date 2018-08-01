@@ -23,11 +23,11 @@
   <ion-item [hidden]="!errorMessage"><label>{{errorMessage}}</label></ion-item>
 </ion-list>
   <div padding>
-    <button ion-button round block type="submit" [disabled]="!myForm.valid" > 
+    <button  outline ion-button round block type="submit" [disabled]="!myForm.valid" > 
       Sign In
   </button></div>
 </form>
-  <button ion-button round block icon-right (click)="loginWithFacebook()">
+  <button  ion-button round block icon-right (click)="loginWithFacebook()">
     Login with
     <ion-icon name="logo-facebook"></ion-icon>
 </button>
