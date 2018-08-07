@@ -19,6 +19,7 @@ export class TabNewPage {
   addNewRoot = 'InsertNoticiaPage'
 
 
+
   constructor(public navCtrl: NavController) {}
 
 }

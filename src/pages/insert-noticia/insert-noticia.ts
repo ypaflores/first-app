@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormsModule, FormGroup, FormBuilder, Validators, NgControlStatus } from '@angular/forms';
 import { Notizia } from './classe';
+import { Card } from '../../model/card.model';
+import { NotesProvider } from '../../providers/notes/notes';
+import { OperationsProvider } from '../../providers/operations/operations';
 /**
  * Generated class for the InsertNoticiaPage page.
  *
@@ -17,27 +20,33 @@ import { Notizia } from './classe';
   templateUrl: 'insert-noticia.html',
 })
 export class InsertNoticiaPage {
-  myForm: FormGroup;
   base64Image: string;
   image: string = null; 
   modeKeys:any;
-  dati:Notizia;
-  emozione:string="happy";
+  status:boolean =false;
+  Titulo="Nueva noticia";
   
-  constructor(private camera: Camera,private formBuilder:FormBuilder,) {
+  card:Card={
+    title:"",
+    comm:"",
+    ctg:"",
+    state:"happy",
+    img:"",
+    date:this.op.getDateFormat()
+  };
+  
+  constructor(private camera: Camera,private formBuilder:FormBuilder,  public navCtrl: NavController,
+    private noteListService: NotesProvider,public navParams:NavParams,private op:OperationsProvider) {
     
-    this.modeKeys = [
-      'Comida',
-      'Deporte',
-      'Escuela',
-      'Trabajo',
-    ]
-    this.myForm = formBuilder.group({
-      'title': ['', Validators.compose([Validators.required,Validators.minLength(3)])],
-        'description': ['', Validators.compose([Validators.required,Validators.minLength(7)])],
-        'category': ['', Validators.compose([Validators.required])]
-  });
-
+    this.modeKeys = this.noteListService.getCategorie();
+      
+    let tmp =  navParams.get("element");
+    if(tmp!= null){
+     this.card=tmp;
+      this.status = true;
+      this.Titulo="Cambia noticia";
+    }
+    
   }
 
   accessGallery(){
@@ -50,7 +59,7 @@ export class InsertNoticiaPage {
       }, (err) => {
        console.log(err);
      });
-     alert("carga foto");
+     this.card.img="http://www.lacocinademona.com/wp-content/uploads/2015/09/aeropuerto-chifa-721x541.jpg";
     }
 
     takePhoto(){
@@ -65,15 +74,52 @@ export class InsertNoticiaPage {
        }, (err) => {
         
        });
-       alert("abrir camara");
+       this.card.img="https://i3.wp.com/tiempodenegocios.com/wp-content/uploads/2017/10/lista-de-tareas-700x406.jpg";
     }
     
 
     newNews()
     {
-      this.dati= new Notizia(this.myForm.value['title'],this.myForm.value['description'],this.myForm.value['category'],this.emozione);
-     
-      alert( this.dati.title+" "+this.dati.description+" "+this.dati.category+" " + this.dati.state );
+      let app = this.NgControlStatus();
+        if(!app)return;
+        else{
+          alert("todo correcto!");
+          (this.status)?this.updateCard(this.card):this.insertCard(this.card)
+        }    
+    }
+
+    public insertCard(card: Card) {
+      alert("Estoy introduciendo nuevos Datos");
+        this.noteListService.addNote(card).then(ref => {
+          this.navCtrl.setRoot('TabNewPage');
+        })
+    }
+    updateCard(card: Card) {
+      alert("Estoy modificando viejos Datos");
+     this.noteListService.updateNote(card);
       
     }
+
+    private NgControlStatus(){
+      
+        if(this.card.title==""||this.card.ctg==""||this.card.comm==""){
+            alert("Controla los campos vacios");
+            return false;
+        }
+        if(this.card.title.length>16){
+          alert("titulo maximo 10 carcteres");
+          return false;
+        }
+        if(this.card.comm.length<7){
+          alert("escriba una descripcion mas larga");
+          return false;
+        }
+        if(this.card.img.length==0||this.card.img==""){
+          alert("seleccione foto");
+          return false;
+        }
+        return true;
+    }
+
+    
 }

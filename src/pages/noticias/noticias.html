@@ -27,7 +27,7 @@
 
   <h2 class="center">Cosas Realizadas</h2> 
   <ion-list>
-      <ion-card *ngFor="let item of lista"> 
+      <ion-card *ngFor="let item of lista "> 
           <ion-item>
             <ion-avatar item-start>
               <img src= {{item.img}}>
@@ -46,18 +46,19 @@
           </ion-card-content>
           <ion-row>
             <ion-col>
-              <button ion-button icon-start clear small (click)="deleteElement()">
+              <button ion-button icon-start clear small (click)="deleteElement(item)">
                 <ion-icon name="trash"></ion-icon>
                 <div>Elimina</div>
               </button>
             </ion-col>
             <ion-col>
-              <button ion-button icon-start clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>4 Comments</div>
+              <button ion-button icon-start clear small (click)="goToUpdate(item)">
+                <ion-icon name="ios-clipboard"></ion-icon>
+                <div>Modifica</div>
               </button>
             </ion-col>
           </ion-row>
         </ion-card>
 </ion-list> 
+
 </ion-content>

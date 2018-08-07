@@ -11,13 +11,12 @@
         <ion-icon name="menu"></ion-icon>
       </button>
       </ion-buttons>
-      <ion-title>Nueva Noticia</ion-title>
+      <ion-title>{{this.Titulo}}</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding align="center">
-    <form [formGroup]="myForm" (ngSubmit)="newNews()">
       <ion-list>
           <ion-item no-lines>
               <ion-icon  ios="logo-instagram" md="logo-instagram" class="button cmr" (click)="takePhoto()" >     
@@ -25,27 +24,26 @@
               <ion-icon ios="ios-images" md="md-images" class="button cmr" (click)="accessGallery()"> </ion-icon>
                 
               </ion-item>
-          <ion-item>
+          <ion-item >
               <ion-label color="primary" floating   >Titulo</ion-label>
-              <ion-input type="text" formControlName="title" clearInput maxLength="11" ></ion-input>
+              <ion-input type="text" [(ngModel)] = card.title clearInput maxLength="16" ></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary" floating  clearInput >Descripciòn</ion-label>
-                <ion-textarea formControlName="description" clearTextarea  ></ion-textarea>
+                <ion-textarea [(ngModel)] = card.comm   ></ion-textarea>
               </ion-item>  
               <br>
           <ion-item>
               <ion-label color="primary" >Categoria</ion-label>
-              <ion-select formControlName="category">
+              <ion-select [(ngModel)] = card.ctg>
                 <ion-option  *ngFor="let key of modeKeys">{{key}}</ion-option>
               </ion-select>
             </ion-item><br>
             <ion-item no-lines>
-                <ion-label color="primary">Estado de Animo :  {{this.emozione}} </ion-label>
+                <ion-label color="primary">Estado de Animo :  {{this.card.state}} </ion-label>
             </ion-item>
             <ion-item no-lines>
-                <ion-segment  [(ngModel)] = emozione   [ngModelOptions]="{standalone: true}" 
-                color="primary">                
+                <ion-segment   [(ngModel)] = card.state    color="primary">                
                     <ion-segment-button value="happy">
                       <ion-icon ios="ios-happy" md="md-happy"></ion-icon>
                     </ion-segment-button>
@@ -58,10 +56,8 @@
             <img [src]="image" *ngIf="image" />
             
             <div padding>
-                <button ion-button round block type="submit" [disabled]="!myForm.valid" > Sign In</button>
+                <button ion-button round block  (click)="newNews()"  >Guardar</button>
               </div>
 
       </ion-list>
-    </form>
-    
 </ion-content>
