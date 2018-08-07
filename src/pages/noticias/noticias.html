@@ -24,7 +24,9 @@
 
 
 <ion-content padding align="center">
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <h2 class="center">Cosas Realizadas</h2> 
   <ion-list>
       <ion-card *ngFor="let item of lista "> 

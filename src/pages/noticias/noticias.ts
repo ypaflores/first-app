@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { ServiceCenterProvider } from '../../providers/service-center/service-center';
 import 'rxjs/add/operator/toPromise';
@@ -21,26 +21,28 @@ import 'rxjs/add/operator/map'
   selector: 'page-noticias',
   templateUrl: 'noticias.html',
 })
-export class NoticiasPage {
+export class NoticiasPage implements OnInit {
   info:string;
   dati:NewResponse=new NewResponse();
 
-  lista : any;
+  lista :Card[];
   noteList: Observable<Card[]>
-  tmp:Card[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceCenterProvider,private serviceN:NotesProvider) {
 
-    this.info ="aeropuerto";
-    this.initializeCards();
     
   }
 
+  ngOnInit(){
+
+    this.initializeCards();
+
+ }
   initializeCards(){
 
-    this.lista = this.serviceN.getNotes();
-    //this.noteList=this.serviceN.getNoteList();
-    
+    this.serviceN.getNoteList().subscribe(res => {
+      this.lista = res;
+    });
   }
 
 
@@ -67,52 +69,28 @@ export class NoticiasPage {
   search(key: any){
 
     const val = key.target.value;
-    this.lista= this.serviceN.getNotesSearch(val);
+    this.lista= this.serviceN.getNotesSearch(val,this.lista);
   }
   searchState(key:any){
     const val = key.target.value;
-    this.lista= this.serviceN.getNotesSearchState(val);
+    this.lista= this.serviceN.getNotesSearchState(val,this.lista);
   }
 
   goToUpdate(card:Card){
-    /*
+    
     this.navCtrl.push("InsertNoticiaPage", {
       element: card,
-    });*/
-
-    this.serviceN.getNoteList().subscribe(res => {
-      console.log("res" + res);
-      this.tmp = res;
-      res.forEach(item => {
-        console.log("item " + item.title + "!" );
-      });
     });
 
+  
 }
    
-    
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
 
-  /*
-    console.log("estoy aqui!");
-    console.log(card);*/
-    
-/*
-    this.noteList=this.serviceN.getNoteList2()
-    .snapshotChanges()
-    .map(
-      changes => {
-        return changes.map(c => ({
-          key: c.payload.key, ...c.payload.val()
-        }))
-      })
-    .map(changes => changes.reverse());
-
-    console.log(this.noteList);
-
-    console.log(this.serviceN.getNoteList());
-
-    */
-
-
-
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
 }

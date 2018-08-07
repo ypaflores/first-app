@@ -10,7 +10,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { ServiceCenterProvider } from '../providers/service-center/service-center';
-import { FirstRequestPage } from '../pages/first-request/first-request';
 
 //import { FirebaseConfig } from '@ionic-native/firebase-config';
 import { AngularFireModule } from 'angularfire2';
@@ -24,6 +23,8 @@ import { NotesProvider } from '../providers/notes/notes';
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 import { InsertNoticiaPage } from '../pages/insert-noticia/insert-noticia';
 import { OperationsProvider } from '../providers/operations/operations';
+import { HoroscopeRequestProvider } from '../providers/horoscope-request/horoscope-request';
+import { HoroscoposPage } from '../pages/horoscopos/horoscopos';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAH2Sh-cpOV5IS4d7fvAsvg_cuB4X8HAB4",
@@ -38,9 +39,9 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     LoginPage,
-    FirstRequestPage,
     SearchPage,
-    TabNewPage,    
+    TabNewPage,
+    HoroscoposPage    
   ],
   imports: [
     BrowserModule,
@@ -57,10 +58,9 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     LoginPage,
-    FirstRequestPage,
     SearchPage,
     TabNewPage,
-    
+    HoroscoposPage
   ],
   providers: [
     StatusBar,
@@ -70,7 +70,8 @@ export const firebaseConfig = {
     Camera,
     Facebook,
     NotesProvider,
-    OperationsProvider
+    OperationsProvider,
+    HoroscopeRequestProvider
   ]
 })
 

@@ -5,9 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';import { LoginPage } from '../pages/login/login';
 import { NoticiasPage } from '../pages/noticias/noticias';
-import { FirstRequestPage } from '../pages/first-request/first-request';
 import { SearchPage } from '../pages/search/search';
 import { TabNewPage } from '../pages/tab-new/tab-new';
+import { HoroscoposPage } from '../pages/horoscopos/horoscopos';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +26,7 @@ export class MyApp {
     this.pages = [
       { title: 'Login', component: LoginPage },
       { title: 'Home', component: HomePage },
-      { title: 'Buscar', component: FirstRequestPage },
+      { title: 'Horoscopo', component: HoroscoposPage },
       { title: 'Buscar2', component: SearchPage },
       { title: 'News', component: TabNewPage }
       

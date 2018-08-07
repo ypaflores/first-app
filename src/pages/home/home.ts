@@ -12,10 +12,12 @@ export class HomePage {
 
   isLoggedIn: boolean ;
   user: any;
+  date= "2018-08-07";
   slides = [
     {
-      title: "Bienvenido Giovany !",
-      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
+      
+      title: "Taurus !",
+      description: "<b>Horoscope: </b> Don't be surprised if you feel a little antsy today. You have more energy than usual, both physically and mentally. You're curious about anything that seems remotely interesting! You can see how this could detract from your usual ability to focus. Now you're paying attention to this, that and the other thing, all at the same time. You may learn something interesting, but absorbing it deeply is another matter.",
       image: "https://ionicframework.com/dist/preview-app/www/assets/img/ica-slidebox-img-1.png",
     },
     {

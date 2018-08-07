@@ -35,26 +35,5 @@ export class ServiceCenterProvider {
       .then(this.extractData)
 	    .catch(this.handleErrorPromise);
  } 
-/*
- search2() {
-  let promise = new Promise((resolve, reject) => {
-    let apiURL ="https://jsonplaceholder.typicode.com/posts/1";
-    this.http.get(apiURL)
-      .toPromise()
-      .then(
-        res => { // Success
-          console.log(res.json());
-          resolve();
-        }
-      );
-  });
-  return promise;
-}
 
-getAutentication( user, pass):boolean
-{
-  if()
-  return false;
-
-}*/
 }

@@ -29,12 +29,19 @@
   <ion-slides pager>
       <ion-slide *ngFor="let slide of slides">
         <ion-toolbar>
-          <ion-buttons end>
-            <button ion-button color="primary">Skip</button>
-          </ion-buttons>
+          <ion-item>
+            <ion-label>Day  {{date}}</ion-label>
+            <ion-select [(ngModel)]="notifications" interface="action-sheet">
+              <ion-option value="td">Today</ion-option>
+              <ion-option value="yd">Yesterday</ion-option>
+              <ion-option value="tmr">Tomorrow</ion-option>
+              <ion-option value="mute_year" (ionSelect)="notificationSelect($event)">Mute for a year</ion-option>
+            </ion-select>
+          </ion-item>
         </ion-toolbar>
         <img [src]="slide.image" class="slide-image"/>
         <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+        <p id="full"> <b>intensity:</b> 63% <b>  keywords:</b> stability , secured <b>  mood:</b>  meet</p>
         <p [innerHTML]="slide.description"></p>
       </ion-slide>
       <ion-slide>
