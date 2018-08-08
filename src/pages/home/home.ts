@@ -13,29 +13,27 @@ export class HomePage {
   isLoggedIn: boolean ;
   user: any;
   date= "2018-08-07";
+  day="today";
   slides = [
     {
-      
-      title: "Taurus !",
-      description: "<b>Horoscope: </b> Don't be surprised if you feel a little antsy today. You have more energy than usual, both physically and mentally. You're curious about anything that seems remotely interesting! You can see how this could detract from your usual ability to focus. Now you're paying attention to this, that and the other thing, all at the same time. You may learn something interesting, but absorbing it deeply is another matter.",
-      image: "https://ionicframework.com/dist/preview-app/www/assets/img/ica-slidebox-img-1.png",
+      sing : {date: "2018-08-09",
+           horoscope: "The past was a rockin' good time. You're not so su…ere's a lot more to this song than meets the ear.", 
+            meta: {intensity: "84%", keywords: "out of your depth, actual values", mood: "back office decision"}, 
+            sunsign: "Aries"},
+      image:"http://cdn.thestorypedia.com/images/2016/05/aries.jpg",
     },
-    {
-      title: "What is Ionic?",
-      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
-      image: "https://ionicframework.com/dist/preview-app/www/assets/img/ica-slidebox-img-2.png",
-    },
-    {
-      title: "What is Ionic Cloud?",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
-      image: "https://ionicframework.com/dist/preview-app/www/assets/img/ica-slidebox-img-3.png",
-    }
+    
   ];
 
   constructor(public navParams: NavParams) {
     this.isLoggedIn=true;
     this.user = navParams.get("usuario");
   }
-  
+
+  onSelectChange() {
+    //change data !
+    //call rest api
+    console.log('S', this.day);
+  }
  
 }

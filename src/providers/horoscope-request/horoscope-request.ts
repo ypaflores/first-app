@@ -15,9 +15,9 @@ export class HoroscopeRequestProvider {
   }
 
 
-  getZodiacalSunsign(sunsign) 
+  getZodiacalSunsign(sunsign,day) 
   {
-    let tmp = "http://theastrologer-api.herokuapp.com/api/horoscope/"+sunsign+"/today";
+    let tmp = "http://theastrologer-api.herokuapp.com/api/horoscope/"+sunsign+"/"+day;
     
     return this.http.get(tmp).toPromise().then(res => res.json());
 

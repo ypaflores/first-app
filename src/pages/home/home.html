@@ -31,28 +31,17 @@
         <ion-toolbar>
           <ion-item>
             <ion-label>Day  {{date}}</ion-label>
-            <ion-select [(ngModel)]="notifications" interface="action-sheet">
-              <ion-option value="td">Today</ion-option>
-              <ion-option value="yd">Yesterday</ion-option>
-              <ion-option value="tmr">Tomorrow</ion-option>
-              <ion-option value="mute_year" (ionSelect)="notificationSelect($event)">Mute for a year</ion-option>
+            <ion-select [(ngModel)]="day" interface="action-sheet"   (ngModelChange)="onSelectChange()">
+                <ion-option value="yesterday">Yesterday</ion-option>
+                <ion-option value="today">Today</ion-option>
+                <ion-option value="tomorrow">Tomorrow</ion-option>
             </ion-select>
           </ion-item>
         </ion-toolbar>
         <img [src]="slide.image" class="slide-image"/>
-        <h2 class="slide-title" [innerHTML]="slide.title"></h2>
-        <p id="full"> <b>intensity:</b> 63% <b>  keywords:</b> stability , secured <b>  mood:</b>  meet</p>
-        <p [innerHTML]="slide.description"></p>
-      </ion-slide>
-      <ion-slide>
-        <ion-toolbar>
-        </ion-toolbar>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/ica-slidebox-img-4.png" class="slide-image"/>
-        <h2 class="slide-title">Ready to Play?</h2>
-        <button ion-button large clear icon-end color="primary">
-          Continue
-          <ion-icon name="arrow-forward"></ion-icon>
-        </button>
+        <h2 class="slide-title" [innerHTML]="slide.sing?.sunsign"></h2>
+        <p id="full"> <b>intensity:</b> {{slide.sing?.meta?.intensity}}<b>  keywords: </b>{{slide.sing?.meta?.keywords}} <b>  mood: </b> {{slide.sing?.meta?.mood}}</p>
+          <p ><b>horoscope: </b>{{slide.sing?.horoscope}}</p>
       </ion-slide>
     </ion-slides>
   </ion-content>

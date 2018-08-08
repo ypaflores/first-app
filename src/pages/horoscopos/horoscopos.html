@@ -4,18 +4,40 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
+<ion-header align="center">
   <ion-navbar>
-    <ion-title>horoscopos</ion-title>
-  </ion-navbar>
-
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      </ion-buttons>
+      <ion-title>Horoscopo</ion-title>
+      <ion-buttons end>
+          <button ion-button >
+          <ion-icon name="search"></ion-icon>
+        </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
-  <button (click)="consultAllHoroscopo()">CLick</button>
-  <div *ngIf="flag == true">
-      {{this.dati.taurus.horoscope}};
-  </div>
+<ion-content padding class="tutorial-page">
+ 
+  <ion-slides pager>
+    <ion-slide *ngFor="let slide of slides">
+      <ion-toolbar>
+        <ion-item>
+          <ion-label>Day  {{date}}</ion-label>
+          <ion-select [(ngModel)]="day" interface="action-sheet"   (ngModelChange)="onSelectChange()">
+              <ion-option value="yesterday">Yesterday</ion-option>
+              <ion-option value="today">Today</ion-option>
+              <ion-option value="tomorrow">Tomorrow</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-toolbar>
+      <img [src]="slide.image" class="slide-image"/>
+      <h2 class="slide-title" [innerHTML]="slide.sing?.sunsign"></h2>
+      <p id="full"> <b>intensity:</b> {{slide.sing?.meta?.intensity}}<b>  keywords: </b>{{slide.sing?.meta?.keywords}} <b>  mood: </b> {{slide.sing?.meta?.mood}}</p>
+        <p ><b>horoscope: </b>{{slide.sing?.horoscope}}</p>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
