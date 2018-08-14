@@ -3,6 +3,7 @@ import { NavParams } from 'ionic-angular';
 //import {TranslateService} from "@ngx-translate/core";
 
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -36,4 +37,16 @@ export class HomePage {
     console.log('S', this.day);
   }
  
+  obtenerTraduccion(){
+    
+    console.log("estoy traduciendo!");/*
+    translate('Yo quiero jugar en la playa', {to: 'en'}).then(res => {
+      console.log(res.text);
+      //=> I speak English
+      console.log(res.from.language.iso);
+      //=> nl
+      }).catch(err => {
+      console.error(err);
+  });*/
+  }
 }

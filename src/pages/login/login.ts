@@ -22,15 +22,15 @@ export class LoginPage {
 
   myForm: FormGroup;
   user: Observable<firebase.User>;
-  public loading:Loading;
   scopes: string[];
   isLoggedIn: boolean;
   user2: any;
+  public loading:Loading;
 
   constructor(public navCtrl: NavController,public formBuilder: FormBuilder,public afAuth: AngularFireAuth, public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController,private facebook: Facebook,public platform: Platform) 
+    public loadingCtrl: LoadingController,private facebook: Facebook,public platform: Platform,public menu: MenuController) 
     {
-    
+      this.menu.swipeEnable(false);
     this.myForm = formBuilder.group({
       'email': ['', Validators.compose([Validators.required])],
         'password': ['', Validators.compose([Validators.required])]
@@ -59,35 +59,31 @@ export class LoginPage {
   }
   //cuenta con fireBase
   login(){
-
-    console.log("Email:" + this.myForm.value.email);
-    console.log("Password:" + this.myForm.value.password);
-   
-
-    this.afAuth.auth.createUserWithEmailAndPassword(this.myForm.value.email, this.myForm.value.password)
-    .then(
-      res => {
-        this.navCtrl.setRoot('HomePage');
-      }, error => {
-        this.loading.dismiss().then( () => {
-          let alert = this.alertCtrl.create({
-            message: error.message,
-            buttons: [
-              {
-                text: "Ok",
-                role: 'cancel'
-              }
-            ]
+   console.log(this.myForm.value.email + " "+  this.myForm.value.password)
+    this.afAuth.auth.signInWithEmailAndPassword(this.myForm.value.email, this.myForm.value.password)
+    .then((res)=>
+        {
+          this.navCtrl.setRoot(HomePage);
+          this.loading.dismiss();
+        }, error => {
+          this.loading.dismiss().then( () => {
+            let alert = this.alertCtrl.create({
+              message: "Usuario No reconocido , Registrese Porfavor",
+              buttons: [
+                {
+                  text: "Ok",
+                  role: 'cancel'
+                }
+              ]
+            });
+            alert.present();
           });
-          alert.present();
         });
-      });
-
-      this.loading = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-      });
-      this.loading.present();
-    
+        this.loading = this.loadingCtrl.create({
+          content:"Procesando Datos",
+          dismissOnPageChange: true,
+        });
+        this.loading.present();
   }
 
   goToSignup(){
@@ -139,6 +135,5 @@ this.facebook.api("/" + userId +"/?fields=id,email,name,picture,gender",["public
     console.log(error);
   });
 }
-
 
 }

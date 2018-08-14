@@ -38,10 +38,10 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    LoginPage,
     SearchPage,
     TabNewPage,
-    HoroscoposPage    
+    HoroscoposPage,
+    LoginPage   
   ],
   imports: [
     BrowserModule,
@@ -57,10 +57,10 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage,
     SearchPage,
     TabNewPage,
-    HoroscoposPage
+    HoroscoposPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

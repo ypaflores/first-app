@@ -1,0 +1,21 @@
+<ion-content style="padding: 8px;">
+  <button ion-button clear float-right (tap)="cerrar()">
+    <ion-icon name="close"></ion-icon>
+  </button>
+  <div class="wrapper" style="clear: both;">
+    <h4 text-center>Filtrar</h4>
+    <ion-item>
+      <ion-input type="text" placeholder='Encuentra aqui' [(ngModel)]="titulo"></ion-input>
+    </ion-item>
+    <ion-item margin-top>
+      <ion-label>Tipo Busqueda</ion-label>
+      <ion-select [(ngModel)]="tipo">
+        <ion-option  *ngFor = "let c of modeKeys ">{{c}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <div text-center margin-top margin-bottom>
+      <button ion-button outline (tap)="quitarFiltro()">Quitar Valores</button>
+      <button ion-button color="primary" (tap)="filtrarCards()">Inicia Busqueda</button>
+    </div>
+  </div>
+</ion-content>

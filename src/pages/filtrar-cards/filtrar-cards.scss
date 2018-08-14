@@ -1,0 +1,18 @@
+page-filtrar-cards {
+    ion-content {
+        .scroll-content {
+            padding-bottom: 0 !important;
+            ion-item {
+                .item-inner {
+                    .input-wrapper {
+                        ion-input {
+                            input[type="text"] {
+                                margin-left: 0 !important;
+                            }
+                        }
+                    }
+                }   
+            }
+        }
+    }
+}

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { getNonHydratedSegmentIfLinkAndUrlMatch } from '../../../node_modules/ionic-angular/umd/navigation/url-serializer';
 import {AngularFireDatabase} from "angularfire2/database/database";
 import { Card } from '../../model/card.model';
+import { Observable } from '../../../node_modules/rxjs';
 
 /*
   Generated class for the NotesProvider provider.
@@ -20,7 +21,7 @@ export class NotesProvider {
     'trabajo',
     'chismes'
   ]
-
+  courses$: Observable<Card[]>;
   private noteListRef = this.db.list<Card>('/cards/');
  
     constructor(private db: AngularFireDatabase) { }
@@ -48,7 +49,12 @@ export class NotesProvider {
 
  
     getNoteList() {
-        return this.noteListRef.valueChanges();
+      this.courses$ = this.noteListRef.snapshotChanges().map(changes=>{
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() 
+        }));
+      });
+      console.log("ola");
+        return this.courses$;
     }
     getNoteList2() {
       return this.db.list<Card>('cards');
@@ -60,12 +66,11 @@ export class NotesProvider {
     }
  
     updateNote(card: Card) {
-      alert("esta modificando");
+      
         return this.noteListRef.update(card.key,card);
     }
  
     removeNote(card: Card) {
-      alert("esta eliminando");
         return this.noteListRef.remove(card.key);
         
     }

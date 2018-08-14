@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormsModule, FormGroup, FormBuilder, Validators, NgControlStatus } from '@angular/forms';
 import { Notizia } from './classe';
@@ -36,7 +36,8 @@ export class InsertNoticiaPage {
   };
   
   constructor(private camera: Camera,private formBuilder:FormBuilder,  public navCtrl: NavController,
-    private noteListService: NotesProvider,public navParams:NavParams,private op:OperationsProvider) {
+    private noteListService: NotesProvider,public navParams:NavParams,private op:OperationsProvider,
+    public loadingCtrl: LoadingController) {
     
     this.modeKeys = this.noteListService.getCategorie();
       
@@ -59,7 +60,7 @@ export class InsertNoticiaPage {
       }, (err) => {
        console.log(err);
      });
-     this.card.img="http://www.lacocinademona.com/wp-content/uploads/2015/09/aeropuerto-chifa-721x541.jpg";
+     this.card.img="https://www.skuola.net/news_foto/2018/equazione-retta.jpg";
     }
 
     takePhoto(){
@@ -74,7 +75,7 @@ export class InsertNoticiaPage {
        }, (err) => {
         
        });
-       this.card.img="https://i3.wp.com/tiempodenegocios.com/wp-content/uploads/2017/10/lista-de-tareas-700x406.jpg";
+       this.card.img="https://www.skuola.net/news_foto/2018/equazione-retta.jpg";
     }
     
 
@@ -89,15 +90,27 @@ export class InsertNoticiaPage {
     }
 
     public insertCard(card: Card) {
-      alert("Estoy introduciendo nuevos Datos");
+      let loader = this.loadingCtrl.create({
+        content: "Agregando Objeto nuevo"
+      });
+      loader.present().then((res)=> {
         this.noteListService.addNote(card).then(ref => {
-          this.navCtrl.setRoot('TabNewPage');
         })
+        if(res)loader.dismiss();
+        this.deleteAll();
+      })
     }
+
     updateCard(card: Card) {
-      alert("Estoy modificando viejos Datos");
-     this.noteListService.updateNote(card);
-      
+      let loader = this.loadingCtrl.create({
+        content: "Modificando Objeto seleccionado"
+      });
+        loader.present().then((res)=> {
+          this.noteListService.updateNote(card).then(()=>{
+        });
+        if(res)loader.dismiss();
+            this.navCtrl.pop();
+      })
     }
 
     private NgControlStatus(){
@@ -121,5 +134,12 @@ export class InsertNoticiaPage {
         return true;
     }
 
+    deleteAll(){
+      this.card.comm="";
+      this.card.img="";
+      this.card.title="";
+      this.card.ctg="";
+      this.card.state="happy";
+    }
     
 }

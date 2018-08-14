@@ -45,26 +45,34 @@ export class SignupPage {
     this.afAuth.auth.createUserWithEmailAndPassword(this.myForm.value.email, this.myForm.value.password)
     .then(
       res => {
-        this.navCtrl.setRoot('HomePage');
+        this.createAlert("Registrado con suceso!");
+        this.loading.dismiss().then(()=>{
+          this.navCtrl.pop();
+        });
       }, error => {
         this.loading.dismiss().then( () => {
-          let alert = this.alertCtrl.create({
-            message: error.message,
-            buttons: [
-              {
-                text: "Ok",
-                role: 'cancel'
-              }
-            ]
-          });
-          alert.present();
+          this.createAlert("La dirección de correo electrónico ya está siendo utilizada por otra cuenta!");
         });
       });
 
       this.loading = this.loadingCtrl.create({
+        content:"Procesando Datos",
         dismissOnPageChange: true,
       });
       this.loading.present();
     
+  }
+
+  createAlert(msg){
+    let alert = this.alertCtrl.create({
+      message: msg,
+      buttons: [
+        {
+          text: "Ok",
+          role: 'cancel'
+        }
+      ]
+    });
+    alert.present();
   }
 }

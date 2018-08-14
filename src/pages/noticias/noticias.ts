@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, PopoverController, Events} from 'ionic-angular';
 import { ServiceCenterProvider } from '../../providers/service-center/service-center';
 import 'rxjs/add/operator/toPromise';
 import { NewResponse } from '../../providers/FirstResponse';
@@ -26,23 +26,28 @@ export class NoticiasPage implements OnInit {
   dati:NewResponse=new NewResponse();
 
   lista :Card[];
-  noteList: Observable<Card[]>
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceCenterProvider,private serviceN:NotesProvider) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceCenterProvider,private serviceN:NotesProvider,
+    public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,public events: Events){
     
   }
 
   ngOnInit(){
 
-    this.initializeCards();
+    this.initializeCards("Cargando Datoss...");
 
  }
-  initializeCards(){
+  initializeCards(comment:string){
 
-    this.serviceN.getNoteList().subscribe(res => {
-      this.lista = res;
+    let loader = this.loadingCtrl.create({
+      content: comment
     });
+    loader.present().then(()=> {
+      this.serviceN.getNoteList().subscribe(res => {
+        this.lista = res;
+        if(res)loader.dismiss();
+      });
+    })
   }
 
 
@@ -60,10 +65,9 @@ export class NoticiasPage implements OnInit {
   }
 
   deleteElement(card:Card){
-    alert("Rimuovere este elemento "+card.key);
-      this.serviceN.removeNote(card);
-    
-    
+      this.serviceN.removeNote(card).then(()=>{
+        this.initializeCards("Eliminando objeto seleccionado");
+      });
   }
 
   search(key: any){
@@ -92,5 +96,20 @@ export class NoticiasPage implements OnInit {
       console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
+  }
+  filtrarCards($event) {
+    
+    const popover = this.popoverCtrl.create('FiltrarCardsPage', { cards: this.lista });
+    popover.present({
+      ev: $event
+    });
+    
+  } 
+  
+  ionViewDidLoad() {
+    this.events.subscribe('challenges:filtered', (retosFiltrados) => {
+      if(retosFiltrados.length>0)
+        this.lista = retosFiltrados;
+    })
   }
 }

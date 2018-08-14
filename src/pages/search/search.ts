@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OperationsProvider } from '../../providers/operations/operations';
 
 /**
  * Generated class for the SearchPage page.
@@ -16,7 +17,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class SearchPage {
   modeKeys:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public store : OperationsProvider) {
     this.initializeItems();
   }
 
@@ -44,6 +45,10 @@ export class SearchPage {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+  HazmeClick(){
+
+      this.store.Uploadimg();
   }
 
 }
