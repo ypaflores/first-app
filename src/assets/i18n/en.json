@@ -116,6 +116,21 @@
                 "DESC": "There was an unknown error in creating the news, please try again later"
             }
         }
+    },
+    "HOROSCOPO":{
+        "TITULO":"Horoscope",
+        "DIA":{
+            "DESC":"Day",
+            "HOY":"Today",
+            "MAÑANA":"Tomorrow",
+            "AYER":"Yesterday"
+        },
+        "HOROSCOPO_TODO":{
+            "INTENSIDAD":"Intensity",
+            "HUMOR":"Mood",
+            "PALABRAS_CLAVE":"Keywords",
+            "DESCRIPCION":"Horoscope"
+        }
     }
     
 

@@ -56,7 +56,7 @@
         "MIS_NOTICIAS": "Notizie",
         "DESC": "Scegli alcune notizie che desideri modiicare/eliminare",
         "SIN_NOTICIAS": "Non ce nulla qui...",
-        "MODIFICAR": "Modificare",
+        "MODIFICAR": "Modificaree",
         "ELIMINAR": "Rimuovere",
         "COMPARTIR": {
             "TITULO": "Condividere notizia",
@@ -88,7 +88,7 @@
                     "CHISMES": "petegolezzi",
                     "OTROS": "altri"
                 },
-                "TITULO_NOTICIA": "Daiun titolo",
+                "TITULO_NOTICIA": "Dai un titolo",
                 "DESCRIPCION": "Descrizione",
                 "ANIMO": {
                     "TITULO": "Emozione provata",
@@ -114,6 +114,21 @@
                 "TITULO": "Errore nel creare la notizia",
                 "DESC": "Ce stato unerrore sconosciuto nel creare la notizia. Riprova piu tardi"
             }
+        }
+    },
+    "HOROSCOPO":{
+        "TITULO":"Oroscopo",
+        "DIA":{
+            "DESC":"Giorno",
+            "HOY":"Oggi",
+            "MAÑANA":"Domani",
+            "AYER":"Ieri"
+        },
+        "HOROSCOPO_TODO":{
+            "INTENSIDAD":"Intensità",
+            "HUMOR":"Umore",
+            "PALABRAS_CLAVE":"Parole",
+            "DESCRIPCION":"Oroscopo"
         }
     }
 

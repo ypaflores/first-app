@@ -11,12 +11,13 @@
         <ion-icon name="menu"></ion-icon>
       </button>
       </ion-buttons>
-      <ion-title>{{this.Titulo}}</ion-title>
+      <ion-title>{{'CREAR_NOTICIA.TITULO'|translate}}</ion-title>
     </ion-navbar>
 </ion-header>
 
 
 <ion-content padding align="center">
+        <h4 text-center margin-bottom style="margin-top: 8px;">{{'CREAR_NOTICIA.DESC'|translate}}</h4>
       <ion-list>
           <ion-item no-lines>
               <ion-icon  ios="logo-instagram" md="logo-instagram" class="button cmr" (click)="takePhoto()" >     
@@ -25,22 +26,27 @@
                 
               </ion-item>
           <ion-item >
-              <ion-label color="primary" floating   >Titulo</ion-label>
+              <ion-label color="primary" floating   >{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.TITULO_NOTICIA'|translate}}</ion-label>
               <ion-input type="text" [(ngModel)] = card.title clearInput maxLength="16" ></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label color="primary" floating  clearInput >Descripciòn</ion-label>
+                <ion-label color="primary" floating  clearInput >{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.DESCRIPCION'|translate}}</ion-label>
                 <ion-textarea [(ngModel)] = card.comm   ></ion-textarea>
               </ion-item>  
               <br>
           <ion-item>
               <ion-label color="primary" >Categoria</ion-label>
               <ion-select [(ngModel)] = card.ctg>
-                <ion-option  *ngFor="let key of modeKeys">{{key}}</ion-option>
+                <ion-option  value="comida">{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.TIPO_NOTICIA.COMIDA'|translate}}</ion-option>
+                <ion-option  value="deporte">{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.TIPO_NOTICIA.DEPORTE'|translate}}</ion-option>
+                <ion-option  value="escuela">{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.TIPO_NOTICIA.ESCUELA'|translate}}</ion-option>
+                <ion-option  value="trabajo">{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.TIPO_NOTICIA.TRABAJO'|translate}}</ion-option>
+                <ion-option  value="chismes">{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.TIPO_NOTICIA.CHISMES'|translate}}</ion-option>
+                <ion-option  value="otros">{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.TIPO_NOTICIA.OTROS'|translate}}</ion-option>
               </ion-select>
             </ion-item><br>
             <ion-item no-lines>
-                <ion-label color="primary">Estado de Animo :  {{this.card.state}} </ion-label>
+                <ion-label color="primary">{{'CREAR_NOTICIA.DATOS_BASICOS.CAMPOS.ANIMO.TITULO'|translate}} :  {{this.card.state}} </ion-label>
             </ion-item>
             <ion-item no-lines>
                 <ion-segment   [(ngModel)] = card.state    color="primary">                

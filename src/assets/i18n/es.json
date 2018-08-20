@@ -117,6 +117,21 @@
                 "DESC": "Hubo un error desconocido al crear la noticia. Inténtalo de nuevo más tarde"
             }
         }
+    },
+    "HOROSCOPO":{
+        "TITULO":"Horoscopo",
+        "DIA":{
+            "DESC":"Dia",
+            "HOY":"Hoy",
+            "MAÑANA":"Mañana",
+            "AYER":"Ayer"
+        },
+        "HOROSCOPO_TODO":{
+            "INTENSIDAD":"Intensidad",
+            "HUMOR":"Umor",
+            "PALABRAS_CLAVE":"Claves",
+            "DESCRIPCION":"Horoscopo"
+        }
     }
 
 }
