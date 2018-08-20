@@ -171,7 +171,6 @@ ionViewDidLoad() {
 cambiarIdioma(lang) {
   this.lang = lang;
   this.translateService.use(lang);
-  this.ionViewDidLoad();
 }
 
 }
