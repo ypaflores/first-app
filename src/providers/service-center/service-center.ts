@@ -1,7 +1,8 @@
 import { Http,Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import { NewResponse } from '../FirstResponse';
+import Trs from 'translate-json-object';
+
 
 /*
   Generated class for the ServiceCenterProvider provider.
@@ -15,25 +16,25 @@ export class ServiceCenterProvider {
   
   public name: string;
   
-  constructor(public http: Http) {
+  constructor(public traducir :Trs) {
+
+      traducir.init({
+        yandexApiKey: 'trnsl.1.1.20180816T115006Z.2777cdd56e559d34.3dd05c12ee3f71d172ac48dcb5e519cade86c5f5',
+      });
 
     }
-    private extractData(res: Response) {
-      console.log(res.json());
-      let body = res.json();
-            return body;
-        }
-    private handleErrorPromise (error: Response | any) {
-	    console.error(error.message || error);
-	    return Promise.reject(error.message || error);
-  }
-        
-  search():Promise<NewResponse>
-  { 
-      return this.http.get('https://jsonplaceholder.typicode.com/posts/7')
-      .toPromise()
-      .then(this.extractData)
-	    .catch(this.handleErrorPromise);
- } 
+     
+    translate(example:any) {
+        return new Promise((resolve, reject) => {
+          this.traducir.translate(example, 'es').then(userData => {
+              resolve(userData);
+            }).catch(error => {
+              reject(JSON.stringify(error));
+            })
+          })
+   }
+
+
+
 
 }

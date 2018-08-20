@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, PopoverController, Events} from 'ionic-angular';
 import { ServiceCenterProvider } from '../../providers/service-center/service-center';
 import 'rxjs/add/operator/toPromise';
-import { NewResponse } from '../../providers/FirstResponse';
 import { NotesProvider } from '../../providers/notes/notes';
-import { Observable } from 'rxjs/Observable';
 import { Card } from '../../model/card.model';
-import { InsertNoticiaPage } from '../insert-noticia/insert-noticia';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map'
+import { TranslateService } from '@ngx-translate/core';
+import { UtilitiesProvider } from '../../providers/utilities/utilities';
 /**
  * Generated class for the NoticiasPage page.
  *
@@ -23,12 +22,12 @@ import 'rxjs/add/operator/map'
 })
 export class NoticiasPage implements OnInit {
   info:string;
-  dati:NewResponse=new NewResponse();
-
+  translation: any;
+  lang: string;
   lista :Card[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceCenterProvider,private serviceN:NotesProvider,
-    public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,public events: Events){
+    public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,public events: Events,private translateService: TranslateService,private utilities: UtilitiesProvider){
     
   }
 
@@ -37,7 +36,7 @@ export class NoticiasPage implements OnInit {
     this.initializeCards("Cargando Datoss...");
 
  }
-  initializeCards(comment:string){
+  private initializeCards(comment:string){
 
     let loader = this.loadingCtrl.create({
       content: comment
@@ -50,37 +49,17 @@ export class NoticiasPage implements OnInit {
     })
   }
 
-
-  firstRequest(){
-  
-    this.service.search().then(
-      data => this.dati = data,
-      errorCode => alert('error fatal!'));
-
-  }
-
-  goToAddNews(){
+  public goToAddNews(){
     
     this.navCtrl.push('InsertNoticiaPage');
   }
 
-  deleteElement(card:Card){
+  public deleteElement(card:Card){
       this.serviceN.removeNote(card).then(()=>{
         this.initializeCards("Eliminando objeto seleccionado");
       });
   }
-
-  search(key: any){
-
-    const val = key.target.value;
-    this.lista= this.serviceN.getNotesSearch(val,this.lista);
-  }
-  searchState(key:any){
-    const val = key.target.value;
-    this.lista= this.serviceN.getNotesSearchState(val,this.lista);
-  }
-
-  goToUpdate(card:Card){
+  public goToUpdate(card:Card){
     
     this.navCtrl.push("InsertNoticiaPage", {
       element: card,
@@ -89,7 +68,7 @@ export class NoticiasPage implements OnInit {
   
 }
    
-  doRefresh(refresher) {
+  public doRefresh(refresher) {
     console.log('Begin async operation', refresher);
 
     setTimeout(() => {
@@ -97,7 +76,7 @@ export class NoticiasPage implements OnInit {
       refresher.complete();
     }, 2000);
   }
-  filtrarCards($event) {
+  public filtrarCards($event) {
     
     const popover = this.popoverCtrl.create('FiltrarCardsPage', { cards: this.lista });
     popover.present({
@@ -106,10 +85,24 @@ export class NoticiasPage implements OnInit {
     
   } 
   
-  ionViewDidLoad() {
+  public ionViewDidLoad() {
+    this.obtenerTraduccion();
     this.events.subscribe('challenges:filtered', (retosFiltrados) => {
       if(retosFiltrados.length>0)
         this.lista = retosFiltrados;
     })
   }
+
+  obtenerTraduccion() {
+    
+    setTimeout(() => {
+      this.translateService.get('MIS_NOTICIAS').subscribe(result => {
+        this.utilities.getLang().then(lang => {
+          this.lang = lang;
+          this.translation = result;
+        });
+      });
+    }, 100);
+  }
+  
 }

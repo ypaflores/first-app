@@ -1,0 +1,120 @@
+{
+    "INICIAR_SESION": {
+        "USUARIO": "Utente",
+        "CONTRASENA": "password",
+        "INICIAR_SESION": "Accedi",
+        "NO_REGISTRADO": {
+            "NO_REGISTRADO": "Non sei ancora Registrato?",
+            "REGISTRATE_AQUI": "Registrati qui!",
+            "FACEBOOK": "Accedi con Facebook",
+            "PASSWORDNO": "Password smarrita"
+        },
+        "VARIOS": {
+            "INICIANDO_SESION": "Accedendo...",
+            "ERROR": {
+                "TITULO": "Errore durante l'accesso",
+                "DESC": "Si è verificato un errore sconosciuto durante l'accesso. Riprova più tardi",
+                "FACEBOOK": {
+                    "TITULO": "Errore durante l'accesso con Facebook",
+                    "DESC": "Si è verificato un errore durante l'accesso con Facebook. Per favore riprova più tardi"
+                }
+            }
+        }
+    },
+    "CARDS":{
+
+    },
+    "MENU": {
+        "INICIO": "Inizio",
+        "HOROSCOPO": "Tutti Horoscopo",
+        "BUSCAR": "Cerca Qualcosa",
+        "NOTICIAS": "Mie Novità",
+        "CERRAR_SESION": {
+            "TITULO": "Chiudere Sessione",
+            "DESC": "Sei sicuro di voler chiudere sessione?",
+            "CANCELAR": "Chiudi",
+            "EXITO": "Sesione chiusa con esito"
+        }
+    },
+    "REGISTRO": {
+        "REGISTRO": "Registrazione",
+        "TEXTO": "compila il seguente modulo per registrarti e usare la nostra app.",
+        "NOMBRE": "Nome",
+        "USUARIO": "Utente",
+        "TELEFONO": "Telefono",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "REGISTRATE": "Registrati Adesso"
+    },
+    "PASSWORD": {
+        "PASSWORD": "Nuova Password",
+        "TEXTO": "compila il modulo con il tuo indirizzo email per ricevere un link per cambiare la password.",
+        "EMAIL": "Email",
+        "ENVIA_LINK": "Invia link adesso"
+    },
+    "MIS_NOTICIAS": {
+        "MIS_NOTICIAS": "Notizie",
+        "DESC": "Scegli alcune notizie che desideri modiicare/eliminare",
+        "SIN_NOTICIAS": "Non ce nulla qui...",
+        "MODIFICAR": "Modificare",
+        "ELIMINAR": "Rimuovere",
+        "COMPARTIR": {
+            "TITULO": "Condividere notizia",
+            "FACEBOOK": "Condividere con Facebook",
+            "WHATSAPP": "Condividere con WhatsApp",
+            "TWITTER": "Condividere con Twitter",
+            "CANCELAR": "Cancelare"
+        },
+        "ERROR": {
+            "TITULO": "Errore durante caricamento delle tue notizie",
+            "DESC": "Ce stato un errore durante il caricamneto. Riprova piu tardi"
+        }
+    },
+    "CREAR_NOTICIA": {
+        "TITULO": "Nuova notizia",
+        "DESC": "Crea una nueva notizia ",
+        "BOTONES": {
+            "ATRAS": "Indietro",
+            "SIGUIENTE": "Avanti"
+        },
+        "DATOS_BASICOS": {
+            "TITULO": "Caratteristicche di notizia",
+            "CAMPOS": {
+                "TIPO_NOTICIA": {
+                    "COMIDA": "cibo",
+                    "DEPORTE": "sport",
+                    "ESCUELA": "scuola",
+                    "TRABAJO": "lavoro",
+                    "CHISMES": "petegolezzi",
+                    "OTROS": "altri"
+                },
+                "TITULO_NOTICIA": "Daiun titolo",
+                "DESCRIPCION": "Descrizione",
+                "ANIMO": {
+                    "TITULO": "Emozione provata",
+                    "TIPOS": {
+                        "FELIZ": "felice",
+                        "TRISTE": "triste",
+                        "EMOCIONADO": "emozionato"
+                    }
+                }
+            }
+        },
+        "IMAGEN_NOTICIA": {
+            "IMAGEN_RETO": "Imagine della notizia",
+            "ADJUNTAR": "Disponi imagine",
+            "ELEGIR": "Scegli"
+        },
+        "ERRORES": {
+            "SIN_TIPO": {
+                "TITULO": "Creare notizia",
+                "DESC": "Debi scegliere un tipo di categoria para poter crearlo"
+            },
+            "DESCONOCIDO": {
+                "TITULO": "Errore nel creare la notizia",
+                "DESC": "Ce stato unerrore sconosciuto nel creare la notizia. Riprova piu tardi"
+            }
+        }
+    }
+
+}

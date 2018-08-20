@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavParams } from 'ionic-angular';
-//import {TranslateService} from "@ngx-translate/core";
+import { Http, Headers, RequestOptions,  } from '@angular/http';
+import { TranslateService } from '@ngx-translate/core';
 
-
+import { ServiceCenterProvider } from '../../providers/service-center/service-center';
 
 @Component({
   selector: 'page-home',
@@ -10,7 +11,7 @@ import { NavParams } from 'ionic-angular';
     
 })
 export class HomePage {
-
+ 
   isLoggedIn: boolean ;
   user: any;
   date= "2018-08-07";
@@ -25,10 +26,12 @@ export class HomePage {
     },
     
   ];
-
-  constructor(public navParams: NavParams) {
+  
+  constructor(public navParams: NavParams,public translateService :ServiceCenterProvider, private translate: TranslateService ) {
     this.isLoggedIn=true;
     this.user = navParams.get("usuario");
+    
+
   }
 
   onSelectChange() {
@@ -39,14 +42,27 @@ export class HomePage {
  
   obtenerTraduccion(){
     
-    console.log("estoy traduciendo!");/*
-    translate('Yo quiero jugar en la playa', {to: 'en'}).then(res => {
-      console.log(res.text);
-      //=> I speak English
-      console.log(res.from.language.iso);
-      //=> nl
-      }).catch(err => {
-      console.error(err);
-  });*/
+    let example = {
+      "name": "Please enter your name and surname",
+      "list": ["translate", "object", "made", "easy"],
+      "nested": {
+        "hello": "hello",
+        "world": "world"
+        }
+    };
+    
+    let tmp;
+
+    this.translateService.translate(example).then((response)=>{
+      if(response){
+        console.log(response);
+        tmp = response;
+      }
+    })
+
+
   }
+
+  
+
 }

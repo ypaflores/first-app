@@ -5,6 +5,9 @@
 </ion-header>
    
   <ion-content padding align="center">
+      <button float-right *ngIf="lang === 'es'" detail-none class="language-button" (tap)="cambiarIdioma('en')">🇪🇸</button>
+      <button float-right *ngIf="lang === 'en'" detail-none class="language-button" (tap)="cambiarIdioma('it')">🇬🇧</button>
+      <button float-right *ngIf="lang === 'it'" detail-none class="language-button" (tap)="cambiarIdioma('es')">🇮🇹</button>
   <form [formGroup]="myForm" (ngSubmit)="login()">
       <ion-list>
       <ion-item  no-lines text-center >
@@ -12,31 +15,31 @@
         </ion-item>
   <ion-item >
     <ion-icon name="person" item-left></ion-icon>
-        <ion-label stacked>User:</ion-label>
+        <ion-label stacked>{{'INICIAR_SESION.USUARIO'|translate}}</ion-label>
         <ion-input formControlName="email" type="text" placeholder="Email" clearInput></ion-input>
   </ion-item>
   <ion-item>
     <ion-icon name="key" item-left></ion-icon>
-    <ion-label stacked>Password:</ion-label>
+    <ion-label stacked>{{'INICIAR_SESION.CONTRASENA'|translate}}</ion-label>
     <ion-input formControlName="password" type="password" placeholder="Password" clearInput></ion-input>
   </ion-item>
   <ion-item [hidden]="!errorMessage"><label>{{errorMessage}}</label></ion-item>
 </ion-list>
-  <div padding>
+  <div padding class="login-container">
     <button  outline ion-button round block type="submit" [disabled]="!myForm.valid" > 
-      Sign In
+      {{'INICIAR_SESION.INICIAR_SESION'|translate}}
   </button></div>
 </form>
   <button  ion-button round block icon-right (click)="loginWithFacebook()">
-    Login with
+    {{'INICIAR_SESION.NO_REGISTRADO.FACEBOOK'|translate}}
     <ion-icon name="logo-facebook"></ion-icon>
 </button>
   <div text-center>
     <a ion-button block clear (click)="goToSignup()">
-      Nueva cuenta
+      {{'INICIAR_SESION.NO_REGISTRADO.REGISTRATE_AQUI'|translate}}
     </a>
     <a ion-button block clear (click)="goToResetPassword()">
-      Olvide password
+      {{'INICIAR_SESION.NO_REGISTRADO.PASSWORDNO'|translate}}
     </a>
   </div>
   </ion-content >

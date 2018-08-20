@@ -1,5 +1,5 @@
-import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 /*
   Generated class for the HoroscopeRequestProvider provider.
@@ -30,7 +30,7 @@ export class HoroscopeRequestProvider {
   ];
 
 
-  constructor(public http: Http) {
+  constructor(private http: Http) {
     console.log('Hello HoroscopeRequestProvider Provider');
   }
 
@@ -59,7 +59,12 @@ export class HoroscopeRequestProvider {
         this.muestraHoroscopo(element,++count,day);
         
       });
-      return this.slides;
+       return new Promise((resolve, reject) => {
+           resolve(this.slides);
+        })
     }
 
+
+
+    
 }

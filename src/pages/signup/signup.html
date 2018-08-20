@@ -6,11 +6,12 @@
 -->
 <ion-header>
     <ion-navbar color="primary">
-      <ion-title>Signup</ion-title>
+      <ion-title>{{'REGISTRO.REGISTRO'|translate}}</ion-title>
     </ion-navbar>
   </ion-header>
   
   <ion-content padding align="center">
+      <p text-center>{{'REGISTRO.TEXTO'|translate}}</p>
     <form [formGroup]="myForm" (ngSubmit)="signup()">
       <ion-list>
           <ion-item no-lines text-center>
@@ -18,18 +19,18 @@
             </ion-item>
         <ion-item>
           <ion-icon name="person" item-left></ion-icon>
-          <ion-label stacked></ion-label>
+          <ion-label stacked>{{'REGISTRO.EMAIL'|translate}}</ion-label>
           <ion-input formControlName="email" type="text" placeholder="Email" clearInput></ion-input>
         </ion-item>
         <ion-item>
           <ion-icon name="key" item-left></ion-icon>
-          <ion-label stacked></ion-label>
+          <ion-label stacked>{{'REGISTRO.PASSWORD'|translate}}</ion-label>
           <ion-input formControlName="password" type="password" placeholder="Password" clearInput></ion-input>
         </ion-item>
         <ion-item [hidden]="!errorMessage"><label>{{errorMessage}}</label></ion-item>
       </ion-list>
       <div padding>
-        <button ion-button round block type="submit" [disabled]="!myForm.valid">Register</button>
+        <button ion-button round block type="submit" [disabled]="!myForm.valid">{{'REGISTRO.REGISTRATE'|translate}}</button>
       </div>
     </form>
   </ion-content>

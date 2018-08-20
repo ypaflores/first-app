@@ -18,4 +18,12 @@ page-noticias {
     color: #488aff;
   background-color: transparent;
 }
+.sin-noticias {
+    margin-top: 50%;
+}
+.noticias {
+    ion-card {
+        position: relative;
+    }
+}
 }

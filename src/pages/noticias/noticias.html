@@ -12,7 +12,7 @@
           <ion-icon name="menu"></ion-icon>
         </button>
         </ion-buttons>
-        <ion-title>News</ion-title>
+        <ion-title>{{'MIS_NOTICIAS.MIS_NOTICIAS'|translate}}</ion-title>
         <ion-buttons end>
           <button ion-button icon-only (tap)="filtrarCards($event)">
             <ion-icon name="ios-funnel"></ion-icon>
@@ -27,8 +27,9 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <h2 class="center">Cosas Realizadas</h2> 
-  <ion-list>
+  <h4 class="center">{{'MIS_NOTICIAS.DESC'|translate}}</h4>
+  <h1 text-center class="sin-noticias" *ngIf="!isLoading && lista?.length === 0">{{'MIS_NOTICIAS.SIN_NOTICIAS'|translate}}</h1> 
+  <ion-list class="noticias" *ngIf="!isLoading && lista?.length > 0">
       <ion-card *ngFor="let item of lista "> 
           <ion-item>
             <ion-avatar item-start>
@@ -50,13 +51,13 @@
             <ion-col>
               <button ion-button icon-start clear small (click)="deleteElement(item)">
                 <ion-icon name="trash"></ion-icon>
-                <div>Elimina</div>
+                <div>{{'MIS_NOTICIAS.ELIMINAR'|translate}}</div>
               </button>
             </ion-col>
             <ion-col>
               <button ion-button icon-start clear small (click)="goToUpdate(item)">
                 <ion-icon name="ios-clipboard"></ion-icon>
-                <div>Modifica</div>
+                <div>{{'MIS_NOTICIAS.MODIFICAR'|translate}}</div>
               </button>
             </ion-col>
           </ion-row>

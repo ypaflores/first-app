@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, LoadingController, } from 'ionic-angular';
 import { HoroscopeRequestProvider } from '../../providers/horoscope-request/horoscope-request';
+import { ServiceCenterProvider } from '../../providers/service-center/service-center';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Generated class for the HoroscoposPage page.
@@ -20,9 +22,9 @@ export class HoroscoposPage {
   date:string;
   day="today";
 
-  slides = [];
+  slides ;
 
-  constructor(private service: HoroscopeRequestProvider, public loadingCtrl: LoadingController) {
+  constructor(private service: HoroscopeRequestProvider, public loadingCtrl: LoadingController,private translateService :ServiceCenterProvider,private translate: TranslateService) {
     this.date=  this.dtmp.toLocaleDateString();
   }
 
@@ -50,16 +52,38 @@ export class HoroscoposPage {
     
 
   public consult(){
+
     let loader = this.loadingCtrl.create({
-      content: 'Cargando Datos...'
+      content: "Cargando Datos!"
     });
-    loader.present().then((x)=> {
-      this.slides = this.service.consultAllHoroscopo(this.day);
-      setTimeout(() => {
-        loader.dismiss();
-      }, 4500);
+    loader.present().then(()=> {
+      this.service.consultAllHoroscopo(this.day).then((response)=>{
+        if(response){
+          console.log(response);
+          this.slides = response;
+          setTimeout(() => {
+            loader.dismiss();
+          }, 4500);
+        }
+      })
     })
-    
   }
   
+  public translateObjects(){
+
+    let loader = this.loadingCtrl.create({
+      content: "Traduciendo Datos!"
+    });
+    loader.present().then(()=> {
+      this.translateService.translate(this.slides).then((response)=>{
+        if(response){
+          console.log(response);
+          this.slides = response;
+          if(response)loader.dismiss();
+        }
+      })
+    })
+  }
 }
+
+

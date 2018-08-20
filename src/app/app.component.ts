@@ -9,6 +9,8 @@ import { SearchPage } from '../pages/search/search';
 import { TabNewPage } from '../pages/tab-new/tab-new';
 import { HoroscoposPage } from '../pages/horoscopos/horoscopos';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { TranslateService } from '../../node_modules/@ngx-translate/core';
+import { UtilitiesProvider } from '../providers/utilities/utilities';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,32 +19,58 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = LoginPage;
-
+  lang: string;
+  translation: any;
   
   pages: Array<{title: string, component: any,icon : string}>;
 
-  constructor(public afAuth: AngularFireAuth,private menuCtrl: MenuController,private alertCtrl: AlertController,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public afAuth: AngularFireAuth,private menuCtrl: MenuController,private alertCtrl: AlertController,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,private translate: TranslateService,private utilities:UtilitiesProvider) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage  ,icon: 'person'},
-      { title: 'Horoscopo', component: HoroscoposPage ,icon: 'people'},
-      { title: 'Buscar2', component: SearchPage ,icon: 'add' },
-      { title: 'News', component: TabNewPage,  icon: 'list'}
-      
-      
-      
-    ];
+  }
+ 
+  setPages(){
 
+    this.utilities.getLang().then(result => {
+      this.lang= result;
+      this.translate.use(this.lang).subscribe(() => {
+        this.translate.get('MENU').subscribe(menu => {
+          this.translation = menu;
+          this.pages = [
+            { title: this.translation.INICIO,  component: HomePage  ,icon: 'person' },
+            { title: this.translation.HOROSCOPO,component: HoroscoposPage ,icon: 'people'},
+            { title: this.translation.BUSCAR,  component: SearchPage ,icon: 'add' },
+            { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' }
+            
+          ];
+        })
+      })
+    }).catch((error) => {
+      this.lang="es";
+      this.translate.use(this.lang).subscribe(() => {
+        this.translate.get('MENU').subscribe(menu => {
+          this.translation = menu;
+          this.pages = [
+            { title: this.translation.INICIO,  component: HomePage  ,icon: 'person' },
+            { title: this.translation.HOROSCOPO,component: HoroscoposPage ,icon: 'people'},
+            { title: this.translation.BUSCAR,  component: SearchPage ,icon: 'add' },
+            { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' }
+            
+          ];
+        })
+      })
+    });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.translate.setDefaultLang('es');
+      this.setPages();
     });
   }
 
@@ -54,20 +82,20 @@ export class MyApp {
 
   cerrarSesion() {
     let alert = this.alertCtrl.create({
-      title: "Cerrar Sesion!",
-      message: "Estas seguro de Cerrar Sesion ?",
+      title: this.translation.CERRAR_SESION.TITULO,
+      message: this.translation.CERRAR_SESION.DESC,
       buttons: [
         {
-          text: "Cancelar",
+          text: this.translation.CERRAR_SESION.CANCELAR,
           role: 'cancel'
         },
         {
-          text: "Cerrar Sesion!",
+          text:this.translation.CERRAR_SESION.TITULO,
           handler: () => {
             this.menuCtrl.close().then(() => {
               this.afAuth.auth.signOut().then(()=>{
                 this.nav.setRoot(LoginPage).then(() => {
-                  console.log("Cerrando Session");
+                  console.log(this.translation.CERRAR_SESION.EXITO);
                 })
               });
             })

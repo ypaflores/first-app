@@ -1,0 +1,122 @@
+{
+    "INICIAR_SESION": {
+        "USUARIO": "Username",
+        "CONTRASENA": "Password",
+        "INICIAR_SESION": "Login",
+        "NO_REGISTRADO": {
+            "NO_REGISTRADO": "Not registered yet?",
+            "REGISTRATE_AQUI": "Register here",
+            "FACEBOOK": "Login with Facebook",
+            "PASSWORDNO": "Forgot Password"
+        },
+        "VARIOS": {
+            "INICIANDO_SESION": "Logging in...",
+            "ERROR": {
+                "TITULO": "Error logging in",
+                "DESC": "There was an unknown error logging in. Please try again later",
+                "FACEBOOK": {
+                    "TITULO": "Error logging in with Facebook",
+                    "DESC": "There was an error logging in with Facebook. Please try again later"
+                }
+            }
+        }
+    },
+    "CARDS":{
+        
+    },
+    "MENU": {
+        "INICIO": "Home",
+        "HOROSCOPO": "All Horoscopos",
+        "BUSCAR": "Search something",
+        "NOTICIAS": "My News",
+        "CERRAR_SESION": {
+            "TITULO": "Logout",
+            "DESC": "Are you sure you want to logout?",
+            "CANCELAR": "Cancel",
+            "EXITO": "You have logged out successfully"
+        }
+    },
+    "REGISTRO": {
+        "REGISTRO": "Register",
+        "TEXTO": "Fill in the following form to register and enjoy our app.",
+        "NOMBRE": "Name",
+        "USUARIO": "Username",
+        "TELEFONO": "Phone",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "REGISTRATE": "Register now"
+    },
+    "PASSWORD": {
+        "PASSWORD": "New Password",
+        "TEXTO": "fill out the form with your email address to receive a link to change the password.",
+        "EMAIL": "Email",
+        "ENVIA_LINK": "Send Link now"
+    },
+    "MIS_NOTICIAS": {
+        "MIS_NOTICIAS": "My news",
+        "DESC": "Choose the news you want to change / delete",
+        "SIN_NOTICIAS": "There's nothing around here ..",
+        "MODIFICAR": "Modify",
+        "ELIMINAR": "Delete",
+        "COMPARTIR": {
+            "TITULO": "Share news",
+            "FACEBOOK": "Share via Facebook",
+            "WHATSAPP": "Share via WhatsApp",
+            "TWITTER": "Share via Twitter",
+            "CANCELAR": "Cancel"
+        },
+        "ERROR": {
+            "TITULO": "Error getting your news",
+            "DESC": "There was an error in getting your news, try again later"
+        }
+    },
+
+    "CREAR_NOTICIA": {
+        "TITULO": "New News",
+        "DESC": "Create a new news ",
+        "BOTONES": {
+            "ATRAS": "Back",
+            "SIGUIENTE": "Next"
+        },
+        "DATOS_BASICOS": {
+            "TITULO": "Characteristics of news",
+            "CAMPOS": {
+                "TIPO_NOTICIA": {
+                    "COMIDA": "food",
+                    "DEPORTE": "sport",
+                    "ESCUELA": "school",
+                    "TRABAJO": "work",
+                    "CHISMES": "petegries",
+                    "OTROS": "others"
+                },
+                "TITULO_NOTICIA": "Give a title ",
+                "DESCRIPCION": "Description",
+                "ANIMO": {
+                    "TITULO": "Proven emotion",
+                    "TIPOS": {
+                        "FELIZ": "happy",
+                        "TRISTE": "sad",
+                        "EMOCIONADO": "excited"
+                    }
+                }
+            }
+        },
+        "IMAGEN_NOTICIA": {
+            "IMAGEN_RETO": "Imagine of the news",
+            "ADJUNTAR": "Adjuntar imagen",
+            "ELEGIR": "Choose"
+        },
+        "ERRORES": {
+            "SIN_TIPO": {
+                "TITULO": "Create news",
+                "DESC": "You have to choose a type of category to be able to create it"
+            },
+            "DESCONOCIDO": {
+                "TITULO": "Error in creating the news",
+                "DESC": "There was an unknown error in creating the news, please try again later"
+            }
+        }
+    }
+    
+
+}

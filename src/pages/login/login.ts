@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController, Loading, Platform } from 'ionic-angular';
-import {FormBuilder, FormGroup, Validators, AbstractControl}  from '@angular/forms';
+import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController, Loading, Platform, Events } from 'ionic-angular';
+import {FormBuilder, FormGroup, Validators}  from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app'
 import { Observable } from '../../../node_modules/rxjs/Observable';
 import { Facebook } from "@ionic-native/facebook";
 import { HomePage } from '../home/home';
+import { Storage } from '@ionic/storage';
+import { UtilitiesProvider } from '../../providers/utilities/utilities';
+import { TranslateService } from '../../../node_modules/@ngx-translate/core';
 /**
  * Generated class for the LoginPage page.
  *
@@ -20,6 +23,8 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
+  lang: string = 'it';
+  translation: any;
   myForm: FormGroup;
   user: Observable<firebase.User>;
   scopes: string[];
@@ -27,8 +32,8 @@ export class LoginPage {
   user2: any;
   public loading:Loading;
 
-  constructor(public navCtrl: NavController,public formBuilder: FormBuilder,public afAuth: AngularFireAuth, public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController,private facebook: Facebook,public platform: Platform,public menu: MenuController) 
+  constructor( public events: Events,public navCtrl: NavController,public formBuilder: FormBuilder,public afAuth: AngularFireAuth, public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,private facebook: Facebook,public platform: Platform,public menu: MenuController,private storage: Storage,private utilities: UtilitiesProvider,private translateService: TranslateService) 
     {
       this.menu.swipeEnable(false);
     this.myForm = formBuilder.group({
@@ -59,26 +64,30 @@ export class LoginPage {
   }
   //cuenta con fireBase
   login(){
+
    console.log(this.myForm.value.email + " "+  this.myForm.value.password)
     this.afAuth.auth.signInWithEmailAndPassword(this.myForm.value.email, this.myForm.value.password)
     .then((res)=>
         {
-          this.navCtrl.setRoot(HomePage);
+            if (res.operationType == 'signIn') {
+              this.utilities.saveLang(this.lang).then(() => {
+                this.navCtrl.setRoot(HomePage).then(() => {
+                  this.events.publish('user:logged');
+                })
+              })
+          }
+          else {
+            this.utilities.showToast("Usuario No reconocido , Registrese Porfavor");
+            this.loading.dismiss();
+          }
+      },error => {
+        
+          //this.isLogging = false;
+          this.utilities.showAlert(this.translation.ERROR.TITULO, this.translation.ERROR.DESC);
           this.loading.dismiss();
-        }, error => {
-          this.loading.dismiss().then( () => {
-            let alert = this.alertCtrl.create({
-              message: "Usuario No reconocido , Registrese Porfavor",
-              buttons: [
-                {
-                  text: "Ok",
-                  role: 'cancel'
-                }
-              ]
-            });
-            alert.present();
-          });
-        });
+       }
+      );
+        
         this.loading = this.loadingCtrl.create({
           content:"Procesando Datos",
           dismissOnPageChange: true,
@@ -134,6 +143,35 @@ this.facebook.api("/" + userId +"/?fields=id,email,name,picture,gender",["public
   }).catch((error) => {
     console.log(error);
   });
+}
+
+ionViewDidLoad() {
+  setTimeout(() => {
+    this.establecerIdioma().then(() => {
+      this.translateService.get('INICIAR_SESION.VARIOS').subscribe(translation => {
+        this.translation = translation;
+      })
+    })
+  }, 100)
+}
+
+ establecerIdioma() {
+  return new Promise((resolve, reject) => {
+    this.utilities.getLang().then(lang => {
+      this.translateService.use(lang).subscribe(() => {
+        resolve();
+      })
+    }).catch(error => {
+      this.translateService.use('es').subscribe(() => {
+        resolve();
+      })
+    })
+  })
+}
+cambiarIdioma(lang) {
+  this.lang = lang;
+  this.translateService.use(lang);
+  this.ionViewDidLoad();
 }
 
 }

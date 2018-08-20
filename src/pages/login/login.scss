@@ -4,5 +4,36 @@ page-login {
         padding-left: 16px;
         padding-right: 16px;
     }
+    .scroll-content {
+        .language-button {
+            background-color: transparent;
+            font-size: 30px;
+        }
+        .logo-container {
+            margin-top: 15%;
+            img {
+                max-width: 60%;
+                margin-bottom: 2.5rem;
+            }
+        }
+        ion-list {
+            ion-item {
+                padding-left: 0 !important;
+                width: 95% !important;
+                margin: 0 auto !important;
+            }
+        }
+        .login-container {
+            .iniciar-sesion-btn {
+                margin-top: 2.5rem;
+            }
+        }
+        .register-container {
+            margin-top: 48px;
+            p {
+                color: color($colors, primary);
+            }
+        }
+    }
   
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Loading, AlertController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { TranslateService } from '@ngx-translate/core';
+import { UtilitiesProvider } from '../../providers/utilities/utilities';
 /**
  * Generated class for the SignupPage page.
  *
@@ -18,12 +20,13 @@ export class SignupPage {
 
   myForm: FormGroup;
   public loading:Loading;
+  lang: string = 'es';
   
   constructor(public navCtrl: NavController,
     public formBuilder: FormBuilder,
     public afAuth: AngularFireAuth, 
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,private translateService: TranslateService,private utilities: UtilitiesProvider) {
 
       this.myForm = this.formBuilder.group({
         email: ['', Validators.required],
@@ -32,7 +35,10 @@ export class SignupPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+    console.log('ionViewDidLoad RegistroPage');
+    setTimeout(() => {
+      this.lang = this.translateService.currentLang;
+    }, 100);
   }
 
 
@@ -45,13 +51,14 @@ export class SignupPage {
     this.afAuth.auth.createUserWithEmailAndPassword(this.myForm.value.email, this.myForm.value.password)
     .then(
       res => {
-        this.createAlert("Registrado con suceso!");
+        this.utilities.showAlert("En hora buena","Registrado con exito!");
         this.loading.dismiss().then(()=>{
           this.navCtrl.pop();
         });
       }, error => {
         this.loading.dismiss().then( () => {
-          this.createAlert("La dirección de correo electrónico ya está siendo utilizada por otra cuenta!");
+          this.utilities.showAlert('Error al registrarse', "La dirección de correo electrónico ya está siendo utilizada por otra cuenta!");
+          
         });
       });
 
@@ -61,18 +68,5 @@ export class SignupPage {
       });
       this.loading.present();
     
-  }
-
-  createAlert(msg){
-    let alert = this.alertCtrl.create({
-      message: msg,
-      buttons: [
-        {
-          text: "Ok",
-          role: 'cancel'
-        }
-      ]
-    });
-    alert.present();
   }
 }

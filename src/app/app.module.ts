@@ -21,10 +21,20 @@ import { TabNewPage } from '../pages/tab-new/tab-new';
 import { Facebook } from "@ionic-native/facebook";
 import { NotesProvider } from '../providers/notes/notes'; 
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
-import { InsertNoticiaPage } from '../pages/insert-noticia/insert-noticia';
 import { OperationsProvider } from '../providers/operations/operations';
 import { HoroscopeRequestProvider } from '../providers/horoscope-request/horoscope-request';
 import { HoroscoposPage } from '../pages/horoscopos/horoscopos';
+import Trs from 'translate-json-object';
+import { UtilitiesProvider } from '../providers/utilities/utilities';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { IonicStorageModule } from '@ionic/storage';
+
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAH2Sh-cpOV5IS4d7fvAsvg_cuB4X8HAB4",
@@ -44,14 +54,22 @@ export const firebaseConfig = {
     LoginPage   
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule ,
     FormsModule,
-    
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }, useDefaultLang: true
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,7 +89,9 @@ export const firebaseConfig = {
     Facebook,
     NotesProvider,
     OperationsProvider,
-    HoroscopeRequestProvider
+    HoroscopeRequestProvider,
+    Trs,
+    UtilitiesProvider,
   ]
 })
 
