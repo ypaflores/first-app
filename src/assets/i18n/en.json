@@ -68,7 +68,8 @@
         "ERROR": {
             "TITULO": "Error getting your news",
             "DESC": "There was an error in getting your news, try again later"
-        }
+        },
+        "NOTICIA_BORRADA":"The news has been eliminated with perfection!"
     },
 
     "CREAR_NOTICIA": {
@@ -106,17 +107,29 @@
             "ADJUNTAR": "Adjuntar imagen",
             "ELEGIR": "Choose"
         },
-        "ERRORES": {
-            "SIN_TIPO": {
-                "TITULO": "Create news",
-                "DESC": "You have to choose a type of category to be able to create it"
+        "ERRORES/SUCESOS": {
+            "TITULO_MUCHO": {
+                "TITULO": "Title not acceptable!!",
+                "DESC": "You must choose a title with a maximum of 10 characters!"
+            },
+            "SIN_FOTO": {
+                "TITULO": "Miss Photo!",
+                "DESC": "You must attach an image to be able to create it"
+            },
+            "DESC_CORTA": {
+                "TITULO": "Short Description",
+                "DESC": "You must write an even longer description!"
             },
             "DESCONOCIDO": {
-                "TITULO": "Error in creating the news",
-                "DESC": "There was an unknown error in creating the news, please try again later"
-            }
+                "TITULO": "Error creating news",
+                "DESC": "There was an error when compiling the fields"
+            },
+            "BIEN_HECHO":{
+                "CREADO":"Created perfectly!",
+                "MODIFICADO":"Modified with success!"
         }
-    },
+    }
+},
     "HOROSCOPO":{
         "TITULO":"Horoscope",
         "DIA":{

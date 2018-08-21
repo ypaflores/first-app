@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController, MenuController } from 'ionic-angular';
+import { Nav, Platform, AlertController, MenuController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -24,7 +24,7 @@ export class MyApp {
   
   pages: Array<{title: string, component: any,icon : string}>;
 
-  constructor(public afAuth: AngularFireAuth,private menuCtrl: MenuController,private alertCtrl: AlertController,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,private translate: TranslateService,private utilities:UtilitiesProvider) {
+  constructor(public afAuth: AngularFireAuth,private menuCtrl: MenuController,private alertCtrl: AlertController,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,private translate: TranslateService,private utilities:UtilitiesProvider,private events: Events) {
     this.initializeApp();
 
   }
@@ -32,6 +32,7 @@ export class MyApp {
   setPages(){
 
     this.utilities.getLang().then(result => {
+      console.log(result);
       this.lang= result;
       this.translate.use(this.lang).subscribe(() => {
         this.translate.get('MENU').subscribe(menu => {
@@ -69,6 +70,7 @@ export class MyApp {
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.listenEvents();
       this.translate.setDefaultLang('es');
       this.setPages();
     });
@@ -104,5 +106,13 @@ export class MyApp {
       ]
     });
     alert.present();
+  }
+  listenEvents() {
+    this.events.subscribe('user:logged', () => {
+          this.setPages();
+        });
+    this.events.subscribe('lang:changed', () => {
+      this.setPages();
+    })
   }
 }

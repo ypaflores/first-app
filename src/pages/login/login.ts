@@ -70,6 +70,8 @@ export class LoginPage {
     .then((res)=>
         {
             if (res.operationType == 'signIn') {
+              console.log(this.lang);
+              
               this.utilities.saveLang(this.lang).then(() => {
                 this.navCtrl.setRoot(HomePage).then(() => {
                   this.events.publish('user:logged');

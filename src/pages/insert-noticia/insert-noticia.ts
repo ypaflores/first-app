@@ -6,6 +6,8 @@ import { Notizia } from './classe';
 import { Card } from '../../model/card.model';
 import { NotesProvider } from '../../providers/notes/notes';
 import { OperationsProvider } from '../../providers/operations/operations';
+import { TranslateService } from '@ngx-translate/core';
+import { UtilitiesProvider } from '../../providers/utilities/utilities';
 /**
  * Generated class for the InsertNoticiaPage page.
  *
@@ -25,7 +27,9 @@ export class InsertNoticiaPage {
   modeKeys:any;
   status:boolean =false;
   Titulo="Nueva noticia";
-  
+  lang: string;
+  translation: any;
+
   card:Card={
     title:"",
     comm:"",
@@ -37,7 +41,9 @@ export class InsertNoticiaPage {
   
   constructor(private camera: Camera,private formBuilder:FormBuilder,  public navCtrl: NavController,
     private noteListService: NotesProvider,public navParams:NavParams,private op:OperationsProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    private translateService: TranslateService,
+    private utilities: UtilitiesProvider) {
     
     this.modeKeys = this.noteListService.getCategorie();
       
@@ -84,7 +90,6 @@ export class InsertNoticiaPage {
       let app = this.NgControlStatus();
         if(!app)return;
         else{
-          alert("todo correcto!");
           (this.status)?this.updateCard(this.card):this.insertCard(this.card)
         }    
     }
@@ -97,6 +102,7 @@ export class InsertNoticiaPage {
         this.noteListService.addNote(card).then(ref => {
         })
         if(res)loader.dismiss();
+        this.utilities.showToast(this.translation.BIEN_HECHO.CREADO);
         this.deleteAll();
       })
     }
@@ -116,19 +122,19 @@ export class InsertNoticiaPage {
     private NgControlStatus(){
       
         if(this.card.title==""||this.card.ctg==""||this.card.comm==""){
-            alert("Controla los campos vacios");
+            this.utilities.showAlert(this.translation.DESCONOCIDO.TITULO, this.translation.DESCONOCIDO.DESC);
             return false;
         }
         if(this.card.title.length>16){
-          alert("titulo maximo 10 carcteres");
+          this.utilities.showAlert(this.translation.TITULO_MUCHO.TITULO, this.translation.TITULO_MUCHO.DESC);
           return false;
         }
         if(this.card.comm.length<7){
-          alert("escriba una descripcion mas larga");
+          this.utilities.showAlert(this.translation.DESC_CORTA.TITULO, this.translation.DESC_CORTA.DESC);
           return false;
         }
         if(this.card.img.length==0||this.card.img==""){
-          alert("seleccione foto");
+          this.utilities.showAlert(this.translation.SIN_FOTO.TITULO, this.translation.SIN_FOTO.DESC);
           return false;
         }
         return true;
@@ -141,5 +147,18 @@ export class InsertNoticiaPage {
       this.card.ctg="";
       this.card.state="happy";
     }
-    
+
+    obtenerTraduccion() {
+      setTimeout(() => {
+        this.translateService.get('CREAR_NOTICIA.ERRORES/SUCESOS').subscribe(result => {
+          this.utilities.getLang().then(lang => {
+            this.lang = lang;
+            this.translation = result;
+          });
+        });
+      }, 100);
+    }
+    ionViewDidLoad() {
+      this.obtenerTraduccion();
+    }
 }

@@ -30,6 +30,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
+import { ApiProvider } from '../providers/api/api';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -91,7 +93,9 @@ export const firebaseConfig = {
     OperationsProvider,
     HoroscopeRequestProvider,
     Trs,
+    FileTransfer ,
     UtilitiesProvider,
+    ApiProvider,
   ]
 })
 

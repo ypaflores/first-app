@@ -46,9 +46,5 @@ export class SearchPage {
       })
     }
   }
-  HazmeClick(){
-
-      this.store.Uploadimg();
-  }
 
 }

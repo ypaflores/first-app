@@ -57,6 +57,7 @@ export class NoticiasPage implements OnInit {
   public deleteElement(card:Card){
       this.serviceN.removeNote(card).then(()=>{
         this.initializeCards("Eliminando objeto seleccionado");
+        this.utilities.showToast(this.translation.NOTICIA_BORRADA);
       });
   }
   public goToUpdate(card:Card){

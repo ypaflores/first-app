@@ -4,6 +4,7 @@ import { Http, Headers, RequestOptions,  } from '@angular/http';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ServiceCenterProvider } from '../../providers/service-center/service-center';
+import { ApiProvider } from '../../providers/api/api';
 
 @Component({
   selector: 'page-home',
@@ -27,7 +28,7 @@ export class HomePage {
     
   ];
   
-  constructor(public navParams: NavParams,public translateService :ServiceCenterProvider, private translate: TranslateService ) {
+  constructor(public navParams: NavParams,public translateService :ServiceCenterProvider, private translate: TranslateService,private api : ApiProvider ) {
     this.isLoggedIn=true;
     this.user = navParams.get("usuario");
     
@@ -60,9 +61,18 @@ export class HomePage {
       }
     })
 
+  
 
   }
 
-  
+  pruebaPhp(){
+    /*
+    this.api.login({user: "studente.giovany.flores@gmail.com",
+                    password: "123456",
+                    lang: "es"}).then((res)=>{
+                      console.log(res);
+                      
+                    });*/
+  }
 
 }

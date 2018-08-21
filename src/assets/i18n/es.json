@@ -70,7 +70,8 @@
         "ERROR": {
             "TITULO": "Error al obtener tus noticias",
             "DESC": "Hubo un error al obtener tus noticias. Inténtalo de nuevo más tarde"
-        }
+        },
+        "NOTICIA_BORRADA":"La noticia ha sido eliminado con perfeccion!"
     },
     "CREAR_NOTICIA": {
         "TITULO": "Crear noticia",
@@ -107,17 +108,30 @@
             "ADJUNTAR": "Adjuntar imagen",
             "ELEGIR": "Elegir"
         },
-        "ERRORES": {
-            "SIN_TIPO": {
-                "TITULO": "Crear noticia",
-                "DESC": "Debes elegir un tipo de categoria para poder crearlo"
+        "ERRORES/SUCESOS": {
+            "TITULO_MUCHO": {
+                "TITULO": "Titulo no aceptable!",
+                "DESC": "Debes elegir un titulo con maximo de 10 caracteres !"
+            },
+            "SIN_FOTO": {
+                "TITULO": "Falta Foto!",
+                "DESC": "Debes adjuntar una imagen  para poder crearlo"
+            },
+            "DESC_CORTA": {
+                "TITULO": "Descripcion Corta",
+                "DESC": "Debes Escribir una describcion aun mas larga!"
             },
             "DESCONOCIDO": {
                 "TITULO": "Error al crear noticia",
-                "DESC": "Hubo un error desconocido al crear la noticia. Inténtalo de nuevo más tarde"
-            }
+                "DESC": "Hubo un error combruebe de haber rellenado tos los campos"
+            },
+            "BIEN_HECHO":{
+                "CREADO":"Creado perfectamente!",
+                "MODIFICADO":"Modificado con exito!"
         }
-    },
+
+    }
+},
     "HOROSCOPO":{
         "TITULO":"Horoscopo",
         "DIA":{
