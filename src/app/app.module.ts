@@ -2,10 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-
+import { SQLite } from '@ionic-native/sqlite';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
@@ -30,8 +29,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
-import { ApiProvider } from '../providers/api/api';
+
 import { FileTransfer } from '@ionic-native/file-transfer';
+import { DatabaseServiceProvider } from '../providers/database-service/database-service';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -71,7 +71,7 @@ export const firebaseConfig = {
         deps: [HttpClient]
       }, useDefaultLang: true
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -95,7 +95,8 @@ export const firebaseConfig = {
     Trs,
     FileTransfer ,
     UtilitiesProvider,
-    ApiProvider,
+    DatabaseServiceProvider,
+    SQLite
   ]
 })
 

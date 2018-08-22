@@ -4,7 +4,6 @@ import { Http, Headers, RequestOptions,  } from '@angular/http';
 import { TranslateService } from '@ngx-translate/core';
 
 import { ServiceCenterProvider } from '../../providers/service-center/service-center';
-import { ApiProvider } from '../../providers/api/api';
 
 @Component({
   selector: 'page-home',
@@ -28,7 +27,7 @@ export class HomePage {
     
   ];
   
-  constructor(public navParams: NavParams,public translateService :ServiceCenterProvider, private translate: TranslateService,private api : ApiProvider ) {
+  constructor(public navParams: NavParams,public translateService :ServiceCenterProvider, private translate: TranslateService ) {
     this.isLoggedIn=true;
     this.user = navParams.get("usuario");
     

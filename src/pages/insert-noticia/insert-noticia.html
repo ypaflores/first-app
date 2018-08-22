@@ -20,7 +20,7 @@
         <h4 text-center margin-bottom style="margin-top: 8px;">{{'CREAR_NOTICIA.DESC'|translate}}</h4>
       <ion-list>
           <ion-item no-lines>
-              <ion-icon  ios="logo-instagram" md="logo-instagram" class="button cmr" (click)="takePhoto()" >     
+              <ion-icon  ios="logo-instagram" md="logo-instagram" class="button cmr" (click)=" takePicture()" >     
               </ion-icon>
               <ion-icon ios="ios-images" md="md-images" class="button cmr" (click)="accessGallery()"> </ion-icon>
                 
@@ -58,7 +58,11 @@
                       </ion-segment-button>
                   </ion-segment>
             </ion-item>
-                  
+            
+
+            <div class="elegir-adjunto-container" padding-horizontal padding-top>
+              <ion-label float-left>{{base64Image === '' ? ('CREAR_NOTICIA.IMAGEN_NOTICIA.ADJUNTAR'|translate) : (utilities.getFileName(base64Image))}}</ion-label>
+            </div>
             <img [src]="image" *ngIf="image" />
             
             <div padding>

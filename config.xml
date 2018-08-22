@@ -21,6 +21,10 @@
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <config-file parent="/*" target="./src/main/res/values/strings.xml">
+            <string name="fb_app_id">413550719048916</string>
+            <string name="fb_app_name">FirstApp</string>
+        </config-file>
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -88,5 +92,5 @@
         <variable name="APP_NAME" value="FirstApp" />
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
-    <engine name="android" spec="^7.0.0" />
+    <engine name="android" spec="7.0.0" />
 </widget>

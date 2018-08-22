@@ -106,4 +106,5 @@ export class NoticiasPage implements OnInit {
     }, 100);
   }
   
+  
 }

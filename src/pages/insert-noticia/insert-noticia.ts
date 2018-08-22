@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, normalizeURL } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FormsModule, FormGroup, FormBuilder, Validators, NgControlStatus } from '@angular/forms';
 import { Notizia } from './classe';
@@ -22,7 +22,7 @@ import { UtilitiesProvider } from '../../providers/utilities/utilities';
   templateUrl: 'insert-noticia.html',
 })
 export class InsertNoticiaPage {
-  base64Image: string;
+  base64Image: string="";
   image: string = null; 
   modeKeys:any;
   status:boolean =false;
@@ -43,7 +43,7 @@ export class InsertNoticiaPage {
     private noteListService: NotesProvider,public navParams:NavParams,private op:OperationsProvider,
     public loadingCtrl: LoadingController,
     private translateService: TranslateService,
-    private utilities: UtilitiesProvider) {
+    private utilities: UtilitiesProvider,private alertCtrl: AlertController) {
     
     this.modeKeys = this.noteListService.getCategorie();
       
@@ -57,31 +57,35 @@ export class InsertNoticiaPage {
   }
 
   accessGallery(){
-
-    this.camera.getPicture({
-      sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-      destinationType: this.camera.DestinationType.DATA_URL
-     }).then((imageData) => {
-       this.base64Image = 'data:image/jpeg;base64,'+imageData;
-      }, (err) => {
-       console.log(err);
-     });
-     this.card.img="https://www.skuola.net/news_foto/2018/equazione-retta.jpg";
-    }
-
-    takePhoto(){
       const options: CameraOptions = {
         quality: 100,
-        destinationType: this.camera.DestinationType.FILE_URI,
+        destinationType: this.camera.DestinationType.NATIVE_URI,
         encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
+        mediaType: this.camera.MediaType.PICTURE,
+        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+        targetWidth: 1920,
+        targetHeight: 540,
+        allowEdit: false
       }
       this.camera.getPicture(options).then((imageData) => {
-        this.base64Image = 'data:image/jpeg;base64,' + imageData;
-       }, (err) => {
-        
-       });
-       this.card.img="https://www.skuola.net/news_foto/2018/equazione-retta.jpg";
+        if (this.utilities.getPlatform() == 'ios') {
+            this.base64Image = normalizeURL(imageData);  
+        }
+        else {
+          this.base64Image= imageData.substring(0,imageData.indexOf('?'))
+        }
+        this.card.img=this.base64Image;
+        this.utilities.showToast("Imagen seleccionada "+ this.base64Image);
+       }
+      ).catch((reject) => {
+        let alert = this.alertCtrl.create({
+          title: 'Error',
+          message: 'Error al obtener la imagen: ' + reject,
+          buttons: ['OK']
+        });
+  
+        alert.present();
+      });
     }
     
 
@@ -161,4 +165,33 @@ export class InsertNoticiaPage {
     ionViewDidLoad() {
       this.obtenerTraduccion();
     }
+    //modificar el card.img porque salvarlo como objeto en storage de firebase o si no  en  un db local 
+    takePicture(){
+      const options: CameraOptions = {
+        quality: 100,
+        destinationType: this.camera.DestinationType.NATIVE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        sourceType: this.camera.PictureSourceType.CAMERA,
+        targetWidth: 1920,
+        targetHeight: 540,
+        allowEdit: false
+      }
+      this.camera.getPicture(options).then((imageData) => {
+
+      this.base64Image =  imageData;
+      this.card.img = this.base64Image;
+      this.utilities.showToast("Imagen seleccionada "+ this.base64Image);
+     }
+    ).catch((reject) => {
+      let alert = this.alertCtrl.create({
+        title: 'Error',
+        message: 'Error al obtener la imagen: ' + reject,
+        buttons: ['OK']
+      });
+
+      alert.present();
+    });
+    }
+  
 }

@@ -71,4 +71,10 @@ export class UtilitiesProvider {
 
     alert.present();
   }
+  getPlatform() {
+    return this.platform.is('ios') ? 'ios' : 'android';
+  }
+  getFileName(path: string) {
+    return path.split('/').pop();
+  }
 }
