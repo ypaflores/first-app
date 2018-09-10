@@ -31,7 +31,7 @@ page-home {
           color: #60646B;
       
           b {
-            color: #000000;
+            color: #ac9595;
           }
         }
       
@@ -53,5 +53,17 @@ page-home {
 .bar-button-md-default {
     color: #488aff;
   background-color: transparent;
+}
+ion-header {
+  ion-buttons {
+      button {
+          font-size: 30px !important;
+          margin-right: 8px !important;
+      }
+  }
+}
+.language-button {
+  background-color: transparent;
+  font-size: 30px;
 }
 }

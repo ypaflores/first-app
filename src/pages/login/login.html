@@ -30,10 +30,11 @@
       {{'INICIAR_SESION.INICIAR_SESION'|translate}}
   </button></div>
 </form>
-  <button  ion-button round block icon-right (click)="loginWithFacebook()">
+<div  padding class="login-container">
+  <button  ion-button round block icon-right (click)="facebookLogin()">
     {{'INICIAR_SESION.NO_REGISTRADO.FACEBOOK'|translate}}
     <ion-icon name="logo-facebook"></ion-icon>
-</button>
+</button></div>
   <div text-center>
     <a ion-button block clear (click)="goToSignup()">
       {{'INICIAR_SESION.NO_REGISTRADO.REGISTRATE_AQUI'|translate}}

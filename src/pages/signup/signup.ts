@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TranslateService } from '@ngx-translate/core';
 import { UtilitiesProvider } from '../../providers/utilities/utilities';
+import { NotesProvider } from '../../providers/notes/notes';
 /**
  * Generated class for the SignupPage page.
  *
@@ -23,14 +24,15 @@ export class SignupPage {
   lang: string = 'es';
   
   constructor(public navCtrl: NavController,
-    public formBuilder: FormBuilder,
+    public formBuilder: FormBuilder,private serviceN:NotesProvider,
     public afAuth: AngularFireAuth, 
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,private translateService: TranslateService,private utilities: UtilitiesProvider) {
 
       this.myForm = this.formBuilder.group({
         email: ['', Validators.required],
-        password: ['', Validators.required]
+        password: ['', Validators.required],
+        username:['', Validators.required]
       });
   }
 
@@ -46,11 +48,11 @@ export class SignupPage {
 
     console.log("Email:" + this.myForm.value.email);
     console.log("Password:" + this.myForm.value.password);
-   
-
     this.afAuth.auth.createUserWithEmailAndPassword(this.myForm.value.email, this.myForm.value.password)
     .then(
       res => {
+        var userId = this.afAuth.auth.currentUser.uid;
+        this.serviceN.writeUserData(userId,this.myForm.value.username, this.myForm.value.email, this.myForm.value.password,"");
         this.utilities.showAlert("En hora buena","Registrado con exito!");
         this.loading.dismiss().then(()=>{
           this.navCtrl.pop();

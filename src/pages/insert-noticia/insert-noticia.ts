@@ -36,7 +36,8 @@ export class InsertNoticiaPage {
     ctg:"",
     state:"happy",
     img:"",
-    date:this.op.getDateFormat()
+    date:this.op.getDateFormat(),
+    idUser:""
   };
   
   constructor(private camera: Camera,private formBuilder:FormBuilder,  public navCtrl: NavController,
@@ -53,7 +54,9 @@ export class InsertNoticiaPage {
       this.status = true;
       this.Titulo="Cambia noticia";
     }
-    
+    this.utilities.getUserData().then(user=>{
+      this.card.idUser=user.id;
+    })
   }
 
   accessGallery(){
@@ -167,6 +170,7 @@ export class InsertNoticiaPage {
     }
     //modificar el card.img porque salvarlo como objeto en storage de firebase o si no  en  un db local 
     takePicture(){
+      /*
       const options: CameraOptions = {
         quality: 100,
         destinationType: this.camera.DestinationType.NATIVE_URI,
@@ -192,6 +196,8 @@ export class InsertNoticiaPage {
 
       alert.present();
     });
+    */
+   this.card.img="https://www.skuola.net/news_foto/2018/equazione-retta.jpg";
     }
   
 }

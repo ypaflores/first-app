@@ -27,7 +27,7 @@
     "MENU": {
         "INICIO": "Home",
         "HOROSCOPO": "All Horoscopos",
-        "BUSCAR": "Search something",
+        "NOTICIAS_TODAS": "News",
         "NOTICIAS": "My News",
         "CERRAR_SESION": {
             "TITULO": "Logout",
@@ -143,6 +143,30 @@
             "HUMOR":"Mood",
             "PALABRAS_CLAVE":"Keywords",
             "DESCRIPCION":"Horoscope"
+        }
+    },
+    "MI_PERFIL": {
+        "TITULO": "My profile",
+        "IMAGEN_PERFIL": {
+            "MODIFICAR": "Modify profile image",
+            "BORRAR": {
+                "TITULO": "Delete profile image",
+                "TEXTO": "Are you sure you want to delete your profile image?"
+            },
+            "NUEVA": "New profile image",
+            "SUBIR": "Upload new image"
+        },
+        "CAMPOS": {
+            "NOMBRE": "Name",
+            "EMAIL": "Email",
+            "TELEFONO": "Phone",
+            "USUARIO": "User",
+            "CONTRASENA":  "Password (fill in if you want to change it)"
+        },
+        "MODIFICAR": "Modify",
+        "ERRORES": {
+            "TITULO": "Error editing your profile",
+            "DESC": "There was an error editing your profile. Please try again later"
         }
     }
     

@@ -1,0 +1,66 @@
+<!--
+  Generated template for the ContactosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>contactos</ion-title>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>        
+    <ion-buttons end>
+      <button ion-button icon-only (click)="modalNuevoContacto()">
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ngx-carousel-3d [slides]="slides" [options]="options" class="col-8" #carousel>
+  <ngx-carousel-3d-slide *ngFor="let slide of slides; let i = index" (click)="slideClicked(i)" class={{color_stop}}>
+      <img class="slide-img" src="{{slide.url}}" *ngIf="slide.tipo=='image'" alt=""/>
+      <video class="slide-video" controls autoplay *ngIf="slide.tipo=='video'">
+        <source src="{{slide.url}}">
+      </video>
+  </ngx-carousel-3d-slide>
+</ngx-carousel-3d>
+
+<div text-center *ngIf='slides.length!=0'>
+  <h2 text-center>Media</h2>
+  <button ion-button color="primary" icon-start margin-bottom (tap)="toggleHideMedia()">
+    <ion-icon [name]="hideMedia ? 'add' : 'remove'"></ion-icon>
+    {{hideMedia ? 'Muestra': 'Esconde'}}
+  </button>
+</div>
+
+<div class="media" padding-left padding-right [hidden]='hideMedia'>
+  <ion-slides  [pager]='true'>
+      <ion-slide *ngFor="let slide of slides">
+            <img *ngIf="slide.tipo=='image'" [src]="slide.url">
+            <video  controls  *ngIf="slide.tipo=='video'">
+                <source [src]="slide.url">
+              </video>
+     </ion-slide>
+ </ion-slides>
+</div>
+<!--
+  <ion-list>
+  <ion-item *ngFor="let contacto of listaContactos">
+    <ion-avatar item-start>
+      <img [src]="contacto.photos[0].value ">
+    </ion-avatar>
+    <h2>{{contacto.displayName }}</h2>
+    <p>Dispositivo: {{contacto.phoneNumbers[0].type}} - Numero: {{contacto.phoneNumbers[0].value}}</p>
+  </ion-item>
+</ion-list>
+-->
+
+</ion-content>

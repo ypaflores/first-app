@@ -6,4 +6,5 @@ export interface Card {
     comm:string;
     ctg:string;
     state:string;
+    idUser:string;
 }

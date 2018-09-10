@@ -10,6 +10,7 @@ page-login {
             font-size: 30px;
         }
         .logo-container {
+           
             margin-top: 15%;
             img {
                 max-width: 60%;
@@ -26,7 +27,9 @@ page-login {
         .login-container {
             .iniciar-sesion-btn {
                 margin-top: 2.5rem;
+
             }
+            padding: 5px;
         }
         .register-container {
             margin-top: 48px;
@@ -35,5 +38,5 @@ page-login {
             }
         }
     }
-  
+   
 }

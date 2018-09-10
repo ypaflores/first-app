@@ -10,16 +10,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { ServiceCenterProvider } from '../providers/service-center/service-center';
 
-//import { FirebaseConfig } from '@ionic-native/firebase-config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Camera } from '@ionic-native/camera';
 import { FormsModule } from '../../node_modules/@angular/forms';
-import { SearchPage } from '../pages/search/search';
 import { TabNewPage } from '../pages/tab-new/tab-new';
 import { Facebook } from "@ionic-native/facebook";
 import { NotesProvider } from '../providers/notes/notes'; 
-import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { OperationsProvider } from '../providers/operations/operations';
 import { HoroscopeRequestProvider } from '../providers/horoscope-request/horoscope-request';
 import { HoroscoposPage } from '../pages/horoscopos/horoscopos';
@@ -29,10 +27,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
-
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { DatabaseServiceProvider } from '../providers/database-service/database-service';
-
+import { NoticiasGeneralesPage } from '../pages/noticias-generales/noticias-generales';
+import { NgxCarousel3dModule }  from 'ngx-carousel-3d';
+import { Contacts } from '@ionic-native/contacts';
+import { ContactosPage } from '../pages/contactos/contactos';
+import { CreaContactoPageModule } from '../pages/crea-contacto/crea-contacto.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -50,14 +51,16 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    SearchPage,
     TabNewPage,
+    ContactosPage,
+    NoticiasGeneralesPage,
     HoroscoposPage,
-    LoginPage   
+    LoginPage  
   ],
   imports: [
     HttpModule,
     BrowserModule,
+    NgxCarousel3dModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig),
@@ -72,15 +75,17 @@ export const firebaseConfig = {
       }, useDefaultLang: true
     }),
     IonicStorageModule.forRoot(),
+    CreaContactoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    SearchPage,
     TabNewPage,
+    NoticiasGeneralesPage,
     HoroscoposPage,
-    LoginPage
+    LoginPage,
+    ContactosPage
   ],
   providers: [
     StatusBar,
@@ -96,7 +101,8 @@ export const firebaseConfig = {
     FileTransfer ,
     UtilitiesProvider,
     DatabaseServiceProvider,
-    SQLite
+    SQLite,
+    Contacts
   ]
 })
 

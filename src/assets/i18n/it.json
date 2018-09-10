@@ -28,6 +28,7 @@
         "INICIO": "Inizio",
         "HOROSCOPO": "Tutti Horoscopo",
         "BUSCAR": "Cerca Qualcosa",
+        "NOTICIAS_TODAS": "Novità",
         "NOTICIAS": "Mie Novità",
         "CERRAR_SESION": {
             "TITULO": "Chiudere Sessione",
@@ -142,6 +143,30 @@
             "HUMOR":"Umore",
             "PALABRAS_CLAVE":"Parole",
             "DESCRIPCION":"Oroscopo"
+        }
+    },
+     "MI_PERFIL": {
+        "TITULO": "Profilo",
+        "IMAGEN_PERFIL": {
+            "MODIFICAR": "Modificare immagine del profilo",
+            "BORRAR": {
+                "TITULO": "Cancellare immagine profilo",
+                "TEXTO": "Sicuri di voler cancellare la tua immagine del profilo?"
+            },
+            "NUEVA": "Nuova immagine di profilo",
+            "SUBIR": "Salva nuova immagine"
+        },
+        "CAMPOS": {
+            "NOMBRE": "Nome",
+            "EMAIL": "Email",
+            "TELEFONO": "Teléfono",
+            "USUARIO": "Utente",
+            "CONTRASENA": "Password (riempi se desideri cambiarla)"
+        },
+        "MODIFICAR": "Modificare",
+        "ERRORES": {
+            "TITULO": "Errore nel modificare il profilo",
+            "DESC": "C'e stato un errore mentre si modificava il profilo. Riprova più tardi!"
         }
     }
 

@@ -1,0 +1,31 @@
+page-contactos {
+    .slide-img {
+        width: 100%;
+        height: 100%;
+      }
+      .slide-video{
+        width: 100%;
+        height: 100%;
+      }
+      .carousel-stop{
+        background-color: #800000;
+         
+      }
+      .carousel-go{
+        background-color: #008000;
+      }
+      .media{
+        width: 100%;
+        height: 40%;
+        img{
+          position: absolute; top:0; left: 10%;
+          width: 80%;
+          height: 80%;
+        }
+        video{
+          position: absolute; top:0; left: 10%;
+          width: 80%;
+          height: 80%;
+        }
+      }
+}

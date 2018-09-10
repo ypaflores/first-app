@@ -25,10 +25,13 @@ export class NoticiasPage implements OnInit {
   translation: any;
   lang: string;
   lista :Card[];
-
+  id_User="";
   constructor(public navCtrl: NavController, public navParams: NavParams,public service : ServiceCenterProvider,private serviceN:NotesProvider,
     public loadingCtrl: LoadingController,private popoverCtrl: PopoverController,public events: Events,private translateService: TranslateService,private utilities: UtilitiesProvider){
     
+      this.utilities.getUserData().then(user=>{
+      this.id_User=user.id;
+    })
   }
 
   ngOnInit(){
@@ -42,7 +45,7 @@ export class NoticiasPage implements OnInit {
       content: comment
     });
     loader.present().then(()=> {
-      this.serviceN.getNoteList().subscribe(res => {
+      this.serviceN.getNoteList(this.id_User).subscribe(res => {
         this.lista = res;
         if(res)loader.dismiss();
       });

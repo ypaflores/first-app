@@ -27,6 +27,11 @@
           <ion-label stacked>{{'REGISTRO.PASSWORD'|translate}}</ion-label>
           <ion-input formControlName="password" type="password" placeholder="Password" clearInput></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-icon name="username" item-left></ion-icon>
+          <ion-label stacked>{{'REGISTRO.USUARIO'|translate}}</ion-label>
+          <ion-input formControlName="username" type="text" placeholder="Username"  clearInput></ion-input>
+        </ion-item>
         <ion-item [hidden]="!errorMessage"><label>{{errorMessage}}</label></ion-item>
       </ion-list>
       <div padding>

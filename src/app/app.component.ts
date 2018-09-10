@@ -4,24 +4,23 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';import { LoginPage } from '../pages/login/login';
-import { NoticiasPage } from '../pages/noticias/noticias';
-import { SearchPage } from '../pages/search/search';
 import { TabNewPage } from '../pages/tab-new/tab-new';
 import { HoroscoposPage } from '../pages/horoscopos/horoscopos';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { TranslateService } from '../../node_modules/@ngx-translate/core';
 import { UtilitiesProvider } from '../providers/utilities/utilities';
+import { NoticiasGeneralesPage } from '../pages/noticias-generales/noticias-generales';
+import { ContactosPage } from '../pages/contactos/contactos';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
   rootPage: any = LoginPage;
   lang: string;
   translation: any;
-  
+  userData: any;
   pages: Array<{title: string, component: any,icon : string}>;
 
   constructor(public afAuth: AngularFireAuth,private menuCtrl: MenuController,private alertCtrl: AlertController,public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,private translate: TranslateService,private utilities:UtilitiesProvider,private events: Events) {
@@ -40,8 +39,9 @@ export class MyApp {
           this.pages = [
             { title: this.translation.INICIO,  component: HomePage  ,icon: 'person' },
             { title: this.translation.HOROSCOPO,component: HoroscoposPage ,icon: 'people'},
-            { title: this.translation.BUSCAR,  component: SearchPage ,icon: 'add' },
-            { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' }
+            { title: this.translation.NOTICIAS_TODAS,  component: NoticiasGeneralesPage ,icon: 'list-box' },
+            { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' },
+            { title: this.translation.NOTICIAS, component: ContactosPage,  icon: 'contacts' }
             
           ];
         })
@@ -54,9 +54,9 @@ export class MyApp {
           this.pages = [
             { title: this.translation.INICIO,  component: HomePage  ,icon: 'person' },
             { title: this.translation.HOROSCOPO,component: HoroscoposPage ,icon: 'people'},
-            { title: this.translation.BUSCAR,  component: SearchPage ,icon: 'add' },
-            { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' }
-            
+            { title: this.translation.NOTICIAS_TODAS,  component: NoticiasGeneralesPage,icon: 'list-box' },
+            { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' },
+            { title: this.translation.NOTICIAS, component: ContactosPage,  icon: 'contacts' }
           ];
         })
       })
@@ -96,9 +96,11 @@ export class MyApp {
           handler: () => {
             this.menuCtrl.close().then(() => {
               this.afAuth.auth.signOut().then(()=>{
-                this.nav.setRoot(LoginPage).then(() => {
-                  console.log(this.translation.CERRAR_SESION.EXITO);
+                  this.utilities.closeSession().then(() => {
+                    this.nav.setRoot(LoginPage).then(() => {
+                      this.utilities.showToast(this.translation.CERRAR_SESION.EXITO);
                 })
+              })
               });
             })
          }
@@ -109,10 +111,16 @@ export class MyApp {
   }
   listenEvents() {
     this.events.subscribe('user:logged', () => {
+      this.utilities.getUserData().then(userData => {
+        if (userData) {
+          this.userData = userData;
           this.setPages();
-        });
+          }
+        })
+      });
     this.events.subscribe('lang:changed', () => {
       this.setPages();
     })
   }
+  
 }

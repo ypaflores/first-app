@@ -29,7 +29,8 @@
         "INICIO": "Inicio",
         "HOROSCOPO": "Todos Horoscopo",
         "BUSCAR": "Buscar Algo",
-        "NOTICIAS": "Mis noticias",
+        "NOTICIAS_TODAS": "Noticias",
+        "NOTICIAS": "Mis Noticias",
         "CERRAR_SESION": {
             "TITULO": "Cerrar sesión",
             "DESC": "¿Estás seguro de que deseas cerrar sesión?",
@@ -145,6 +146,30 @@
             "HUMOR":"Umor",
             "PALABRAS_CLAVE":"Claves",
             "DESCRIPCION":"Horoscopo"
+        }
+    },
+    "MI_PERFIL": {
+        "TITULO": "Mi perfil",
+        "IMAGEN_PERFIL": {
+            "MODIFICAR": "Modificar imagen de perfil",
+            "BORRAR": {
+                "TITULO": "Borrar imagen de perfil",
+                "TEXTO": "¿Estás seguro de que deseas borrar tu imagen de perfil?"
+            },
+            "NUEVA": "Nueva imagen de perfil",
+            "SUBIR": "Subir nueva imagen"
+        },
+        "CAMPOS": {
+            "NOMBRE": "Nombre",
+            "EMAIL": "Email",
+            "TELEFONO": "Teléfono",
+            "USUARIO": "Usuario",
+            "CONTRASENA": "Contraseña (rellenar si deseas cambiarla)"
+        },
+        "MODIFICAR": "Modificar",
+        "ERRORES": {
+            "TITULO": "Error al editar perfil",
+            "DESC": "Hubo un error al editar tu perfil. Inténtalo de nuevo más tarde"
         }
     }
 

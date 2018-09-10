@@ -93,4 +93,5 @@
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
     <engine name="android" spec="7.0.0" />
+    <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
 </widget>
