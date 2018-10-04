@@ -35,7 +35,7 @@ export class FiltrarCardsPage {
     console.log('ionViewDidLoad FiltrarCardsPage');
   }
 
-
+  //Filtro las cards por una palabra . si la contiene en el titulo o estado de animo o commentario , entonces es aceptado
   filtrarCards() {
     let retosFiltrado = this.cards.filter((card)=>{
       if(this.titulo){
@@ -59,16 +59,16 @@ export class FiltrarCardsPage {
     this.cerrar();
     
   }
-
+  //Quita los valores del filtro
   quitarFiltro() {
     this.events.publish('challenges:filtered', []);
     this.cerrar();
   }
-
+  //Cierra esta parte de iniciar filtro
   cerrar() {
     this.viewCtrl.dismiss();
   }
-
+    //remueve los duplicados en un array a traves de su clave
    removeDuplicity(datas){
     return datas.filter((item, index,arr)=>{
     const c = arr.map(item=> item.key);

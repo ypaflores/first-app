@@ -18,6 +18,7 @@ export class UtilitiesProvider {
     console.log('Hello UtilitiesProvider Provider');
   }
 
+  //Regreso la lang actual en el storage , si no un mensaje de error .
   getLang(): Promise<string> {
     return new Promise((resolve, reject) => {
       this.storage.get('lang').then(lang => {
@@ -32,6 +33,7 @@ export class UtilitiesProvider {
       })
     })
   }
+  //Guarda la lang seleccionada en el storage 
   saveLang(lang: string) {
     return new Promise((resolve, reject) => {
       this.storage.set('lang', lang).then(() => {
@@ -72,12 +74,15 @@ export class UtilitiesProvider {
 
     alert.present();
   }
+  //Regresa la plataforma actual
   getPlatform() {
     return this.platform.is('ios') ? 'ios' : 'android';
   }
+  //Regresa el nombre del file pasado
   getFileName(path: string) {
     return path.split('/').pop();
   }
+  //Regresa las informaciones de facebook
   getFacebookInfo(response: FacebookLoginResponse): Promise<any> {
     return new Promise((resolve, reject) => {
       this.fb.api(response.authResponse.userID + '/?fields=id,email,first_name', ['public_profile']).then(response => {
@@ -129,6 +134,7 @@ export class UtilitiesProvider {
       })
     })
   }
+  //cierra session , remueve del storage el user 
   closeSession(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.storage.ready().then(() => {

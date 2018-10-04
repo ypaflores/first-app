@@ -34,14 +34,14 @@ export class ResetPasswordPage {
       email: ['', Validators.required]
     });
   }
-
+   //recojo lang actual
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroPage');
     setTimeout(() => {
       this.lang = this.translateService.currentLang;
     }, 100);
   }
-
+  //reformato password , mandandome una mail para cambiarla en posta. tengo que conocer la email valida
   resetPassword(){
     console.log("Email:" + this.myForm.value.email);
     

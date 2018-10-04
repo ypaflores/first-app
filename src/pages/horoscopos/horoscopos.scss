@@ -1,56 +1,21 @@
 page-horoscopos {
-    .tutorial-page {
-
-        .toolbar-background {
-          background: #fff;
-          border-color: transparent;
-        }
-      
-        .slide-zoom {
-          height: 100%;
-        }
-      
-        .slide-title {
-          margin-top: 0.0rem;
-        }
-      
-        .slide-image {
-          max-height: 18%;
-          max-width: 60%;
-          margin: 0px 0;
-        }
-      
-        b {
-          font-weight: 500;
-        }
-      
-        p {
-          padding: 0px 14px;
-          font-size: 16.5px;
-          line-height: 1;
-          color: #60646B;
-      
-          b {
-            color: #000000;
-          }
-        }
-      }
-      #full{
-        padding: 0 6px;
-        b {
-          color: #000000;
-        }
-      }
-      .bar-button-default-ios,
-.bar-button-default.bar-button-ios-default,
-.bar-button-clear-ios-default {
-  color: #488aff;
-  background-color: transparent;
+.card-content , .card-md p{
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: #7c7c7c;
+  font-family: arial;
 }
-.bar-button-default-md,
-.bar-button-clear-md-default,
-.bar-button-md-default {
-    color: #488aff;
-  background-color: transparent;
+.card-header {
+  font-size: 2.4rem;
+  color: #6d6060;
+  padding: 5px;
+  text-align: center;
+ 
 }
+.myBody{
+  background-image: url('../assets/griz.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+ 
 }

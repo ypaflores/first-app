@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavParams } from 'ionic-angular';
-import { Http, Headers, RequestOptions,  } from '@angular/http';
+import { NavParams, normalizeURL } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilitiesProvider } from '../../providers/utilities/utilities';
 import { Events } from 'ionic-angular';
-import { ServiceCenterProvider } from '../../providers/service-center/service-center';
+import { ApiProvider } from '../../providers/api/api';
+import { NotesProvider } from '../../providers/notes/notes';
 
 @Component({
   selector: 'page-home',
@@ -23,8 +23,9 @@ export class HomePage {
   translation: any;
   formMiPerfil: FormGroup;
 
-  constructor( private events: Events,private utilities: UtilitiesProvider,public navParams: NavParams,private formBuilder: FormBuilder,private translateService: TranslateService) {
+  constructor( private events: Events,private utilities: UtilitiesProvider,public navParams: NavParams,private formBuilder: FormBuilder,private translateService: TranslateService,private api:ApiProvider,private service:NotesProvider) {
    
+    //Recoje los datos del usuario
     this.utilities.getUserData().then(userData => {
     if(userData) {
       this.user=userData;
@@ -41,7 +42,7 @@ export class HomePage {
   ionViewDidLoad() {
     this.obtenerTraduccion();
   }
- 
+  //Obtiene la traduccion adecuada
   obtenerTraduccion() {
     setTimeout(() => {
       this.translateService.get('MI_PERFIL').subscribe(result => {
@@ -53,6 +54,7 @@ export class HomePage {
     }, 100);
   }
 
+  //Cambia el idioma i avisa a todos atraves del events.publish
   cambiarIdioma(lang) {
     this.lang = lang;
     this.utilities.saveLang(this.lang).then(() => {
@@ -63,9 +65,12 @@ export class HomePage {
     })
   }
 
+  //Modificar datos actuales
   submitForm() {
     this.utilities.showAlert("Rellenar esta funcion que funcione bien!","");
   }
+
+  //Completar y hacer debug mediante movil .
 
   obtenerImgPerfilNueva() {/*
     const options: CameraOptions = {
@@ -109,6 +114,5 @@ export class HomePage {
   borrarImgPerfil() {
     this.utilities.showAlert('borrar imagen', 'rellenar typescript para eliminar imagen');
   }
-
 
 }

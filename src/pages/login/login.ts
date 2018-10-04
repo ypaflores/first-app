@@ -36,14 +36,15 @@ export class LoginPage {
   constructor(private serviceN:NotesProvider,public events: Events,public navCtrl: NavController,public formBuilder: FormBuilder,public afAuth: AngularFireAuth, public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,private facebook: Facebook,public platform: Platform,public menu: MenuController,private storage: Storage,private utilities: UtilitiesProvider,private translateService: TranslateService) 
     {
-      this.menu.swipeEnable(false);
+      this.menu.swipeEnable(false); //menu lateral SI
     this.myForm = formBuilder.group({
       'email': ['', Validators.compose([Validators.required])],
         'password': ['', Validators.compose([Validators.required])]
     });
 
   }
-  //cuenta con fireBase
+  //Login hacia firebase si nos hemos registrado .
+  
   login(){
 
    console.log(this.myForm.value.email + " "+  this.myForm.value.password)
@@ -74,11 +75,12 @@ export class LoginPage {
         this.loading.present();
   }
 
+  //Te manda hacia La pagina de Registracion
   goToSignup(){
     
     this.navCtrl.push('SignupPage');
   }
-
+  //Te manda hacia la pagina para obtener una mail y cambiar la password
   goToResetPassword(){
     this.navCtrl.push('ResetPassword');
   }
@@ -117,7 +119,7 @@ export class LoginPage {
     }
   })
 }
-
+//Logout con facebook nativo
 public logoutFromFacebook(){
 this.facebook.logout().then( (response) => {
     console.log("Logged out: ", response);
@@ -127,17 +129,25 @@ this.facebook.logout().then( (response) => {
     );
 }
 
-
+//Se establece el idioma actual y 
+//Si ya hay una cuenta de acceso en la app te manda de una buena vez hacia la home page
 ionViewDidLoad() {
   setTimeout(() => {
     this.establecerIdioma().then(() => {
       this.translateService.get('INICIAR_SESION.VARIOS').subscribe(translation => {
         this.translation = translation;
+        this.utilities.getUserData().then(userData => {
+          if (userData) {
+            this.navCtrl.setRoot(HomePage).then(() => {
+              this.events.publish('user:logged');
+            })
+          }
+        })
       })
     })
   }, 100)
 }
-
+//Regresa el idioma actual y si no lo encuentra , el espanol es el de default
  establecerIdioma() {
   return new Promise((resolve, reject) => {
     this.utilities.getLang().then(lang => {
@@ -152,11 +162,12 @@ ionViewDidLoad() {
     })
   })
 }
+//Hace el cambio de idioma , facil y sensillo solo con un click 
 cambiarIdioma(lang) {
   this.lang = lang;
   this.translateService.use(lang);
 }
-
+//Acceso a facebook nativo y registracion con firebasde Facebook
 facebookLogin(): Promise<any> {
   return this.facebook.login(['email'])
     .then( response => {
@@ -180,5 +191,6 @@ facebookLogin(): Promise<any> {
         });
     }).catch((error) => { console.log(error) });
 }
+
 }
 

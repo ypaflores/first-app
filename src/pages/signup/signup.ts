@@ -35,7 +35,7 @@ export class SignupPage {
         username:['', Validators.required]
       });
   }
-
+  //recojo la lang actual.
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroPage');
     setTimeout(() => {
@@ -43,7 +43,7 @@ export class SignupPage {
     }, 100);
   }
 
-
+  //Registracion en firebase a partir de email valida y password.
   signup(){
 
     console.log("Email:" + this.myForm.value.email);

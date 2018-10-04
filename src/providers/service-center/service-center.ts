@@ -23,7 +23,7 @@ export class ServiceCenterProvider {
       });
 
     }
-     
+    //Traduce los objetos en lengua espanol!
     translate(example:any) {
         return new Promise((resolve, reject) => {
           this.traducir.translate(example, 'es').then(userData => {

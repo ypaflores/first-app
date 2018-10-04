@@ -20,25 +20,50 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding class="tutorial-page">
- 
-  <ion-slides pager>
-    <ion-slide *ngFor="let slide of slides">
-      <ion-toolbar>
-        <ion-item>
-          <ion-label>{{'HOROSCOPO.DIA.DESC'|translate}}  {{date}}</ion-label>
-          <ion-select [(ngModel)]="day" interface="action-sheet"   (ngModelChange)="onSelectChange()">
-              <ion-option value="yesterday">{{'HOROSCOPO.DIA.AYER'|translate}}</ion-option>
-              <ion-option value="today">{{'HOROSCOPO.DIA.HOY'|translate}}</ion-option>
-              <ion-option value="tomorrow">{{'HOROSCOPO.DIA.MAÑANA'|translate}}</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-toolbar>
-      <img [src]="slide.image" class="slide-image"/>
-      <h2 class="slide-title" [innerHTML]="slide.sing?.sunsign"></h2>
-      <p id="full"> <b>{{'HOROSCOPO.HOROSCOPO_TODO.INTENSIDAD'|translate}}:</b> {{slide.sing?.meta?.intensity}}<b>  {{'HOROSCOPO.HOROSCOPO_TODO.PALABRAS_CLAVE'|translate}}: </b>{{slide.sing?.meta?.keywords}} <b>  {{'HOROSCOPO.HOROSCOPO_TODO.HUMOR'|translate}}: </b> {{slide.sing?.meta?.mood}}</p>
-        <p ><b>{{'HOROSCOPO.HOROSCOPO_TODO.DESCRIPCION'|translate}}: </b>{{slide.sing?.horoscope}}</p>
-    </ion-slide>
-  </ion-slides>
-  <button (click)="translateObjects()">Clickami</button>
+<ion-content padding class="myBody">
+            <ion-toolbar>
+                <ion-item>
+                  <ion-label>{{'HOROSCOPO.DIA.DESC'|translate}}  {{date}}</ion-label>
+                  <ion-select [(ngModel)]="day" interface="action-sheet"   (ngModelChange)="onSelectChange()">
+                      <ion-option value="yesterday">{{'HOROSCOPO.DIA.AYER'|translate}}</ion-option>
+                      <ion-option value="today">{{'HOROSCOPO.DIA.HOY'|translate}}</ion-option>
+                      <ion-option value="tomorrow">{{'HOROSCOPO.DIA.MAÑANA'|translate}}</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-toolbar><!--
+          <div class="mbsc-grid md-cards-layout">
+              <div class="mbsc-row mbsc-justify-content-center mbsc-no-padding">
+                  <div class="mbsc-col-12 mbsc-col-sm-6 mbsc-col-lg-4 mbsc-col-xl-4" *ngFor="let slide of slides">
+                    <mbsc-card [options]="settings">
+                      <img [src]="slide.image" class="slide-image"/>
+                      <mbsc-card-header>
+                        <mbsc-card-title [innerHTML]="slide.sing?.sunsign"></mbsc-card-title>
+                      </mbsc-card-header>
+                      <mbsc-card-content>
+                        <b>{{'HOROSCOPO.HOROSCOPO_TODO.DESCRIPCION'|translate}}</b>: {{slide.sing?.horoscope}}
+                      </mbsc-card-content>
+                      <mbsc-card-footer>
+                        <p class="mbsc-col-sm-6 mbsc-col-lg-6 mbsc-col-xl-6"> <b>{{'HOROSCOPO.HOROSCOPO_TODO.INTENSIDAD'|translate}}:</b> {{slide.sing?.meta?.intensity}}</p>
+                        <p class="mbsc-col-sm-6 mbsc-col-lg-6 mbsc-col-xl-6"><b>  {{'HOROSCOPO.HOROSCOPO_TODO.PALABRAS_CLAVE'|translate}}: </b>{{slide.sing?.meta?.keywords}} </p>
+                        <p class="mbsc-col-sm-6 mbsc-col-lg-6 mbsc-col-xl-6"><b> {{'HOROSCOPO.HOROSCOPO_TODO.HUMOR'|translate}}: </b> {{slide.sing?.meta?.mood}}</p>        
+                      </mbsc-card-footer>
+                  </mbsc-card>
+                  </div>
+              </div>
+          </div>-->
+          <ion-grid>
+              <ion-row>
+                <ion-col col-12 col-md-6 col-lg-4 col-xl-4 *ngFor="let slide of slides">
+                  <ion-card>
+                      <img [src]="slide.image" class="slide-image">
+                      <ion-card-header><b>{{slide.sing?.sunsign}}</b>
+                         </ion-card-header>
+                  <ion-card-content>
+                        <b>{{'HOROSCOPO.HOROSCOPO_TODO.DESCRIPCION'|translate}}</b>: {{slide.sing?.horoscope}}
+                          <p><b>{{'HOROSCOPO.HOROSCOPO_TODO.INTENSIDAD'|translate}}:</b> {{slide.sing?.meta?.intensity}}</p>
+                          <p><b>  {{'HOROSCOPO.HOROSCOPO_TODO.PALABRAS_CLAVE'|translate}}: </b>{{slide.sing?.meta?.keywords}} </p>
+                          <p><b> {{'HOROSCOPO.HOROSCOPO_TODO.HUMOR'|translate}}: </b> {{slide.sing?.meta?.mood}}</p> 
+                </ion-card-content>
+              </ion-card></ion-col></ion-row>
+            </ion-grid>
 </ion-content>

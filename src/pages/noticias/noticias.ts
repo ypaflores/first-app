@@ -34,11 +34,13 @@ export class NoticiasPage implements OnInit {
     })
   }
 
+  //recojo las noticias que son mias .
   ngOnInit(){
 
     this.initializeCards("Cargando Datoss...");
 
  }
+  //hay un loader para que cargue mientras , puedo cambiarlo a como de lampeggiare per un po.
   private initializeCards(comment:string){
 
     let loader = this.loadingCtrl.create({
@@ -51,18 +53,21 @@ export class NoticiasPage implements OnInit {
       });
     })
   }
-
+  //Me manda a una pagina en el cual hay un formulario para ingresar una nueva noticia
   public goToAddNews(){
     
     this.navCtrl.push('InsertNoticiaPage');
   }
-
+  //Puedo remover la noticia seleccionada.
   public deleteElement(card:Card){
       this.serviceN.removeNote(card).then(()=>{
         this.initializeCards("Eliminando objeto seleccionado");
         this.utilities.showToast(this.translation.NOTICIA_BORRADA);
       });
   }
+
+  //Puedo cambiar algunos valores de la noticia y guardar los cambios , exactamente esta funcion me manda al mismo
+  //formulario de nueva noticia
   public goToUpdate(card:Card){
     
     this.navCtrl.push("InsertNoticiaPage", {
@@ -71,7 +76,8 @@ export class NoticiasPage implements OnInit {
 
   
 }
-   
+  //Refresh la pagina **agregar mas llamadas a funciones
+
   public doRefresh(refresher) {
     console.log('Begin async operation', refresher);
 
@@ -80,6 +86,8 @@ export class NoticiasPage implements OnInit {
       refresher.complete();
     }, 2000);
   }
+  //filtro para algunas busquedas por nombre o tipo por ejemplo . me manda a otro controler y regresa una lista a partir
+  //de un aviso mediante un popover event
   public filtrarCards($event) {
     
     const popover = this.popoverCtrl.create('FiltrarCardsPage', { cards: this.lista });
@@ -88,7 +96,7 @@ export class NoticiasPage implements OnInit {
     });
     
   } 
-  
+  //se obtienen las traducciones oficiales della pagina correspondente para los toast (mensajes app) adecuados
   public ionViewDidLoad() {
     this.obtenerTraduccion();
     this.events.subscribe('challenges:filtered', (retosFiltrados) => {
@@ -96,7 +104,7 @@ export class NoticiasPage implements OnInit {
         this.lista = retosFiltrados;
     })
   }
-
+  //regresan las traducciones bien hechas
   obtenerTraduccion() {
     
     setTimeout(() => {

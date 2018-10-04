@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, LoadingController, } from 'ionic-angular';
+import { IonicPage, LoadingController, } from 'ionic-angular';
 import { HoroscopeRequestProvider } from '../../providers/horoscope-request/horoscope-request';
 import { ServiceCenterProvider } from '../../providers/service-center/service-center';
 import { TranslateService } from '@ngx-translate/core';
+import { UtilitiesProvider } from '../../providers/utilities/utilities';
 
 /**
  * Generated class for the HoroscoposPage page.
@@ -23,22 +24,36 @@ export class HoroscoposPage {
   day="today";
 
   slides ;
-
-  constructor(private service: HoroscopeRequestProvider, public loadingCtrl: LoadingController,private translateService :ServiceCenterProvider,private translate: TranslateService) {
+  guardados:any;
+  mainSelected: string = 'horoscopo';
+  mainCategories = [
+    { id: 1, icon: 'newspaper', page: 'horoscopo', name: 'Horoscopo' },
+    { id: 2, icon: 'folder', page: 'folder_hor', name: 'Folder H' }
+ ];
+  settings: any = {
+    theme: 'material'
+}
+guardado=false;
+  constructor(private service: HoroscopeRequestProvider, public loadingCtrl: LoadingController,private translateService :ServiceCenterProvider,private translate: TranslateService,private utilities:UtilitiesProvider) {
     this.date=  this.dtmp.toLocaleDateString();
   }
-
+  
+  //Hace una llamada ala funcion local , antes de ver el contenido de todo
   ngOnInit() { 
     
     this.consult();
   
   }
-
+  //Cambia el dia del cual quisiera saber el horoscopo y llama a consult () -> principal es este
     onSelectChange() {
       this.aggiornaData();
       this.consult(); 
     }
 
+    selectMain(page) {
+      this.mainSelected = page;
+    }
+    //Dia cambiado , date , y todo para verlo en el html
     aggiornaData()
     {
       let app=0;
@@ -51,6 +66,7 @@ export class HoroscoposPage {
 
     
 
+  //Llama a una funcion del provider y recoje las peticiones rest , 
   public consult(){
 
     let loader = this.loadingCtrl.create({
@@ -69,6 +85,7 @@ export class HoroscoposPage {
     })
   }
   
+  //Hace traducciones de objetos !
   public translateObjects(){
 
     let loader = this.loadingCtrl.create({

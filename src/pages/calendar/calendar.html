@@ -1,0 +1,91 @@
+<!--
+  Generated template for the CalendarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'CALENDARIO.TITULO'|translate}}</ion-title>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <button ion-button icon-end [disabled]="currentEvents.length==0" color='custom-color2' ion-button full (click)="createPdf2()">
+         <font face="Comic sans MS">{{'CALENDARIO.BOTONES.DESCARGAR'|translate}}</font>
+        <ion-icon name="download"></ion-icon>
+      </button>
+      <div>
+        <ion-calendar #calendar  [events]="currentEvents" (onDaySelect) = "onDaySelect($event)" (onMonthSelect)="onMonthChange($event)"></ion-calendar>
+      </div>
+      <br>
+      <div>
+          <button *ngIf="tipo == 'nuevoEvento'" color='custom-color2' ion-button full (click)="tipo='historial'"><font face="Comic sans MS">{{'CALENDARIO.BOTONES.HISTORIAL'|translate}}</font></button>
+          <button *ngIf="tipo == 'historial'" color='custom-color2' ion-button full (click)="tipo='nuevoEvento'"><font face="Comic sans MS">{{'CALENDARIO.BOTONES.NUEVO_EVENTO'|translate}}</font></button>
+          <button *ngIf="tipo == 'modificar'" color='danger' ion-button full (click)="cancelarUp()"><font face="Comic sans MS">{{'CALENDARIO.BOTONES.CANCELAR_MODIFICACION'|translate}}</font></button>
+      </div><br>
+    <div class="agregarEv" *ngIf="tipo == 'nuevoEvento' ||tipo == 'modificar'">
+        <h4>{{'CALENDARIO.EVENTO.TITULO'|translate}}</h4>
+        <form  [formGroup]="myForm" (ngSubmit)="agregar()">
+            <ion-list>
+        <ion-item >
+          <ion-icon name="home" item-left></ion-icon>
+              <ion-label stacked>{{'CALENDARIO.EVENTO.DATOS.LUGAR'|translate}}</ion-label>
+              <ion-input formControlName="lugar" type="text" placeholder="Sitio Trabajado" clearInput></ion-input>
+        </ion-item>
+        <ion-item >
+            <ion-icon name="alarm" item-left></ion-icon>
+                <ion-label stacked>{{'CALENDARIO.EVENTO.DATOS.ORAS'|translate}}</ion-label>
+                <ion-datetime formControlName="tiempo" displayFormat="hh" placeholder="Tiempo Recurrrido"></ion-datetime>
+          </ion-item>
+          <ion-item [hidden]="true"><label></label></ion-item>
+      </ion-list>
+        <div padding class="login-container">
+          <button  outline ion-button round block type="submit" [disabled]="!myForm.valid"> 
+              {{'CALENDARIO.EVENTO.BOTONES.GUARDAR'|translate}}
+        </button></div>
+      </form>
+    </div>
+    
+    <div *ngIf="tipo == 'historial' && objectCor!=null">
+        <h4>{{'CALENDARIO.HISTORIAL.TITULO'|translate}} : {{objectCor.eventos.length}}</h4>
+        <ion-list>
+            <ion-item-sliding #item *ngFor="let f of objectCor.eventos">
+              <ion-item >
+                <ion-icon name="home"></ion-icon> 
+                  {{f.lugar}},
+                  <ion-icon name="alarm"></ion-icon> 
+                  {{f.tiempo}}  
+              </ion-item>  
+              <ion-item-options side="right">
+                <button ion-button color="danger" (click)="delete(f)">
+                  <ion-icon name="trash"></ion-icon>
+                  {{'CALENDARIO.HISTORIAL.BOTONES.ELIMINA'|translate}}
+                </button>
+              </ion-item-options>
+              <ion-item-options side="left">
+                  <button ion-button  (click)="modify(f)">
+                    <ion-icon name="create"></ion-icon>
+                    {{'CALENDARIO.HISTORIAL.BOTONES.MODIFICAR'|translate}}
+                  </button>
+                </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+    </div>
+    <div *ngIf="tipo == 'historial' && objectCor==null">
+      <h4>{{'CALENDARIO.HISTORIAL.SIN_HISTORIAL'|translate}}!</h4>
+  </div>
+    <div *ngIf="tipo == ''">
+      <h4>{{'CALENDARIO.INFORMACION'|translate}}</h4>
+    </div>
+     
+
+</ion-content>

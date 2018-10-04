@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>contactos</ion-title>
+    <ion-title>{{'RUBRICA.CONTACTOS.TITULO'|translate}}</ion-title>
     <ion-buttons start>
       <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -23,44 +23,103 @@
 </ion-header>
 
 
-<ion-content padding>
-<ngx-carousel-3d [slides]="slides" [options]="options" class="col-8" #carousel>
-  <ngx-carousel-3d-slide *ngFor="let slide of slides; let i = index" (click)="slideClicked(i)" class={{color_stop}}>
-      <img class="slide-img" src="{{slide.url}}" *ngIf="slide.tipo=='image'" alt=""/>
-      <video class="slide-video" controls autoplay *ngIf="slide.tipo=='video'">
-        <source src="{{slide.url}}">
-      </video>
-  </ngx-carousel-3d-slide>
-</ngx-carousel-3d>
+<ion-content padding class="body">
+    <mbsc-bottom-nav [options]="mainSettings">
+        <mbsc-nav-item *ngFor="let item of mainCategories" [icon]="item.icon" [selected]="mainSelected == item.page" (click)="selectMain(item.page)">{{item.name}}</mbsc-nav-item>
+    </mbsc-bottom-nav>
 
-<div text-center *ngIf='slides.length!=0'>
-  <h2 text-center>Media</h2>
-  <button ion-button color="primary" icon-start margin-bottom (tap)="toggleHideMedia()">
-    <ion-icon [name]="hideMedia ? 'add' : 'remove'"></ion-icon>
-    {{hideMedia ? 'Muestra': 'Esconde'}}
-  </button>
+<div *ngIf="mainSelected == 'rubrica'">
+    <h1 text-center class="" *ngIf="lista?.length === 0">{{'RUBRICA.CONTACTOS.SIN_CONTACTOS'|translate}}</h1> 
+    <ion-list>
+    <ion-item-sliding #item *ngFor="let f of [1, 2, 3, 4]; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+      <ion-item > 
+        <ion-card>
+            <ion-item>
+                <ion-avatar item-start>
+                    <img [src]="avatar+'.'+i">
+                  </ion-avatar>
+                  <h2>Marty McFly {{i}}</h2>
+                  <p>November 5, 1955</p>
+                </ion-item>
+            <ion-card-content *ngIf="isGroupShown(i)">
+                <ion-list>
+                  <ion-item>
+                      <ion-icon name="mail" item-start></ion-icon>
+                        hortense@tinker.com
+                  </ion-item>
+                  <ion-item>
+                      <ion-icon name="call" item-start></ion-icon>
+                       555-0137
+                  </ion-item>
+                  <ion-item>
+                      <ion-icon name="phone-portrait" item-start></ion-icon>
+                      3892037815
+                  </ion-item>
+                  <ion-item>
+                      <ion-icon name="ice-cream" item-start></ion-icon>
+                      12/01/1999
+                  </ion-item>
+                  </ion-list>
+              </ion-card-content>
+            
+        </ion-card>
+      </ion-item>
+      
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="save(f)">
+          <ion-icon name="star"></ion-icon>
+          {{'RUBRICA.CONTACTOS.GUARDAR'|translate}}
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </div>
 
-<div class="media" padding-left padding-right [hidden]='hideMedia'>
-  <ion-slides  [pager]='true'>
-      <ion-slide *ngFor="let slide of slides">
-            <img *ngIf="slide.tipo=='image'" [src]="slide.url">
-            <video  controls  *ngIf="slide.tipo=='video'">
-                <source [src]="slide.url">
-              </video>
-     </ion-slide>
- </ion-slides>
-</div>
-<!--
-  <ion-list>
-  <ion-item *ngFor="let contacto of listaContactos">
-    <ion-avatar item-start>
-      <img [src]="contacto.photos[0].value ">
-    </ion-avatar>
-    <h2>{{contacto.displayName }}</h2>
-    <p>Dispositivo: {{contacto.phoneNumbers[0].type}} - Numero: {{contacto.phoneNumbers[0].value}}</p>
-  </ion-item>
-</ion-list>
--->
-
+    <div *ngIf="mainSelected == 'folder_rub'">
+        <h1 text-center class="" *ngIf="lista2?.length === 0">{{'RUBRICA.CONTACTOS.SIN_CONTACTOS_GUARDADOS'|translate}}</h1>
+          <ion-list>
+            <ion-item-sliding #item *ngFor="let f of [1, 2, 3, 4]; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+              <ion-item > 
+                <ion-card>
+                    <ion-item>
+                        <ion-avatar item-start>
+                            <img [src]="avatar+'.'+(i+1)">
+                          </ion-avatar>
+                          <h2>Marty McFly {{i+1}}</h2>
+                          <p>November 5, 1955</p>
+                        </ion-item>
+                    <ion-card-content *ngIf="isGroupShown(i)">
+                        <ion-list>
+                          <ion-item>
+                              <ion-icon name="mail" item-start></ion-icon>
+                                hortense@tinker.com
+                          </ion-item>
+                          <ion-item>
+                              <ion-icon name="call" item-start></ion-icon>
+                               555-0137
+                          </ion-item>
+                          <ion-item>
+                              <ion-icon name="phone-portrait" item-start></ion-icon>
+                              3892037815
+                          </ion-item>
+                          <ion-item>
+                              <ion-icon name="ice-cream" item-start></ion-icon>
+                              12/01/1999
+                          </ion-item>
+                          </ion-list>
+                      </ion-card-content>
+                    
+                </ion-card>
+              </ion-item>
+              
+              <ion-item-options side="right">
+                <button ion-button color="danger" (click)="delete(f)">
+                  <ion-icon name="trash"></ion-icon>
+                  {{'RUBRICA.CONTACTOS.ELIMINA'|translate}}
+                </button>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+          
+    </div>
 </ion-content>

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController, normalizeURL } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { FormsModule, FormGroup, FormBuilder, Validators, NgControlStatus } from '@angular/forms';
-import { Notizia } from './classe';
+import { FormBuilder, } from '@angular/forms';
 import { Card } from '../../model/card.model';
 import { NotesProvider } from '../../providers/notes/notes';
 import { OperationsProvider } from '../../providers/operations/operations';
@@ -47,7 +46,9 @@ export class InsertNoticiaPage {
     private utilities: UtilitiesProvider,private alertCtrl: AlertController) {
     
     this.modeKeys = this.noteListService.getCategorie();
-      
+    
+    //Controla si hay que ingresar un nueva noticia o si hay que modificarla .. controlando un parametro pasado a ala pagin
+    //si hay entonces a modificar si no a crear
     let tmp =  navParams.get("element");
     if(tmp!= null){
      this.card=tmp;
@@ -59,39 +60,21 @@ export class InsertNoticiaPage {
     })
   }
 
+  //Hace el acceso a la galeria para seleccionar un media (foto)
   accessGallery(){
-      const options: CameraOptions = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.NATIVE_URI,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
-        sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-        targetWidth: 1920,
-        targetHeight: 540,
-        allowEdit: false
-      }
-      this.camera.getPicture(options).then((imageData) => {
-        if (this.utilities.getPlatform() == 'ios') {
-            this.base64Image = normalizeURL(imageData);  
-        }
-        else {
-          this.base64Image= imageData.substring(0,imageData.indexOf('?'))
-        }
-        this.card.img=this.base64Image;
-        this.utilities.showToast("Imagen seleccionada "+ this.base64Image);
-       }
-      ).catch((reject) => {
-        let alert = this.alertCtrl.create({
-          title: 'Error',
-          message: 'Error al obtener la imagen: ' + reject,
-          buttons: ['OK']
-        });
-  
-        alert.present();
-      });
+    this.camera.getPicture({
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      quality: 100,
+      encodingType: this.camera.EncodingType.PNG,
+    }).then(imageData => {
+      this.base64Image = imageData;
+    }, error => {
+      console.log("ERROR -> " + JSON.stringify(error));
+    });
     }
     
-
+    //Hace un update o add segun su controles de campos completados
     newNews()
     {
       let app = this.NgControlStatus();
@@ -101,6 +84,7 @@ export class InsertNoticiaPage {
         }    
     }
 
+    //Registra una nueva noticia
     public insertCard(card: Card) {
       let loader = this.loadingCtrl.create({
         content: "Agregando Objeto nuevo"
@@ -113,7 +97,7 @@ export class InsertNoticiaPage {
         this.deleteAll();
       })
     }
-
+    //Modifica una noticia dada
     updateCard(card: Card) {
       let loader = this.loadingCtrl.create({
         content: "Modificando Objeto seleccionado"
@@ -126,6 +110,7 @@ export class InsertNoticiaPage {
       })
     }
 
+    //Controla los campos , y manda un alert del dispositivo segun su fallo
     private NgControlStatus(){
       
         if(this.card.title==""||this.card.ctg==""||this.card.comm==""){
@@ -147,6 +132,7 @@ export class InsertNoticiaPage {
         return true;
     }
 
+    //Borra los campos una vez rellenados y hecho update o add
     deleteAll(){
       this.card.comm="";
       this.card.img="";
@@ -155,6 +141,7 @@ export class InsertNoticiaPage {
       this.card.state="happy";
     }
 
+    //Obtiene las traducciones adecuadas a para los menasajes bien o mal de exitos
     obtenerTraduccion() {
       setTimeout(() => {
         this.translateService.get('CREAR_NOTICIA.ERRORES/SUCESOS').subscribe(result => {
@@ -169,35 +156,18 @@ export class InsertNoticiaPage {
       this.obtenerTraduccion();
     }
     //modificar el card.img porque salvarlo como objeto en storage de firebase o si no  en  un db local 
+    //Coje la camara y te consiente de hacer la foto y obtener la imagen
     takePicture(){
-      /*
-      const options: CameraOptions = {
+      this.camera.getPicture({
         quality: 100,
-        destinationType: this.camera.DestinationType.NATIVE_URI,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
+        destinationType: this.camera.DestinationType.DATA_URL,
         sourceType: this.camera.PictureSourceType.CAMERA,
-        targetWidth: 1920,
-        targetHeight: 540,
-        allowEdit: false
-      }
-      this.camera.getPicture(options).then((imageData) => {
-
-      this.base64Image =  imageData;
-      this.card.img = this.base64Image;
-      this.utilities.showToast("Imagen seleccionada "+ this.base64Image);
-     }
-    ).catch((reject) => {
-      let alert = this.alertCtrl.create({
-        title: 'Error',
-        message: 'Error al obtener la imagen: ' + reject,
-        buttons: ['OK']
+        encodingType: this.camera.EncodingType.PNG,
+        saveToPhotoAlbum: true
+      }).then(imageData => {
+        this.base64Image = imageData;
+      }, error => {
+        console.log("ERROR -> " + JSON.stringify(error));
       });
-
-      alert.present();
-    });
-    */
-   this.card.img="https://www.skuola.net/news_foto/2018/equazione-retta.jpg";
     }
-  
 }

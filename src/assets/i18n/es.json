@@ -31,6 +31,8 @@
         "BUSCAR": "Buscar Algo",
         "NOTICIAS_TODAS": "Noticias",
         "NOTICIAS": "Mis Noticias",
+        "MARVEL":"Marvel",
+        "CONTACTOS":"Contactos",
         "CERRAR_SESION": {
             "TITULO": "Cerrar sesión",
             "DESC": "¿Estás seguro de que deseas cerrar sesión?",
@@ -171,6 +173,104 @@
             "TITULO": "Error al editar perfil",
             "DESC": "Hubo un error al editar tu perfil. Inténtalo de nuevo más tarde"
         }
-    }
+    },
+    "RUBRICA":{
+        "CONTACTOS":{
+            "TITULO":"Contactos",
+            "SIN_CONTACTOS":"No se ha encontrado ningun contacto",
+            "GUARDAR":"Guardar",
+            "SIN_CONTACTOS_GUARDADOS":"No se almacenaron contactos",
+            "ELIMINA":"Remover"
+        },
+        "CREA_CONTACTO":{
+            "TITULO":"Crear Contacto",
+            "DATOS":{
+                "NOMBRE":"Nombre",
+                "TIPO_NUMERO":{
+                    "TIPO":"Tipo de numero",
+                    "MOVIL":"Movil",
+                    "FIJO":"Fijo",
+                    "FAX":"Fax"
+                },
+                "NUMERO":"Numero Telefonico"
+            },
+            "BOTONES":{
+                "CREAR":"Crea contacto",
+                "CANCELAR":"Cancela operacion"
+                }
+            },
+        "ERRORES/SUCESOS":{
+            "REMOVIDO":"Contacto removido con Perfeccion",
+            "AGREGADO":"Contacto agregado con Perfeccion",
+            "EXISTENTE":"Ya existe este contacto"
+            }
+        },
+    "MARVEL":{
+        "TITULO":"Marvel",
+        "BUSCADOR":{
+            "TITULO":"Cambiar a Buscador por",
+            "NOMBRE":"Buscar por Nombre",
+            "AÑO":"Buscar por Año"
+            },
+        "PERSONAJES":{
+            "DATOS":{
+                "COMICS":"comics",
+                "EVENTOS":"eventos",
+                "SERIES":"series",
+                "HISTORIAS":"historias"
+            }
+        },
+        "COMICS":{
+            "DATOS":{
+                "FECHA":"Fecha",
+                "PAGINAS":"Pàginas",
+                "VER":"Ver"
+            }
+        }
+    },
 
+    "CALENDARIO":{
+        "TITULO":"Calendario",
+        "BOTONES":{
+            "DESCARGAR":"Descargar Calendario",
+            "VER":"Ver Calendario",
+            "CANCELAR_MODIFICACION":"Cancela la modificacion", 
+            "HISTORIAL":"Ver Historial",
+            "NUEVO_EVENTO":"Agrega nuevo Evento"
+
+            
+        },
+        "HISTORIAL":{
+            "TITULO":"Eventos Realizados",
+            "SIN_HISTORIAL":"No hay eventos realizados",
+            "BOTONES":{
+                "ELIMINA":"Remover",
+                "MODIFICAR":"Modificar"
+            }
+        },
+        "EVENTO":{
+            "TITULO":"Agrega un particular evento y horas realizadas",
+            "DATOS":{
+                "LUGAR":"Lugar",
+                "ORAS":"Horas"  
+            },
+            "BOTONES":{
+                "GUARDAR":"Guardar"
+            }
+        },
+        "INFORMACION":"Selecciona un dia del calendario para algunas operaciones",
+        "ERRORES/SUCESOS":{
+            "EVENTO":{
+                "AGREGADO":"Evento Agregado con perfeccion",
+                "CREADO":"Evento Creado con perfeccion",
+                "MODIFICADO":"Evento Modificado con perfeccion",
+                "ELIMINADO":"Eliminado Ultimo Evento del dia",
+                "REMOVIDO":"Eliminado Uno de los Eventos del dia"
+                }
+            },
+        "PDF":{
+
+        }
+    }
+        
 }

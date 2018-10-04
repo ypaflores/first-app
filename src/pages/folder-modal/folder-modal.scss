@@ -1,0 +1,47 @@
+page-folder-modal {
+    mbsc-page{
+        position: absolute; top:0;
+      }
+    .md-cards-layout p {
+        color: #7d7d7d;
+    }
+    .mbsc-lv-mobiscroll .mbsc-lv-item {
+        margin-top: -1px;
+        padding: 0px;
+        background: #f7f7f7;
+        color: #454545;
+        font-weight: normal;
+    }
+     .md-cards-layout p {
+        color: #7d7d7d;
+        margin: 0.2em 0;
+        padding: 0;
+        padding-left: 2px;
+        font-size: 1em;
+        line-height: 1.2;
+    }
+    .mbsc-no-padding [class*="mbsc-col"] {
+        padding-right: 2px;
+        padding-left: 2px;
+    }
+    .myBody{
+        background-image: url('../assets/background.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .searchbar-md {
+        background: inherit;
+        padding: 4px;
+    }
+    .card-content{
+        text-align: center;
+        background-color: #d8d8d8;
+    }
+    .card-header {
+        font-size: 2.4rem;
+        color: #6d6060;
+        padding: 7px;
+        text-align: center;
+       
+    }
+}

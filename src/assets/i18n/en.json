@@ -29,6 +29,8 @@
         "HOROSCOPO": "All Horoscopos",
         "NOTICIAS_TODAS": "News",
         "NOTICIAS": "My News",
+        "MARVEL":"Marvel",
+        "CONTACTOS":"Contacts",
         "CERRAR_SESION": {
             "TITULO": "Logout",
             "DESC": "Are you sure you want to logout?",
@@ -168,7 +170,102 @@
             "TITULO": "Error editing your profile",
             "DESC": "There was an error editing your profile. Please try again later"
         }
-    }
+    },
+    "RUBRICA":{
+        "CONTACTOS":{
+            "TITULO":"Contacts",
+            "SIN_CONTACTOS":"Not yet found any contact",
+            "GUARDAR":"Save",
+            "SIN_CONTACTOS_GUARDADOS":"No contacts were stored",
+            "ELIMINA":"Remove"
+        },
+        "CREA_CONTACTO":{
+            "TITULO":"Create contact",
+            "DATOS":{
+                "NOMBRE":"Name",
+                "TIPO_NUMERO":{
+                    "TIPO":"Type of number",
+                    "MOVIL":"Mobile",
+                    "FIJO":"Fixed",
+                    "FAX":"Fax"
+                },
+                "NUMERO":"Telephone number"
+            },
+            "BOTONES":{
+                "CREAR":"Create contact",
+                "CANCELAR":"Cancels the operation"
+                }
+            },
+            "ERRORES/SUCESOS":{
+                "REMOVIDO":"Contact removed successfully",
+                "AGREGADO":"Contact added successfully",
+                "EXISTENTE":"This contact already exists"
+                }
+        },
+        "MARVEL":{
+            "TITULO":"Marvel",
+            "BUSCADOR":{
+                "TITULO":"Change to search by",
+                "NOMBRE":"Search by Name",
+                "AÑO":"Search by Year"
+                },
+            "PERSONAJES":{
+                "DATOS":{
+                    "COMICS":"comics",
+                    "EVENTOS":"events",
+                    "SERIES":"series",
+                    "HISTORIAS":"stories"
+                }
+            },
+            "COMICS":{
+                "DATOS":{
+                    "FECHA":"Date",
+                    "PAGINAS":"Pages",
+                    "VER":"View"
+                }
+            }
+        },
+        "CALENDARIO":{
+            "TITULO":"Calendar",
+            "BOTONES":{
+                "DESCARGAR":"Download Calendar",
+                "VER":"View Calendar",
+                "CANCELAR_MODIFICACION":"Cancel the modification", 
+                "HISTORIAL":"View History",
+                "NUEVO_EVENTO":"Add new Event"
     
-
+                
+            },
+            "HISTORIAL":{
+                "TITULO":"Realized Events",
+                "SIN_HISTORIAL":"No events performed",
+                "BOTONES":{
+                    "ELIMINA":"Remove",
+                    "MODIFICAR":"Modify"
+                }
+            },
+            "EVENTO":{
+                "TITULO":"Add a particular event and hours performed",
+                "DATOS":{
+                    "LUGAR":"Place",
+                    "ORAS":"Hours"  
+                },
+                "BOTONES":{
+                    "GUARDAR":"Save"
+                }
+            },
+            "INFORMACION":"Select a calendar day for some operations",
+            "ERRORES/SUCESOS":{
+                "EVENTO":{
+                    "AGREGADO":"Event added successfully",
+                    "CREADO":"Event created successfully",
+                    "MODIFICADO":"Event modified successfully",
+                    "ELIMINADO":"Eliminated the last event of the day",
+                    "REMOVIDO":"Eliminated one of the events of the day"
+                    }
+                },
+            "PDF":{
+    
+            }
+        }
 }

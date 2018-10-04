@@ -6,31 +6,31 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>crearContacto</ion-title>
+    <ion-title>{{'RUBRICA.CREA_CONTACTO.TITULO'|translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label floating>Nombre</ion-label>
+      <ion-label floating>{{'RUBRICA.CREA_CONTACTO.DATOS.NOMBRE'|translate}}</ion-label>
       <ion-input type="text"  name="nombre" [(ngModel)]="datos.nombre"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Tipo numero</ion-label>
+      <ion-label floating>{{'RUBRICA.CREA_CONTACTO.DATOS.TIPO_NUMERO.TIPO'|translate}}</ion-label>
       <ion-select [(ngModel)]="datos.tipoNumero" name="tipoNumero">
-        <ion-option value="Movil">Movil</ion-option>
-        <ion-option value="Fijo">Fijo</ion-option>
-        <ion-option value="Fax">Fax</ion-option>
+        <ion-option value="Movil">{{'RUBRICA.CREA_CONTACTO.DATOS.TIPO_NUMERO.MOVIL'|translate}}</ion-option>
+        <ion-option value="Fijo">{{'RUBRICA.CREA_CONTACTO.DATOS.TIPO_NUMERO.FIJO'|translate}}</ion-option>
+        <ion-option value="Fax">{{'RUBRICA.CREA_CONTACTO.DATOS.TIPO_NUMERO.FAX'|translate}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label floating>Numero telefonico</ion-label>
+      <ion-label floating>{{'RUBRICA.CREA_CONTACTO.DATOS.NUMERO'|translate}}</ion-label>
       <ion-input type="number" [(ngModel)]="datos.numero" name="numero"></ion-input>
     </ion-item>
   </ion-list>
   <div padding>
-    <button ion-button color="primary" block (click)="crearContacto()">Crear contacto</button>
-    <button ion-button color="danger" block (click)="dismiss(false)">Cancelar</button>
+    <button ion-button color="primary" block (click)="crearContacto()">{{'RUBRICA.CREA_CONTACTO.BOTONES.CREAR'|translate}}</button>
+    <button ion-button color="danger" block (click)="dismiss(false)">{{'RUBRICA.CREA_CONTACTO.BOTONES.CANCELAR'|translate}}</button>
   </div>
 </ion-content>

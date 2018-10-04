@@ -1,0 +1,79 @@
+<!--
+  Generated template for the FolderModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'MARVEL.TITULO'|translate}}</ion-title>
+    <ion-buttons start>
+            <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+     </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+    <ion-content padding class="myBody">
+        <mbsc-bottom-nav [options]="mainSettings">
+                <mbsc-nav-item *ngFor="let item of mainCategories" [icon]="item.icon" [selected]="mainSelected == item.page" (click)="selectMain(item.page)">{{item.name}}</mbsc-nav-item>
+        </mbsc-bottom-nav>
+    <div *ngIf="mainSelected == 'comics'">
+        <div>
+            <button color='custom-color2' ion-button full (click)="ngIfCtrl()"><font face="Comic sans MS">{{'MARVEL.BUSCADOR.TITULO'|translate}}{{tipo}}</font></button>
+            <ion-searchbar  *ngIf="pageComic.hide" [ngModel]="pageComic.searchComic" (ionInput)="getSearchedComics($event)" ></ion-searchbar>
+            <ion-searchbar searchbar-ios-toolbar-input-background='custom-color'  *ngIf="!pageComic.hide" [ngModel]="pageComic.searchbyYear" (ionInput)="getSearchedComicsbyYear($event)"  type='number'></ion-searchbar>
+        </div>    
+            <ion-list>
+            <ion-item *ngFor="let comic of pageComic.comics">
+                <ion-thumbnail item-start>
+                <img src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}">
+                </ion-thumbnail>
+                <h2>{{comic.title}}</h2>
+                <p>{{'MARVEL.COMICS.DATOS.FECHA'|translate}} : {{comic.dates[0].date}}</p>
+                <p>{{'MARVEL.COMICS.DATOS.PAGINAS'|translate}} : {{comic.pageCount}}</p>
+                <button ion-button clear item-end [navPush]='pushPage' [navParams]='comic.id'>{{'MARVEL.COMICS.DATOS.VER'|translate}}</button>
+            </ion-item>
+            </ion-list>
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+    <div *ngIf="mainSelected == 'characters'">
+            <div>
+                <button color='custom-color2' ion-button full ><font face="Comic sans MS">{{'MARVEL.BUSCADOR.TITULO'|translate}}{{pageCharacter.tipo}}</font></button>
+                <ion-searchbar  *ngIf="pageCharacter.hide" [ngModel]="pageCharacter.searchCharacter" (ionInput)="getSearchedCharacters($event)" ></ion-searchbar>
+                <ion-searchbar searchbar-ios-toolbar-input-background='custom-color'  *ngIf="!pageCharacter.hide" [ngModel]="pageCharacter.searchbyYear" type='number'></ion-searchbar>
+             </div> 
+
+              <ion-grid>
+                    <ion-row>
+                      <ion-col col-12 col-md-6 col-lg-4 col-xl-4 *ngFor="let heroe of pageCharacter.characters">
+                        <ion-card>
+                            <img [src]="heroe.thumbnail.path+'.'+heroe.thumbnail.extension" draggable="false">
+                            <ion-card-header>{{heroe?.name}}
+                               </ion-card-header>
+                        <ion-card-content>
+                            <ion-row>
+                                <ion-col col-6 col-md-6>
+                                    <p><b>{{'MARVEL.PERSONAJES.DATOS.COMICS'|translate}} : </b>{{heroe?.comics?.available}}</p>
+                                </ion-col>
+                                <ion-col col-6 col-md-6>
+                                    <p><b>{{'MARVEL.PERSONAJES.DATOS.EVENTOS'|translate}} : </b>{{heroe?.events?.available}}</p>
+                                </ion-col>
+                                <ion-col col-6 col-md-6>
+                                     <p><b>{{'MARVEL.PERSONAJES.DATOS.SERIES'|translate}} : </b>{{heroe?.series?.available}}</p>
+                                </ion-col>
+                                <ion-col col-6 col-md-6>
+                                     <p><b>{{'MARVEL.PERSONAJES.DATOS.HISTORIAS'|translate}} : </b>{{heroe?.stories?.available}}</p>
+                                </ion-col> </ion-row> 
+                      </ion-card-content>
+                    </ion-card></ion-col></ion-row>
+                  </ion-grid>
+              <ion-infinite-scroll (ionInfinite)="doInfiniteC($event)">
+                    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+    </div>
+</ion-content>

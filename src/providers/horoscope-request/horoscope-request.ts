@@ -10,6 +10,7 @@ import { Http } from '@angular/http';
 @Injectable()
 export class HoroscopeRequestProvider {
 
+
   signs = ["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio"
     , "sagittarius", "capricorn", "aquarius", "pisces"];
 
@@ -34,7 +35,7 @@ export class HoroscopeRequestProvider {
     console.log('Hello HoroscopeRequestProvider Provider');
   }
 
-
+  //url de api con signo zodiacal y dia -> obtener el horoscopèo adecuado
   getZodiacalSunsign(sunsign,day) 
   {
     let tmp = "http://theastrologer-api.herokuapp.com/api/horoscope/"+sunsign+"/"+day;
@@ -51,7 +52,7 @@ export class HoroscopeRequestProvider {
     })
   
     }
-
+    //consulta varias veces quantos son los signos zodiacales a para meterlos en un array y regresalros asi
     public consultAllHoroscopo(day:string)
     {
       let count = -1;
@@ -64,7 +65,7 @@ export class HoroscopeRequestProvider {
         })
     }
 
-
+    //Hacer un control si esque hay algun error en una peticion entonces regresar null o [] y gestirlo en html.
 
     
 }

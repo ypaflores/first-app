@@ -23,12 +23,13 @@ export class NoticiasGeneralesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad NoticiasGeneralesPage');
   }
-
+  //recojo  todas mis noticias generales de todos , si no hay ninguna me da vuoto!
   ngOnInit(){
 
     this.initializeCards("Cargando Datoss...");
 
  }
+  //hay un loader para que cargue mientras , puedo cambiarlo a como de lampeggiare per un po.
   private initializeCards(comment:string){
     
     let loader = this.loadingCtrl.create({

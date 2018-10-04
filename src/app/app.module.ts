@@ -1,6 +1,7 @@
+import { MbscModule } from '@mobiscroll/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, Platform } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,13 +29,19 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicStorageModule } from '@ionic/storage';
 import { FileTransfer } from '@ionic-native/file-transfer';
-import { DatabaseServiceProvider } from '../providers/database-service/database-service';
 import { NoticiasGeneralesPage } from '../pages/noticias-generales/noticias-generales';
 import { NgxCarousel3dModule }  from 'ngx-carousel-3d';
 import { Contacts } from '@ionic-native/contacts';
 import { ContactosPage } from '../pages/contactos/contactos';
 import { CreaContactoPageModule } from '../pages/crea-contacto/crea-contacto.module';
-
+import { FolderModalPage } from './../pages/folder-modal/folder-modal';
+import { File } from '@ionic-native/file';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { ApiProvider } from '../providers/api/api';
+import { CalendarPage } from '../pages/calendar/calendar';
+import { CalendarModule } from 'ionic3-calendar-en';
+import { FileOpener } from '@ionic-native/file-opener';
+import { Base64 } from '@ionic-native/base64';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -55,9 +62,12 @@ export const firebaseConfig = {
     ContactosPage,
     NoticiasGeneralesPage,
     HoroscoposPage,
-    LoginPage  
+    LoginPage,
+    FolderModalPage,CalendarPage
   ],
   imports: [
+    CalendarModule,
+    MbscModule,
     HttpModule,
     BrowserModule,
     NgxCarousel3dModule,
@@ -85,9 +95,12 @@ export const firebaseConfig = {
     NoticiasGeneralesPage,
     HoroscoposPage,
     LoginPage,
-    ContactosPage
+    ContactosPage,
+    FolderModalPage,CalendarPage
   ],
   providers: [
+    File, //Añadimos el plugin
+    Diagnostic, //Añadimos el plugin
     StatusBar,
     SplashScreen,
     ServiceCenterProvider,
@@ -100,9 +113,9 @@ export const firebaseConfig = {
     Trs,
     FileTransfer ,
     UtilitiesProvider,
-    DatabaseServiceProvider,
     SQLite,
-    Contacts
+    Contacts,ApiProvider,File,
+    FileOpener,Base64
   ]
 })
 

@@ -11,6 +11,8 @@ import { TranslateService } from '../../node_modules/@ngx-translate/core';
 import { UtilitiesProvider } from '../providers/utilities/utilities';
 import { NoticiasGeneralesPage } from '../pages/noticias-generales/noticias-generales';
 import { ContactosPage } from '../pages/contactos/contactos';
+import { FolderModalPage } from '../pages/folder-modal/folder-modal';
+import { CalendarPage } from '../pages/calendar/calendar';
 
 @Component({
   templateUrl: 'app.html'
@@ -41,7 +43,9 @@ export class MyApp {
             { title: this.translation.HOROSCOPO,component: HoroscoposPage ,icon: 'people'},
             { title: this.translation.NOTICIAS_TODAS,  component: NoticiasGeneralesPage ,icon: 'list-box' },
             { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' },
-            { title: this.translation.NOTICIAS, component: ContactosPage,  icon: 'contacts' }
+            { title: this.translation.CONTACTOS, component: ContactosPage,  icon: 'contacts' },
+            { title: this.translation.MARVEL, component: FolderModalPage,  icon: 'bookmarks' },
+            { title: 'Calendario', component: CalendarPage,  icon: 'calendar' }
             
           ];
         })
@@ -56,7 +60,9 @@ export class MyApp {
             { title: this.translation.HOROSCOPO,component: HoroscoposPage ,icon: 'people'},
             { title: this.translation.NOTICIAS_TODAS,  component: NoticiasGeneralesPage,icon: 'list-box' },
             { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' },
-            { title: this.translation.NOTICIAS, component: ContactosPage,  icon: 'contacts' }
+            { title: this.translation.CONTACTOS, component: ContactosPage,  icon: 'contacts' },
+            { title: this.translation.MARVEL, component: FolderModalPage,  icon: 'bookmarks' },
+            { title: 'Calendario', component: CalendarPage,  icon: 'calendar' }
           ];
         })
       })

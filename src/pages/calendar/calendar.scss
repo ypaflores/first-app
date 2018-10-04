@@ -1,0 +1,21 @@
+page-calendar {
+    .grid{
+        
+        border-style: double;
+        border-color: lightgreen;
+        background-color: slategrey;
+        
+    }
+    .calendar-header-col {
+        font-size: 1rem;
+        color: #46b592;
+    }
+    
+    .login-container {
+        .iniciar-sesion-btn {
+            margin-top: 2.5rem;
+
+        }
+        padding: 2px;
+    }
+}
