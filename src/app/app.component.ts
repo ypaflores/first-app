@@ -13,6 +13,7 @@ import { NoticiasGeneralesPage } from '../pages/noticias-generales/noticias-gene
 import { ContactosPage } from '../pages/contactos/contactos';
 import { FolderModalPage } from '../pages/folder-modal/folder-modal';
 import { CalendarPage } from '../pages/calendar/calendar';
+import { TranslatePage } from '../pages/translate/translate';
 
 @Component({
   templateUrl: 'app.html'
@@ -45,7 +46,8 @@ export class MyApp {
             { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' },
             { title: this.translation.CONTACTOS, component: ContactosPage,  icon: 'contacts' },
             { title: this.translation.MARVEL, component: FolderModalPage,  icon: 'bookmarks' },
-            { title: 'Calendario', component: CalendarPage,  icon: 'calendar' }
+            { title: 'Calendario', component: CalendarPage,  icon: 'calendar' },
+            { title: 'Translater', component: TranslatePage,  icon: 'create' }
             
           ];
         })
@@ -62,7 +64,8 @@ export class MyApp {
             { title: this.translation.NOTICIAS, component: TabNewPage,  icon: 'list' },
             { title: this.translation.CONTACTOS, component: ContactosPage,  icon: 'contacts' },
             { title: this.translation.MARVEL, component: FolderModalPage,  icon: 'bookmarks' },
-            { title: 'Calendario', component: CalendarPage,  icon: 'calendar' }
+            { title: 'Calendario', component: CalendarPage,  icon: 'calendar' },
+            { title: 'Translater', component: TranslatePage,  icon: 'create' }
           ];
         })
       })

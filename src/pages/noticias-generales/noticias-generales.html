@@ -27,7 +27,8 @@
     <ion-card *ngFor="let item of lista "> 
         <ion-item>
           <ion-avatar item-start>
-            <img src= {{item?.user?.img}}>
+            <img src= {{item?.user?.img}}  *ngIf="item?.user?.img">
+            <img src="assets/imgs/noProfile.png" *ngIf="item?.user?.img==''">
           </ion-avatar>
           <h2>{{item.title}}</h2>
           <p>{{item.date}}</p>

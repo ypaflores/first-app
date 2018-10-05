@@ -152,13 +152,19 @@ export class NotesProvider {
 }
 
   //lamar por cards antes de memorizar despues pgar el link hacia firebase en ese mismo ,
-  private uploadPhoto(photo): void {
-  this.myPhotosRef.child('myPhoto.png')
-    .putString(photo, 'base64', { contentType: 'image/png' })
-    .then((savedPicture) => {
-      console.log( savedPicture.downloadURL);
-    });
+   uploadPhoto(photo:string,name:string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const imageRef = this.myPhotosRef.child(name+".png");
+      imageRef.putString(photo, 'data_url').then(function(snapshot) {
+        console.log('Uploaded a base64url string!');
+        resolve(snapshot);
+      });
+  })
 }
+  deletePhoto(name:string){
+    return this.myPhotosRef.child(name+".png").delete();
+  }
+
 //Agrego un contatto 
 addContactList(contacto:any){
   

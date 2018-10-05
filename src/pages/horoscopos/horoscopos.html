@@ -30,27 +30,7 @@
                       <ion-option value="tomorrow">{{'HOROSCOPO.DIA.MAÑANA'|translate}}</ion-option>
                   </ion-select>
                 </ion-item>
-              </ion-toolbar><!--
-          <div class="mbsc-grid md-cards-layout">
-              <div class="mbsc-row mbsc-justify-content-center mbsc-no-padding">
-                  <div class="mbsc-col-12 mbsc-col-sm-6 mbsc-col-lg-4 mbsc-col-xl-4" *ngFor="let slide of slides">
-                    <mbsc-card [options]="settings">
-                      <img [src]="slide.image" class="slide-image"/>
-                      <mbsc-card-header>
-                        <mbsc-card-title [innerHTML]="slide.sing?.sunsign"></mbsc-card-title>
-                      </mbsc-card-header>
-                      <mbsc-card-content>
-                        <b>{{'HOROSCOPO.HOROSCOPO_TODO.DESCRIPCION'|translate}}</b>: {{slide.sing?.horoscope}}
-                      </mbsc-card-content>
-                      <mbsc-card-footer>
-                        <p class="mbsc-col-sm-6 mbsc-col-lg-6 mbsc-col-xl-6"> <b>{{'HOROSCOPO.HOROSCOPO_TODO.INTENSIDAD'|translate}}:</b> {{slide.sing?.meta?.intensity}}</p>
-                        <p class="mbsc-col-sm-6 mbsc-col-lg-6 mbsc-col-xl-6"><b>  {{'HOROSCOPO.HOROSCOPO_TODO.PALABRAS_CLAVE'|translate}}: </b>{{slide.sing?.meta?.keywords}} </p>
-                        <p class="mbsc-col-sm-6 mbsc-col-lg-6 mbsc-col-xl-6"><b> {{'HOROSCOPO.HOROSCOPO_TODO.HUMOR'|translate}}: </b> {{slide.sing?.meta?.mood}}</p>        
-                      </mbsc-card-footer>
-                  </mbsc-card>
-                  </div>
-              </div>
-          </div>-->
+              </ion-toolbar>
           <ion-grid>
               <ion-row>
                 <ion-col col-12 col-md-6 col-lg-4 col-xl-4 *ngFor="let slide of slides">

@@ -14,13 +14,14 @@
       </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <img [src]="user?.imgPerfil" *ngIf="user?.imgPerfil" />
-  <h1 text-center margin-top>{{user?.first_name}}</h1>
+  <img class="imgPerfil" src="assets/imgs/noProfile.png" *ngIf="user?.image==''" />
+  <img class="imgPerfil" [src]="user?.image" *ngIf="user?.image" />
+  <h1 text-center margin-top>{{user?.username}}</h1>
   <div text-center>
     <button ion-fab color="primary" margin (tap)="obtenerImgPerfilNueva()" style="display: inline-block;">
       <ion-icon name="camera"></ion-icon>
     </button>
-    <button ion-fab color="danger" margin *ngIf="userData?.imgPerfil" (tap)="borrarImgPerfil()" style="display: inline-block;">
+    <button ion-fab color="danger" margin *ngIf="user?.image" (tap)="borrarImgPerfil()" style="display: inline-block;">
       <ion-icon name="trash"></ion-icon>
     </button>
   </div>
@@ -32,11 +33,12 @@
       <ion-icon name="cloud-upload"></ion-icon>
     </button>
   </div>
+
   <form *ngIf="formMiPerfil" [formGroup]="formMiPerfil" (ngSubmit)="submitForm()">
     <ion-list>
       <ion-item>
         <ion-label floating>{{'MI_PERFIL.CAMPOS.USUARIO'|translate}}</ion-label>
-        <ion-input type="text" formControlName="usuario"></ion-input>
+        <ion-input type="text" formControlName="usuario" [disabled]="true"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>{{'MI_PERFIL.CAMPOS.NOMBRE'|translate}}</ion-label>
@@ -44,12 +46,12 @@
       </ion-item>
       <ion-item>
         <ion-label floating>{{'MI_PERFIL.CAMPOS.EMAIL'|translate}}</ion-label>
-        <ion-input type="email" formControlName="email"></ion-input>
+        <ion-input type="email" formControlName="email" [disabled]="true"></ion-input>
       </ion-item>
     </ion-list>
     <div text-center margin-top>
       <button ion-button color="primary" [disabled]="!formMiPerfil.valid">{{'MI_PERFIL.MODIFICAR'|translate}}</button>
     </div>
-  </form>
+  </form>  
 </ion-content>
   

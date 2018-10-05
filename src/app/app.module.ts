@@ -42,6 +42,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { CalendarModule } from 'ionic3-calendar-en';
 import { FileOpener } from '@ionic-native/file-opener';
 import { Base64 } from '@ionic-native/base64';
+import { TranslatePage } from '../pages/translate/translate';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -63,7 +64,7 @@ export const firebaseConfig = {
     NoticiasGeneralesPage,
     HoroscoposPage,
     LoginPage,
-    FolderModalPage,CalendarPage
+    FolderModalPage,CalendarPage,TranslatePage
   ],
   imports: [
     CalendarModule,
@@ -96,7 +97,7 @@ export const firebaseConfig = {
     HoroscoposPage,
     LoginPage,
     ContactosPage,
-    FolderModalPage,CalendarPage
+    FolderModalPage,CalendarPage,TranslatePage 
   ],
   providers: [
     File, //Añadimos el plugin
