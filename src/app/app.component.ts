@@ -47,7 +47,7 @@ export class MyApp {
             { title: this.translation.CONTACTOS, component: ContactosPage,  icon: 'contacts' },
             { title: this.translation.MARVEL, component: FolderModalPage,  icon: 'bookmarks' },
             { title: 'Calendario', component: CalendarPage,  icon: 'calendar' },
-            { title: 'Translater', component: TranslatePage,  icon: 'create' }
+            { title: this.translation.TRADUCTOR, component: TranslatePage,  icon: 'create' }
             
           ];
         })
@@ -65,7 +65,7 @@ export class MyApp {
             { title: this.translation.CONTACTOS, component: ContactosPage,  icon: 'contacts' },
             { title: this.translation.MARVEL, component: FolderModalPage,  icon: 'bookmarks' },
             { title: 'Calendario', component: CalendarPage,  icon: 'calendar' },
-            { title: 'Translater', component: TranslatePage,  icon: 'create' }
+            { title: this.translation.TRADUCTOR, component: TranslatePage,  icon: 'create' }
           ];
         })
       })

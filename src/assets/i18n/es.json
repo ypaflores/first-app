@@ -33,6 +33,7 @@
         "NOTICIAS": "Mis Noticias",
         "MARVEL":"Marvel",
         "CONTACTOS":"Contactos",
+        "TRADUCTOR":"Traductor",
         "CERRAR_SESION": {
             "TITULO": "Cerrar sesión",
             "DESC": "¿Estás seguro de que deseas cerrar sesión?",
@@ -270,6 +271,14 @@
             },
         "PDF":{
 
+        }
+    },
+    "TRADUCTOR":{
+        "TITULO":"Traductor",
+        "TRANSLATE":"Traducir el texto ",
+        "IDIOMA":"Selecciona Idioma",
+        "ERROR":{
+            "IDIOMA":"Por favor escoje el Idioma"
         }
     }
         

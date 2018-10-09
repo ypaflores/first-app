@@ -6,7 +6,7 @@
         </button>
         </ion-buttons>
     <ion-title>
-        Translate
+			{{'TRADUCTOR.TITULO'|translate}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -14,7 +14,7 @@
 	<ion-card [ngStyle]="{'background-color':'#123456'}">
  		<ion-card-header>
  		   <div [ngStyle]="{ 'background-color':'#123456', 'color': '#ffff99', 'font-	size': '14px', 'font-weight': 'bold', 'float':'left'}">
-				{{sourceLanguageName}}
+				{{'TRADUCTOR.TRANSLATE'|translate}}
    			</div>
    			<div [ngStyle]="{'text-align':'right'}">
 			 	<button [ngStyle]="{'background-color':'#123456', 'color': 'white', 'font-size': '14px', 'font-weight': 'bold'}" (click)="clearTextBtn()">
@@ -41,7 +41,7 @@
  	<ion-card [ngStyle]="{'background-color':'#123456'}">
  		<ion-card-header>
           <ion-item [ngStyle]="{ 'background-color':'#123456', 'color': '#ffff99', 'font-	size': '14px', 'font-weight': 'bold', 'float':'left'}">
-              <ion-label>{{targetLanguageName}}</ion-label>
+              <ion-label>{{'TRADUCTOR.IDIOMA'|translate}}</ion-label>
               <ion-select [(ngModel)]="targetLanguageCode" (ngModelChange)="chooseLanguageBtn()">
                 <ion-option [value] ='option.languageCode '*ngFor="let option of languages">{{option.languageName}}</ion-option>
               </ion-select>

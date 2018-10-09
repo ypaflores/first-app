@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ServiceCenterProvider } from '../../providers/service-center/service-center';
 import { UtilitiesProvider } from '../../providers/utilities/utilities';
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the TranslatePage page.
  *
@@ -21,12 +22,12 @@ export class TranslatePage {
 	sourceText: string;
 	translatedText: string;
 	sourceLanguageCode: string;
-	sourceLanguageName = 'Translate a text!';
 	targetLanguageCode: string;
-	targetLanguageName = 'Choose a language!';
-	languages = [];
+  languages = [];
+  translation: any;
+  lang: string;
 
-  constructor(public navCtrl: NavController,private translationservice :ServiceCenterProvider,private utilities:UtilitiesProvider) {
+  constructor(public navCtrl: NavController,private translationservice :ServiceCenterProvider,private utilities:UtilitiesProvider,private translateService: TranslateService) {
     this.languages =  this.translationservice.getLanguages();
   }
 
@@ -48,7 +49,7 @@ export class TranslatePage {
           });
       }
       else {
-        this.utilities.showAlert("Error",'Please choose a target language!');
+        this.utilities.showAlert("Error",this.translation.IDIOMA);
       }
 	};
 
@@ -67,6 +68,17 @@ export class TranslatePage {
           this.translate();
         } 
        
+      }
+      obtenerTraduccion() {
+    
+        setTimeout(() => {
+          this.translateService.get('TRADUCTOR.ERROR').subscribe(result => {
+            this.utilities.getLang().then(lang => {
+              this.lang = lang;
+              this.translation = result;
+            });
+          });
+        }, 100);
       }
       
 		

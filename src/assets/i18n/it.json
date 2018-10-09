@@ -32,6 +32,7 @@
         "NOTICIAS": "Mie Novità",
         "MARVEL":"Marvel",
         "CONTACTOS":"Contatti",
+        "TRADUCTOR":"Traduttore",
         "CERRAR_SESION": {
             "TITULO": "Chiudere Sessione",
             "DESC": "Sei sicuro di voler chiudere sessione?",
@@ -266,6 +267,15 @@
                 },
             "PDF":{
                 
+            }
+        },
+        "TRADUCTOR":{
+            "TITULO":"Traduttore",
+            "TRANSLATE":"Traduci il testo ",
+            "IDIOMA":"Seleziona Lingua",
+            "ERROR":{
+                "IDIOMA":"Per favore Scegli la lingua"
+
             }
         }
         
