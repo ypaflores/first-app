@@ -229,11 +229,12 @@
         "CALENDARIO":{
             "TITULO":"Calendar",
             "BOTONES":{
-                "DESCARGAR":"Download Calendar",
+                "DESCARGAR":"Download ",
                 "VER":"View Calendar",
                 "CANCELAR_MODIFICACION":"Cancel the modification", 
                 "HISTORIAL":"View History",
-                "NUEVO_EVENTO":"Add new Event"
+                "NUEVO_EVENTO":"Add new Event",
+                "FIRMA": "Firm"
     
                 
             },

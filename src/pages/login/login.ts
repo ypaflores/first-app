@@ -138,14 +138,24 @@ ionViewDidLoad() {
         this.translation = translation;
         this.utilities.getUserData().then(userData => {
           if (userData) {
-            this.navCtrl.setRoot(HomePage).then(() => {
-              this.events.publish('user:logged');
-            })
+            this.redirectTo_Perfil();
           }
         })
       })
     })
   }, 100)
+}
+redirectTo_Perfil() {
+  let loading = this.loadingCtrl.create({
+    content: this.translation.INICIANDO_SESION,
+    duration: 600
+  });
+  loading.present();
+  loading.onDidDismiss(() => {
+    this.navCtrl.setRoot(HomePage).then(() => {
+      this.events.publish('user:logged');
+    })
+  })
 }
 //Regresa el idioma actual y si no lo encuentra , el espanol es el de default
  establecerIdioma() {

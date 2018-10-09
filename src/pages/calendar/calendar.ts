@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform,ModalController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UtilitiesProvider } from '../../providers/utilities/utilities';
 import { NotesProvider } from '../../providers/notes/notes';
@@ -11,7 +11,7 @@ import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import { OperationsProvider } from '../../providers/operations/operations';
 import { TranslateService } from '@ngx-translate/core';
-
+import {SignaturePage} from '../signature/signature'
 /**
  * Generated class for the CalendarPage page.
  *
@@ -38,8 +38,9 @@ export class CalendarPage {
   arregloDiasOrasTotales:any=[0,0];
   lang: string;
   translation: any;
+  public signatureImage : any;
 
-  constructor(private plt: Platform,private translateService: TranslateService,public navCtrl: NavController, public navParams: NavParams,public formBuilder: FormBuilder,private utilities:UtilitiesProvider,private data:NotesProvider,private operationsC : OperationsProvider,private file: File, private fileOpener: FileOpener) {
+  constructor(private plt: Platform,private translateService: TranslateService,public navCtrl: NavController, public navParams: NavParams,public formBuilder: FormBuilder,private utilities:UtilitiesProvider,private data:NotesProvider,private operationsC : OperationsProvider,private file: File, private fileOpener: FileOpener,public modalController:ModalController) {
     var dateObj = new Date();
     this.md5HashMes = Md5.hashStr(dateObj.getUTCFullYear()+""+dateObj.getUTCMonth()).toString();
     this.getCalendario(this.md5HashMes);
@@ -47,6 +48,9 @@ export class CalendarPage {
         this.user = us;
     });
     this.tipo="";
+    this.signatureImage = navParams.get('signatureImage');
+    console.log(this.signatureImage);
+    
   }
 
   //Quando selecciono un dia del calendario , cambio el objeto diacorriente y encuentro el objeto que le corresponde
@@ -59,6 +63,17 @@ export class CalendarPage {
     } 
     console.log(event);
        
+  }
+  openSignatureModel(){
+    let modal = this.modalController.create(SignaturePage);
+    modal.onDidDismiss(data => {
+      console.log({dataOnDidDismiss:data});
+      if(data.estado){
+        console.log(data);
+        this.signatureImage = data.image;
+      }
+    });
+    modal.present();
   }
   //Quando cambio de mes recargo los datos del calendario de firebase 
   onMonthChange(event){
@@ -164,7 +179,9 @@ export class CalendarPage {
   }
   ionViewDidLoad() {
     this.obtenerTraduccion();
-  }    
+  } 
+  
+  
   
   /* PDFF
   */
@@ -213,6 +230,19 @@ export class CalendarPage {
               
             }
           },
+          {
+            columns: [
+              [
+                {text: this.operationsC.getDateFormat() + ".  Firma : ", style: 'firma' },
+              ],
+              [
+                {
+                  image:this.signatureImage,
+                  fit:[100,100]
+                }
+              ]
+            ]
+          },
           { text: ' Doveste aver bisogno di ulteriori informazioni, non esitate a contattarmi , Distinti saluti.', style: 'footer' }
         ],
         styles: {
@@ -252,11 +282,16 @@ export class CalendarPage {
             fontSize: 10,
             alignment: 'right'
             },
+            firma:{
+              fontSize: 12,
+              alignment: 'center',margin: [0, 15, 0, 25]
+            },
           pageSize: 'A4',
           pageOrientation: 'landscape'
         }
       }
-       this.pdfObj = pdfMake.createPdf(docDefinition).open();  
+       this.pdfObj = pdfMake.createPdf(docDefinition);
+       this.downloadPdf();
     }
     //descargo el pdf en el movil , o si no desde el browser!
     downloadPdf() {

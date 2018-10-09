@@ -52,7 +52,7 @@ export class SignupPage {
     .then(
       res => {
         var userId = this.afAuth.auth.currentUser.uid;
-        this.serviceN.writeUserData(userId,this.myForm.value.username, this.myForm.value.email, this.myForm.value.password,"");
+        this.serviceN.writeUserData(userId,this.myForm.value.username, this.myForm.value.email, this.myForm.value.password,{name:"",url:""});
         this.utilities.showAlert("En hora buena","Registrado con exito!");
         this.loading.dismiss().then(()=>{
           this.navCtrl.pop();

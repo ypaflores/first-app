@@ -43,6 +43,9 @@ import { CalendarModule } from 'ionic3-calendar-en';
 import { FileOpener } from '@ionic-native/file-opener';
 import { Base64 } from '@ionic-native/base64';
 import { TranslatePage } from '../pages/translate/translate';
+import { SignaturePage } from '../pages/signature/signature';
+import { SignaturePadModule } from 'angular2-signaturepad';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -64,7 +67,7 @@ export const firebaseConfig = {
     NoticiasGeneralesPage,
     HoroscoposPage,
     LoginPage,
-    FolderModalPage,CalendarPage,TranslatePage
+    FolderModalPage,CalendarPage,TranslatePage,SignaturePage,
   ],
   imports: [
     CalendarModule,
@@ -77,7 +80,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule ,
-    FormsModule,
+    FormsModule,SignaturePadModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -97,7 +100,7 @@ export const firebaseConfig = {
     HoroscoposPage,
     LoginPage,
     ContactosPage,
-    FolderModalPage,CalendarPage,TranslatePage 
+    FolderModalPage,CalendarPage,TranslatePage ,SignaturePage
   ],
   providers: [
     File, //Añadimos el plugin

@@ -19,10 +19,16 @@
 
 
 <ion-content padding>
-    <button ion-button icon-end [disabled]="currentEvents.length==0" color='custom-color2' ion-button full (click)="createPdf2()">
-         <font face="Comic sans MS">{{'CALENDARIO.BOTONES.DESCARGAR'|translate}}</font>
-        <ion-icon name="download"></ion-icon>
-      </button>
+      
+          <ion-row>
+            <ion-col col-6>
+                <button ion-button full  [disabled]="currentEvents.length==0 || !signatureImage" (click)="createPdf2()">{{'CALENDARIO.BOTONES.DESCARGAR'|translate}}<ion-icon name="download"></ion-icon> </button>   
+            </ion-col>
+            <ion-col col-6>
+                <button ion-button full  color="danger" (click)="openSignatureModel()">{{'CALENDARIO.BOTONES.FIRMA'|translate}}<ion-icon name="create"></ion-icon></button>
+            </ion-col>
+          </ion-row>
+      
       <div>
         <ion-calendar #calendar  [events]="currentEvents" (onDaySelect) = "onDaySelect($event)" (onMonthSelect)="onMonthChange($event)"></ion-calendar>
       </div>
@@ -86,6 +92,4 @@
     <div *ngIf="tipo == ''">
       <h4>{{'CALENDARIO.INFORMACION'|translate}}</h4>
     </div>
-     
-
 </ion-content>

@@ -33,6 +33,7 @@ export class TranslatePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TranslatePage');
+    this.obtenerTraduccion();
   }
   translate() {
 			let sourceText = this.sourceText;
